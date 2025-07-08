@@ -1,12 +1,8 @@
-package example
-
+package musicApp
+/*
 import (
 	"errors"
 	"fmt"
-	"myproject/app"
-	"myproject/graph"
-	"myproject/hashset"
-	"myproject/operation"
 )
 
 const (
@@ -267,3 +263,5 @@ func TestState(g *graph.OpGraph, calls []operation.Call) {
 		fmt.Println("Error:", err)
 	}
 }
+
+*/

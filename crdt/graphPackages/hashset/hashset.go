@@ -1,11 +1,8 @@
 //from https://github.com/eliben/gogl/blob/main/hashset/hashset.go
+//All() method modified, Copy() added since Go 1.20 doesn't support iter
 
 // Package hashset provides a map-based Set.
 package hashset
-
-import (
-	"iter"
-)
 
 // HashSet is a generic set based on a hash table (map).
 type HashSet[T comparable] struct {
@@ -48,15 +45,13 @@ func (hs *HashSet[T]) Delete(val T) {
 	delete(hs.m, val)
 }
 
-// All returns an iterator over all the values in the set.
-func (hs *HashSet[T]) All() iter.Seq[T] {
-	return func(yield func(T) bool) {
-		for v := range hs.m {
-			if !yield(v) {
-				return
-			}
-		}
+// Keys returns a slice of the keys in the HashSet
+func (hs *HashSet[T]) Keys() []T {
+	arr := make([]T, hs.Len())
+	for k := range hs.m {
+			arr = append(arr, k)
 	}
+	return arr
 }
 
 // Union returns the set union of hs with other. It creates a new set.
