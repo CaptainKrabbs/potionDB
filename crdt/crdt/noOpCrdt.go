@@ -5,35 +5,35 @@ import (
 	"potionDB/crdt/proto"
 )
 
-//Methods for NoOp, the rest of the operations are in noOpMusicApp.go
-func (a *NoOp)OpEqual(o Operation) bool {
+// Methods for NoOp, the rest of the operations are in noOpMusicApp.go
+func (a *NoOp) OpEqual(o Operation) bool {
 	_, ok := o.(*NoOp)
 	return ok
 }
 
-func(a *NoOp)Copy()Operation {
+func (a *NoOp) Copy() Operation {
 	return &NoOp{}
 }
 
-func (a *NoOp)Precondition(state State) bool {
+func (a *NoOp) Precondition(state State) bool {
 	return true
 }
 
-func (a *NoOp)BlockGenerator() []Operation {
+func (a *NoOp) BlockGenerator() []Operation {
 	return nil
 }
 
-func (a *NoOp)Process(state State) {
+func (a *NoOp) Process(state State) {
 }
-
 
 // Node struct for graph
 type Node struct {
 	Value  Call
 	Edges  []int
+	IsNoOp bool
 }
 
-func (node *Node) Copy()Node {
+func (node *Node) Copy() Node {
 	newNode := Node{Value: node.Value.Copy(), Edges: make([]int, len(node.Edges))}
 	copy(newNode.Edges, node.Edges) //shallow copy should be enough for ints
 	return newNode
@@ -46,7 +46,7 @@ func (node *Node) addEdge(edgeIdx int) {
 type NoOpCrdt struct {
 	CRDTVM
 	ArtistAlbums MusicData
-	NodeArr    []Node
+	NodeArr      []Node
 }
 
 //Nota: no codigo (e.g., no counterCRDT) quando vires "Effect", nao confundas com o Effect nos no-ops.
@@ -57,9 +57,9 @@ func (crdt *NoOpCrdt) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP 
 
 func (crdt *NoOpCrdt) Initialize(startTs *clocksi.Timestamp, replicaID int16) (newCrdt CRDT) {
 	return &NoOpCrdt{
-		CRDTVM: (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
+		CRDTVM:       (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
 		ArtistAlbums: make(MusicData),
-		NodeArr: []Node{},
+		NodeArr:      []Node{},
 	}
 }
 
@@ -76,11 +76,11 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//O state deves ser tu proprio a definir, apenas precisa de implementar dois métodos:
 	//GetCRDTType() proto.CRDTType:		{return proto.CRDTType_NOOP}
 	//GetREADType() proto.READType: 	{return proto.READType_FULL}
-	
+
 	crdtCpy := crdt.Copy().(*NoOpCrdt)
 	stateCpy := crdtCpy.ArtistAlbums
 	//perform operations on app db
-	for _, node := range(crdt.NodeArr) {
+	for _, node := range crdt.NodeArr {
 		node.Value.Op.Process(&stateCpy)
 	}
 	return &stateCpy
@@ -91,11 +91,13 @@ func (crdt *NoOpCrdt) Update(args UpdateArguments) (downstreamArgs DownstreamArg
 	//TODO: Este e o prepare. Faz aqui o codigo necessario para gerar os blocks e afins.
 	//No final, deves retornar a operacao a ser executada na fase do effect.
 	op := args.(Operation)
-	if op.Precondition(&crdt.ArtistAlbums) {
+	//Check precondition for a copy of the crdt.
+	if op.Precondition(crdt.Copy().Read(nil, nil)) { //TODO: potentially modify this if ReadArguments become relevant
 		downstreamArgs = Message{Op: op, BlockedOps: op.BlockGenerator()}
 	} else {
 		downstreamArgs = Message{Op: &NoOp{}, BlockedOps: nil}
 	}
+	//Message with NoOp used to detect operations that don't meet preconditions that shouldn't be added to the graph.
 	return
 }
 
@@ -110,7 +112,10 @@ func (crdt *NoOpCrdt) Downstream(updTs clocksi.Timestamp, downstreamArgs Downstr
 
 	//Expected that the argument here is a Message struct, which needs to be converted into a call
 	msg := downstreamArgs.(Message)
-	crdt.applyDownstream(msg.ToCall(updTs)) //Podes alterar esta se precisares
+	//Check that operation isn't NoOp (precondition was validated)
+	if _, ok := msg.Op.(*NoOp); !ok {
+		crdt.applyDownstream(msg.ToCall(updTs)) //Podes alterar esta se precisares
+	}
 	return nil
 }
 
@@ -120,6 +125,7 @@ func (crdt *NoOpCrdt) applyDownstream(downstreamArgs DownstreamArguments) (effec
 	//Por agora em termos de retorno podes deixar o que pus aqui
 	newCall := downstreamArgs.(Call)
 	newNodeIdx := len(crdt.NodeArr)
+	isNoOp := false
 	// for v ∈ V
 	for i := range crdt.NodeArr {
 		compVal := crdt.NodeArr[i].Value.Time.Compare(newCall.Time)
@@ -131,14 +137,14 @@ func (crdt *NoOpCrdt) applyDownstream(downstreamArgs DownstreamArguments) (effec
 		} else if compVal == 0 {
 			if crdt.NodeArr[i].Value.Blocks(&newCall) { //new Call is a No Op
 				//mark call as no-op
-				newCall.Op = &NoOp{}
+				isNoOp = true
 			}
 			if newCall.Blocks(&crdt.NodeArr[i].Value) { //Existing Call is a No Op
-				crdt.NodeArr[i].Value.Op = &NoOp{}
+				crdt.NodeArr[i].IsNoOp = true
 			}
 		}
 		//V ← V ∪ {c}
-		crdt.NodeArr = append(crdt.NodeArr, Node{Value: newCall, Edges: nil})
+		crdt.NodeArr = append(crdt.NodeArr, Node{Value: newCall, Edges: nil, IsNoOp: isNoOp})
 	}
 
 	var effectV Effect = NoEffect{}
@@ -151,9 +157,9 @@ func (crdt *NoOpCrdt) IsOperationWellTyped(args UpdateArguments) (ok bool, err e
 
 func (crdt *NoOpCrdt) Copy() (copyCRDT InversibleCRDT) {
 	newCRDT := NoOpCrdt{
-		CRDTVM: crdt.CRDTVM.copy(),
+		CRDTVM:       crdt.CRDTVM.copy(),
 		ArtistAlbums: crdt.ArtistAlbums.Copy(),
-		NodeArr: make([]Node, len(crdt.NodeArr)),
+		NodeArr:      make([]Node, len(crdt.NodeArr)),
 		//Adicionar outros campos que pertençam ao NoOpCrdt
 	}
 	for i, node := range crdt.NodeArr {
