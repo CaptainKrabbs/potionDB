@@ -26,6 +26,10 @@ func (a *NoOp) BlockGenerator() []Operation {
 func (a *NoOp) Process(state State) {
 }
 
+func (a *NoOp) String() string {
+	return "Operation: NoOp"
+}
+
 // Node struct for graph
 type Node struct {
 	Value  Call
@@ -81,7 +85,9 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	stateCpy := crdtCpy.ArtistAlbums
 	//perform operations on app db
 	for _, node := range crdt.NodeArr {
-		node.Value.Op.Process(&stateCpy)
+		if !node.IsNoOp {
+			node.Value.Op.Process(&stateCpy)
+		}
 	}
 	return &stateCpy
 }
@@ -92,7 +98,7 @@ func (crdt *NoOpCrdt) Update(args UpdateArguments) (downstreamArgs DownstreamArg
 	//No final, deves retornar a operacao a ser executada na fase do effect.
 	op := args.(Operation)
 	//Check precondition for a copy of the crdt.
-	if op.Precondition(crdt.Copy().Read(nil, nil)) { //TODO: potentially modify this if ReadArguments become relevant
+	if op.Precondition(crdt.Read(nil, nil)) { //TODO: potentially modify this if ReadArguments become relevant
 		downstreamArgs = Message{Op: op, BlockedOps: op.BlockGenerator()}
 	} else {
 		downstreamArgs = Message{Op: &NoOp{}, BlockedOps: nil}
@@ -130,22 +136,24 @@ func (crdt *NoOpCrdt) applyDownstream(downstreamArgs DownstreamArguments) (effec
 	for i := range crdt.NodeArr {
 		compVal := crdt.NodeArr[i].Value.Time.Compare(newCall.Time)
 		// if v ≺ c then
+		//fmt.Println("Checking:", crdt.NodeArr[i].Value.Op, newCall.Op, compVal)			//DEBUG PRINT
 		if compVal < 0 {
 			// E <- E ∪ {<v,c>}
 			(&crdt.NodeArr[i]).addEdge(newNodeIdx)
 			// else if v ∥ c ∧ opsConflict(v, c) then (v and c are concurrent and callTypeoperation is among blocked operations)
-		} else if compVal == 0 {
+		} else if compVal == clocksi.ConcurrentTs {
+			//fmt.Println("CONFLICT DETECTED:", crdt.NodeArr[i].Value.Op, ",", newCall.Op)			//DEBUG PRINT
 			if crdt.NodeArr[i].Value.Blocks(&newCall) { //new Call is a No Op
-				//mark call as no-op
+				//mark call as no-opl
 				isNoOp = true
 			}
 			if newCall.Blocks(&crdt.NodeArr[i].Value) { //Existing Call is a No Op
 				crdt.NodeArr[i].IsNoOp = true
 			}
 		}
-		//V ← V ∪ {c}
-		crdt.NodeArr = append(crdt.NodeArr, Node{Value: newCall, Edges: nil, IsNoOp: isNoOp})
 	}
+	//V ← V ∪ {c}
+	crdt.NodeArr = append(crdt.NodeArr, Node{Value: newCall, Edges: nil, IsNoOp: isNoOp})
 
 	var effectV Effect = NoEffect{}
 	return &effectV

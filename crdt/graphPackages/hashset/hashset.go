@@ -48,8 +48,10 @@ func (hs *HashSet[T]) Delete(val T) {
 // Keys returns a slice of the keys in the HashSet
 func (hs *HashSet[T]) Keys() []T {
 	arr := make([]T, hs.Len())
+	i := 0
 	for k := range hs.m {
-			arr = append(arr, k)
+			arr[i] = k
+			i++
 	}
 	return arr
 }

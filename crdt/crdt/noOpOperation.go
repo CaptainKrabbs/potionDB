@@ -12,7 +12,8 @@ type Operation interface {
 	Precondition(state State) bool
 	BlockGenerator() []Operation
 	Process(state State)
-	GetCRDTType() proto.CRDTType 
+	GetCRDTType() proto.CRDTType
+	String() string
 }
 
 // Message struct that stores an operation and those it blocks
