@@ -5,18 +5,22 @@ import (
 	"potionDB/crdt/clocksi"
 )
 
+var (
+	addArtistSam = AddArtist{ArtistName: "Sam"}
+	addAlbum1    = AddAlbum{AlbumName: "A1", ArtistName: "Sam"}
+	addAlbum2    = AddAlbum{AlbumName: "A2", ArtistName: "Sam"}
+	updArtistSam = UpdArtist{ArtistName: "Sam"}
+	rmvArtistSam = RmvArtist{ArtistName: "Sam"}
+
+	addArtistFred = AddArtist{ArtistName: "Fred"}
+	addAlbumFred  = AddAlbum{AlbumName: "The Great Pretender", ArtistName: "Fred"}
+	rmvArtistFred = RmvArtist{ArtistName: "Fred"}
+)
+
 func TestNoOpCrdt1() {
 	fmt.Println("\n Test start TestNoOpCrdt1")
 	crdtR1 := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
 	crdtR2 := (&NoOpCrdt{}).Initialize(nil, 222).(*NoOpCrdt)
-	//newDownstreamR1 := make([]DownstreamArguments, 0, 5)
-	//newDownstreamR2 := make([]DownstreamArguments, 0, 5)
-
-	addArtistSam := AddArtist{ArtistName: "Sam"}
-	addAlbum1 := AddAlbum{AlbumName: "A1", ArtistName: "Sam"}
-	addAlbum2 := AddAlbum{AlbumName: "A2", ArtistName: "Sam"}
-	updArtistSam := UpdArtist{ArtistName: "Sam"}
-	rmvArtistSam := RmvArtist{ArtistName: "Sam"}
 
 	var opOrderR1 = [][]Operation{{&addArtistSam}, {&addAlbum1, &addAlbum2}, {&updArtistSam, &rmvArtistSam}}
 	var opOrderR2 = [][]Operation{{&addArtistSam}, {&addAlbum1, &addAlbum2}, {&rmvArtistSam, &updArtistSam}}
@@ -30,6 +34,58 @@ func TestNoOpCrdt1() {
 
 	testReplica(crdtR1, 1, opOrderR1, timestamps)
 	testReplica(crdtR2, 2, opOrderR2, timestamps)
+}
+
+func TestNoOpCrdt2() {
+	fmt.Println("\n Test start TestNoOpCrdt2")
+	crdtR1 := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
+
+	var opOrderR1 = [][]Operation{{&addArtistSam}, {&addAlbum1, &addAlbum2}, {&rmvArtistFred, &updArtistSam}}
+	//create specific timestamps
+	var timestamps = []clocksi.ClockSiTimestamp{
+		{VectorClock: map[int16]int64{111: 1, 222: 0}},
+		{VectorClock: map[int16]int64{111: 2, 222: 0}},
+		{VectorClock: map[int16]int64{111: 1, 222: 1}},
+		{VectorClock: map[int16]int64{111: 3, 222: 1}},
+		{VectorClock: map[int16]int64{111: 2, 222: 2}}}
+
+	testReplica(crdtR1, 1, opOrderR1, timestamps)
+}
+
+func TestNoOpCrdt3() {
+	fmt.Println("\n Test start TestNoOpCrdt3")
+	crdtR1 := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
+
+	var opOrderR1 = [][]Operation{{&addArtistSam}, {&addAlbum1, &addAlbum2}, {&rmvArtistFred, &updArtistSam}, {&addArtistFred}, {&addAlbumFred}}
+	//create specific timestamps
+	var timestamps = []clocksi.ClockSiTimestamp{
+		{VectorClock: map[int16]int64{111: 1, 222: 0}},
+		{VectorClock: map[int16]int64{111: 2, 222: 0}},
+		{VectorClock: map[int16]int64{111: 1, 222: 1}},
+		{VectorClock: map[int16]int64{111: 3, 222: 1}},
+		{VectorClock: map[int16]int64{111: 2, 222: 2}},
+		{VectorClock: map[int16]int64{111: 3, 222: 2}},
+		{VectorClock: map[int16]int64{111: 4, 222: 2}}}
+
+	testReplica(crdtR1, 1, opOrderR1, timestamps)
+}
+
+func TestNoOpCrdt4() {
+	fmt.Println("\n Test start TestNoOpCrdt4")
+	crdtR1 := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
+
+	var opOrderR1 = [][]Operation{{&addArtistSam, &addArtistFred}, {&addAlbum1, &addAlbum2}, {&rmvArtistFred, &updArtistSam}, {&addAlbumFred}}
+	//create specific timestamps
+	var timestamps = []clocksi.ClockSiTimestamp{
+		{VectorClock: map[int16]int64{111: 1, 222: 0}},
+		{VectorClock: map[int16]int64{111: 0, 222: 1}},
+		{VectorClock: map[int16]int64{111: 2, 222: 1}},
+		{VectorClock: map[int16]int64{111: 1, 222: 2}},
+		{VectorClock: map[int16]int64{111: 3, 222: 2}},
+		{VectorClock: map[int16]int64{111: 2, 222: 3}},
+		{VectorClock: map[int16]int64{111: 4, 222: 4}}}
+
+	testReplica(crdtR1, 1, opOrderR1, timestamps)
 }
 
 // Func that carries out basic test structure
