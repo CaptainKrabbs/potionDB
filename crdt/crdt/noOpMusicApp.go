@@ -10,20 +10,31 @@ import (
 type Artist string
 type Album string
 
-type Data interface {
-	
+type CrdtData interface {
+	Copy() CrdtData
+	GetCRDTType() proto.CRDTType
+	GetREADType() proto.READType
 }
+
+type MusicMap map[Artist]*hashset.HashSet[Album]
+
 // State type
-type MusicData map[Artist]*hashset.HashSet[Album]
+type MusicData struct {
+	Data MusicMap
+}
+
+func InitMusicData() *MusicData {
+	return &MusicData{Data: make(map[Artist]*hashset.HashSet[Album])}
+}
 
 func (d *MusicData) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
 func (d *MusicData) GetREADType() proto.READType { return proto.READType_FULL }
 
 // Returns a deep copy of the artists and albums
 // using copy() when copying the slice since the slice elements are value type
-func (d *MusicData) Copy() MusicData {
-	newMap := make(MusicData)
-	for artist, artistAlbums := range *d {
+func (d *MusicData) Copy() CrdtData {
+	newMap := make(MusicMap)
+	for artist, artistAlbums := range d.Data {
 
 		var newAlbums *hashset.HashSet[Album] = hashset.New[Album]()
 		for _, album := range artistAlbums.Keys() {
@@ -31,7 +42,7 @@ func (d *MusicData) Copy() MusicData {
 		}
 		newMap[artist] = newAlbums
 	}
-	return newMap
+	return &MusicData{newMap}
 }
 
 // Operation implementation structs
@@ -54,7 +65,7 @@ func (a *AddArtist) Copy() Operation {
 func (a *AddArtist) Precondition(state State) bool {
 	// Precondition: !artistExists
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		_, artistExists := (*artistAlbums)[a.ArtistName]
+		_, artistExists := artistAlbums.Data[a.ArtistName]
 		return !artistExists
 	}
 	// returns false if the state isn't a type used by musicApp (shouldn't be triggered)
@@ -67,7 +78,7 @@ func (a *AddArtist) BlockGenerator() []Operation {
 
 func (a *AddArtist) Process(state State) {
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		(*artistAlbums)[a.ArtistName] = hashset.New[Album]()
+		artistAlbums.Data[a.ArtistName] = hashset.New[Album]()
 	}
 }
 
@@ -92,7 +103,7 @@ func (a *RmvArtist) Copy() Operation {
 func (a *RmvArtist) Precondition(state State) bool {
 	// Precondition: artistExists
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		_, artistExists := (*artistAlbums)[a.ArtistName]
+		_, artistExists := artistAlbums.Data[a.ArtistName]
 		return artistExists
 	}
 	return false
@@ -104,7 +115,7 @@ func (a *RmvArtist) BlockGenerator() []Operation {
 
 func (a *RmvArtist) Process(state State) {
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		delete(*artistAlbums, a.ArtistName)
+		delete(artistAlbums.Data, a.ArtistName)
 	}
 }
 
@@ -129,7 +140,7 @@ func (a *UpdArtist) Copy() Operation {
 func (a *UpdArtist) Precondition(state State) bool {
 	// Precondition: artistExists
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		_, artistExists := (*artistAlbums)[a.ArtistName]
+		_, artistExists := artistAlbums.Data[a.ArtistName]
 		return artistExists
 	}
 	return false
@@ -173,7 +184,7 @@ func (a *AddAlbum) Precondition(state State) bool {
 		from the value at the artist name key.
 	*/
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		albums, artistExists := (*artistAlbums)[a.ArtistName]
+		albums, artistExists := artistAlbums.Data[a.ArtistName]
 		return artistExists && !albums.Contains(a.AlbumName)
 	}
 	return false
@@ -187,7 +198,7 @@ func (a *AddAlbum) BlockGenerator() []Operation {
 
 func (a *AddAlbum) Process(state State) {
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		(*artistAlbums)[a.ArtistName].Add(a.AlbumName)
+		artistAlbums.Data[a.ArtistName].Add(a.AlbumName)
 	}
 }
 
@@ -213,7 +224,7 @@ func (a *RmvAlbum) Copy() Operation {
 func (a *RmvAlbum) Precondition(state State) bool {
 	// Precondition: artistExists && albumExists
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		albums, artistExists := (*artistAlbums)[a.ArtistName]
+		albums, artistExists := artistAlbums.Data[a.ArtistName]
 		return artistExists && albums.Contains(a.AlbumName)
 	}
 	return false
@@ -227,7 +238,7 @@ func (a *RmvAlbum) BlockGenerator() []Operation {
 
 func (a *RmvAlbum) Process(state State) {
 	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		(*artistAlbums)[a.ArtistName].Delete(a.AlbumName)
+		artistAlbums.Data[a.ArtistName].Delete(a.AlbumName)
 	}
 }
 

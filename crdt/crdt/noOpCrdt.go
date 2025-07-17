@@ -49,7 +49,7 @@ func (node *Node) addEdge(edgeIdx int) {
 
 type NoOpCrdt struct {
 	CRDTVM
-	ArtistAlbums MusicData
+	DataContent CrdtData
 	NodeArr      []Node
 }
 
@@ -62,7 +62,7 @@ func (crdt *NoOpCrdt) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP 
 func (crdt *NoOpCrdt) Initialize(startTs *clocksi.Timestamp, replicaID int16) (newCrdt CRDT) {
 	return &NoOpCrdt{
 		CRDTVM:       (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
-		ArtistAlbums: make(MusicData),
+		DataContent: nil,
 		NodeArr:      []Node{},
 	}
 }
@@ -82,14 +82,14 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//GetREADType() proto.READType: 	{return proto.READType_FULL}
 
 	crdtCpy := crdt.Copy().(*NoOpCrdt)
-	stateCpy := crdtCpy.ArtistAlbums
+	stateCpy := crdtCpy.DataContent
 	//perform operations on app db
 	for _, node := range crdt.NodeArr {
 		if !node.IsNoOp {
-			node.Value.Op.Process(&stateCpy)
+			node.Value.Op.Process(stateCpy)
 		}
 	}
-	return &stateCpy
+	return stateCpy
 }
 
 // Prepare
@@ -166,7 +166,7 @@ func (crdt *NoOpCrdt) IsOperationWellTyped(args UpdateArguments) (ok bool, err e
 func (crdt *NoOpCrdt) Copy() (copyCRDT InversibleCRDT) {
 	newCRDT := NoOpCrdt{
 		CRDTVM:       crdt.CRDTVM.copy(),
-		ArtistAlbums: crdt.ArtistAlbums.Copy(),
+		DataContent: crdt.DataContent.Copy(),
 		NodeArr:      make([]Node, len(crdt.NodeArr)),
 		//Adicionar outros campos que pertençam ao NoOpCrdt
 	}
