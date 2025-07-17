@@ -10,6 +10,9 @@ import (
 type Artist string
 type Album string
 
+type Data interface {
+	
+}
 // State type
 type MusicData map[Artist]*hashset.HashSet[Album]
 
