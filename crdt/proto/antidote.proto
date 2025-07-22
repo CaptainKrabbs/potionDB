@@ -545,6 +545,47 @@ message ApbGetDateResp {
     required int32 second = 6;
 }
 
+//--------------------
+// NoOp
+
+message ApbNoOpUpdate {
+    required NoOpType type = 1;
+    optional ApbNoOpMusicDataUpdate musicUpd = 2;
+    //can add more use cases for no ops below
+}
+
+//-----Operations for MusicData
+message ApbNoOpMusicDataUpdate {
+    //possible operations for the MusicApp
+    optional AbpNoOpMusicDataAddArtist = 1;
+    optional AbpNoOpMusicDataRmvArtist = 2;
+    optional AbpNoOpMusicDataUpdArtist = 3;
+    optional AbpNoOpMusicDataAddAlbum = 4;
+    optional AbpNoOpMusicDataRmvAlbum = 5;
+}
+
+message AbpNoOpMusicDataAddArtist {
+    required string artistName = 1;
+}
+message AbpNoOpMusicDataRmvArtist {
+    required string artistName = 1;
+}
+message AbpNoOpMusicDataUpdArtist {
+    required string artistName = 1;
+}
+message AbpNoOpMusicDataAddAlbum {
+    required string artistName = 1;
+    required string albumName = 2;
+}
+message AbpNoOpMusicDataRmvAlbum {
+    required string artistName = 1;
+    required string albumName = 2;
+}
+
+message ApbGetNoOpResp {
+    repeated bytes = 1; //the generic type data stored for the state
+}
+
 //--------------------------------------------------------------
 
 // Properties parameters of a transaction
@@ -592,6 +633,7 @@ message ApbUpdateOperation {
     optional ApbArrayCounterUpdate arraycounterop = 9;
     optional ApbMultiArrayUpdate multiarrayop = 17;
     optional ApbDateUpdate dateop = 18;
+    optional ApbNoOpUpdate noop = 19;
 }
 
 // Objects to be updated
@@ -653,6 +695,7 @@ message ApbReadObjectResp {
     optional ApbGetMultiArrayResp multiarray = 17;
     optional ApbGetDateResp date = 18;
 	optional ApbPartialReadResp partread = 8;	//Generic for non-full state reads from any CRDT
+    optional ApbNoOpResp = 19;
 }
 
 message ApbReadObjectsResp {

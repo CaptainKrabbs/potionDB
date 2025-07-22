@@ -5,6 +5,10 @@ import (
 	"potionDB/crdt/proto"
 )
 
+var (
+	NoOpOpCode int32 = 0
+)
+
 // Methods for NoOp, the rest of the operations are in noOpMusicApp.go
 func (a *NoOp) OpEqual(o Operation) bool {
 	_, ok := o.(*NoOp)
@@ -28,6 +32,17 @@ func (a *NoOp) Process(state State) {
 
 func (a *NoOp) String() string {
 	return "Operation: NoOp"
+}
+
+func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: NoOpOpCode, parameters: []byte{}}}
+}
+
+func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if len(protobuf.NoOp.GetParams()) != 1 {
+		return NoOp{}
+	}
+	return protobuf.NoOp.GetParams()[1].(string)
 }
 
 // Node struct for graph

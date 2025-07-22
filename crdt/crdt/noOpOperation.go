@@ -14,6 +14,10 @@ type Operation interface {
 	Process(state State)
 	GetCRDTType() proto.CRDTType
 	String() string
+
+	//for protobuf
+	FromUpdateObject(*proto.ApbUpdateOperation) UpdateArguments
+	ToUpdateObject() *proto.ApbUpdateOperation
 }
 
 // Message struct that stores an operation and those it blocks

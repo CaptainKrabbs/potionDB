@@ -14,6 +14,9 @@ type CrdtData interface {
 	Copy() CrdtData
 	GetCRDTType() proto.CRDTType
 	GetREADType() proto.READType
+
+	//for protobuf
+	ProcessFromUpdateObject(*proto.ApbUpdateOperation) UpdateArguments
 }
 
 type MusicMap map[Artist]*hashset.HashSet[Album]
@@ -44,6 +47,35 @@ func (d *MusicData) Copy() CrdtData {
 	}
 	return &MusicData{newMap}
 }
+
+
+func (d *MusicData) ProcessFromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if opCode := protobuf.NoOp.GetOpCode(); opCode >= 0 || opCode < len(musicOpsStatic) {
+		return musicOpsStatic[opCode].FromUpdateObject(protobuf)
+	} else {
+		//Would technically be an error just doing this as a placeholder.
+		return (&NoOp{}).FromUpdateObject(protobuf)
+	}
+}
+
+//Operation Codes
+var (
+	musicOpsStatic []Operation = []Operation{&NoOp{}, &AddArtist{}, &RmvArtist{}, &UpdArtist{}, &AddAlbum{}, &RmvAlbum{}}
+	AddArtistOpCode int32 = 1
+	RmvArtistOpCode int32 = 2
+	UpdArtistOpCode int32 = 3
+	AddAlbumOpCode int32 = 4
+	RmvAlbumOpCode int32 = 5
+
+	addArtistNumParams int32 = 1
+	rmvArtistNumParams int32 = 1
+	updArtistNumParams int32 = 1
+	addAlbumNumParams int32 = 2
+	rmvAlbumNumParams int32 = 2
+
+	artistNameParamIdx int = 0
+	albumNameParamIdx int = 1
+)
 
 // Operation implementation structs
 // BlockGeneration on Delete.Loses approach principle on conflict
@@ -86,6 +118,17 @@ func (a *AddArtist) String() string {
 	return fmt.Sprintf("Operation: AddArtist(%v)", a.ArtistName)
 }
 
+func (a *AddArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: AddArtistOpCode, parameters: []byte(a.ArtistName)}}
+}
+
+func (a *AddArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if len(protobuf.NoOp.GetParams()) != addArtistNumParams {
+		return NoOp{}
+	}
+	return AddArtist{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string)}
+}
+
 // --------------------RmvArtist
 type RmvArtist struct {
 	ArtistName Artist
@@ -123,6 +166,17 @@ func (a *RmvArtist) String() string {
 	return fmt.Sprintf("Operation: RmvArtist(%v)", a.ArtistName)
 }
 
+func (a *RmvArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+}
+
+func (a *RmvArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if len(protobuf.NoOp.GetParams()) != rmvArtistNumParams {
+		return NoOp{}
+	}
+	return RmvArtist{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string)}
+}
+
 // --------------------UpdArtist
 type UpdArtist struct {
 	ArtistName Artist
@@ -157,6 +211,17 @@ func (a *UpdArtist) Process(state State) {
 
 func (a *UpdArtist) String() string {
 	return fmt.Sprintf("Operation: UpdArtist(%v)", a.ArtistName)
+}
+
+func (a *UpdArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+}
+
+func (a *UpdArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if len(protobuf.NoOp.GetParams()) != updArtistNumParams {
+		return NoOp{}
+	}
+	return UpdArtist{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string)}
 }
 
 // --------------------AddAlbum
@@ -206,6 +271,17 @@ func (a *AddAlbum) String() string {
 	return fmt.Sprintf("Operation: AddAlbum(%v, %v)", a.AlbumName, a.ArtistName)
 }
 
+func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+}
+
+func (a *AddAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if len(protobuf.NoOp.GetParams()) != addAlbumNumParams {
+		return NoOp{}
+	}
+	return AddAlbum{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string), AlbumName: protobuf.NoOp.GetParams()[albumNameParamIdx].(string)}
+}
+
 // --------------------RmvAlbum
 type RmvAlbum struct {
 	AlbumName  Album
@@ -244,6 +320,17 @@ func (a *RmvAlbum) Process(state State) {
 
 func (a *RmvAlbum) String() string {
 	return fmt.Sprintf("Operation: RmvAlbum(%v, %v)", a.ArtistName, a.AlbumName)
+}
+
+func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+}
+
+func (a *RmvAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if len(protobuf.NoOp.GetParams()) != rmvAlbumNumParams {
+		return NoOp{}
+	}
+	return RmvAlbum{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string), AlbumName: protobuf.NoOp.GetParams()[albumNameParamIdx].(string)}
 }
 
 // operations

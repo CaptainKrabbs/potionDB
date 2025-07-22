@@ -101,8 +101,9 @@ func UpdateProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation, crdtType pr
 		return updateMultiArrayProtoToAntidoteUpdate(protobuf)
 	case proto.CRDTType_MVREG:
 		return MVSetValue{}.FromUpdateObject(protobuf)
+	case proto.CRDTType_NOOP:
+		return updateNoOpProtoToAntidoteUpdate(protobuf)
 	}
-
 	return nil
 }
 
@@ -638,6 +639,10 @@ func updateMultiArrayProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation) (
 	}
 	//fmt.Printf("[CRDTProtoLib][ERROR]Did not match update. ArrayType: %+v.\n. MultiArrayProto: %+v\n", arrayType, protobuf)
 	return nil
+}
+
+func updateNoOpProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	
 }
 
 //Read Resps
