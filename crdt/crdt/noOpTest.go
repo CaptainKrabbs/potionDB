@@ -27,7 +27,7 @@ func TestNoOpCrdt1() {
 	fmt.Println("\n Test start TestNoOpCrdt1")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.DataContent = InitMusicData()
+	crdt.StateContent = InitMusicState()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {updArtistSamRep1, rmvArtistSamRep2}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -47,7 +47,7 @@ func TestNoOpCrdt2() {
 	fmt.Println("\n Test start TestNoOpCrdt2")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.DataContent = InitMusicData()
+	crdt.StateContent = InitMusicState()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -67,7 +67,7 @@ func TestNoOpCrdt3() {
 	fmt.Println("\n Test start TestNoOpCrdt3")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.DataContent = InitMusicData()
+	crdt.StateContent = InitMusicState()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}, {addArtistFredRep2}, {addAlbumFredRep2}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -89,7 +89,7 @@ func TestNoOpCrdt4() {
 	fmt.Println("\n Test start TestNoOpCrdt4")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.DataContent = InitMusicData()
+	crdt.StateContent = InitMusicState()
 	var opOrderR1 = [][]ReplicaOp{{addArtistSamRep1, addArtistFredRep2}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}, {addAlbumFredRep2}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -171,13 +171,13 @@ func PrintNoOpCrdt(c *NoOpCrdt, name string) {
 			fmt.Println("--------")
 		*/
 	}
-	PrintMusicData(c.Read(nil, nil).(*MusicData))
+	PrintMusicState(c.Read(nil, nil).(*MusicState))
 }
 
-// Func that prints out the data (Music Data -> Artists and Albums) for a NoOpCrdt using MusicData
-func PrintMusicData(d *MusicData) {
+// Func that prints out the data (Music State -> Artists and Albums) for a NoOpCrdt using MusicState
+func PrintMusicState(d *MusicState) {
 	fmt.Println("State:")
-	for artist, val := range d.Data {
+	for artist, val := range d.State {
 		fmt.Println("Artist:", artist)
 		fmt.Println("-- Albums: ", val.Len())
 		for _, album := range val.Keys() {

@@ -548,42 +548,56 @@ message ApbGetDateResp {
 //--------------------
 // NoOp
 
+enum NoOpStateType {
+    GENERIC = 0;
+    MUSIC_STATE = 1;
+}
+
 message ApbNoOpUpdate {
-    required NoOpType type = 1;
-    optional ApbNoOpMusicDataUpdate musicUpd = 2;
+    required NoOpStateType type = 1;
+    optional ApbNoOpGenericUpdate genericUpd = 2; //NoOp is the only operation
+    optional ApbNoOpMusicStateUpdate musicUpd = 3;
     //can add more use cases for no ops below
 }
 
-//-----Operations for MusicData
-message ApbNoOpMusicDataUpdate {
-    //possible operations for the MusicApp
-    optional AbpNoOpMusicDataAddArtist = 1;
-    optional AbpNoOpMusicDataRmvArtist = 2;
-    optional AbpNoOpMusicDataUpdArtist = 3;
-    optional AbpNoOpMusicDataAddAlbum = 4;
-    optional AbpNoOpMusicDataRmvAlbum = 5;
+message ApbNoOpGenericUpdate {
+    required ApbNoOpGenericNoOp NoOp = 1;
 }
 
-message AbpNoOpMusicDataAddArtist {
+message ApbNoOpGenericNoOp {
+}
+
+//-----Operations for MusicState
+message ApbNoOpMusicStateUpdate {
+    //possible operations for the MusicApp
+    optional ApbNoOpMusicStateAddArtist addArtistOp = 1;
+    optional ApbNoOpMusicStateRmvArtist rmvArtistOp = 2;
+    optional ApbNoOpMusicStateUpdArtist updArtistOp = 3;
+    optional ApbNoOpMusicStateAddAlbum addAlbumOp= 4;
+    optional ApbNoOpMusicStateRmvAlbum rmvAlbumOp = 5;
+}
+
+message ApbNoOpMusicStateAddArtist {
     required string artistName = 1;
 }
-message AbpNoOpMusicDataRmvArtist {
+message ApbNoOpMusicStateRmvArtist {
     required string artistName = 1;
 }
-message AbpNoOpMusicDataUpdArtist {
+message ApbNoOpMusicStateUpdArtist {
     required string artistName = 1;
 }
-message AbpNoOpMusicDataAddAlbum {
+message ApbNoOpMusicStateAddAlbum {
     required string artistName = 1;
     required string albumName = 2;
 }
-message AbpNoOpMusicDataRmvAlbum {
+message ApbNoOpMusicStateRmvAlbum {
     required string artistName = 1;
     required string albumName = 2;
 }
 
 message ApbGetNoOpResp {
-    repeated bytes = 1; //the generic type data stored for the state
+    required NoOpStateType type = 1;
+    optional bytes value = 2; //the generic type data stored for the state
 }
 
 //--------------------------------------------------------------
@@ -695,7 +709,7 @@ message ApbReadObjectResp {
     optional ApbGetMultiArrayResp multiarray = 17;
     optional ApbGetDateResp date = 18;
 	optional ApbPartialReadResp partread = 8;	//Generic for non-full state reads from any CRDT
-    optional ApbNoOpResp = 19;
+    optional ApbGetNoOpResp noop = 19;
 }
 
 message ApbReadObjectsResp {

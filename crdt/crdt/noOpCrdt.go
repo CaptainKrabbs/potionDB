@@ -5,10 +5,6 @@ import (
 	"potionDB/crdt/proto"
 )
 
-var (
-	NoOpOpCode int32 = 0
-)
-
 // Methods for NoOp, the rest of the operations are in noOpMusicApp.go
 func (a *NoOp) OpEqual(o Operation) bool {
 	_, ok := o.(*NoOp)
@@ -35,14 +31,13 @@ func (a *NoOp) String() string {
 }
 
 func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: NoOpOpCode, parameters: []byte{}}}
+	updType := proto.NoOpStateType_GENERIC
+	noOpUpd := proto.ApbNoOpGenericUpdate{NoOp: &proto.ApbNoOpGenericNoOp{}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, GenericUpd: &noOpUpd}}
 }
 
 func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if len(protobuf.NoOp.GetParams()) != 1 {
-		return NoOp{}
-	}
-	return protobuf.NoOp.GetParams()[1].(string)
+	return a
 }
 
 // Node struct for graph
@@ -64,7 +59,7 @@ func (node *Node) addEdge(edgeIdx int) {
 
 type NoOpCrdt struct {
 	CRDTVM
-	DataContent CrdtData
+	StateContent NoOpState
 	NodeArr      []Node
 }
 
@@ -77,7 +72,7 @@ func (crdt *NoOpCrdt) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP 
 func (crdt *NoOpCrdt) Initialize(startTs *clocksi.Timestamp, replicaID int16) (newCrdt CRDT) {
 	return &NoOpCrdt{
 		CRDTVM:       (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
-		DataContent: nil,
+		StateContent: nil,
 		NodeArr:      []Node{},
 	}
 }
@@ -97,7 +92,7 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//GetREADType() proto.READType: 	{return proto.READType_FULL}
 
 	crdtCpy := crdt.Copy().(*NoOpCrdt)
-	stateCpy := crdtCpy.DataContent
+	stateCpy := crdtCpy.StateContent
 	//perform operations on app db
 	for _, node := range crdt.NodeArr {
 		if !node.IsNoOp {
@@ -181,7 +176,7 @@ func (crdt *NoOpCrdt) IsOperationWellTyped(args UpdateArguments) (ok bool, err e
 func (crdt *NoOpCrdt) Copy() (copyCRDT InversibleCRDT) {
 	newCRDT := NoOpCrdt{
 		CRDTVM:       crdt.CRDTVM.copy(),
-		DataContent: crdt.DataContent.Copy(),
+		StateContent: crdt.StateContent.Copy(),
 		NodeArr:      make([]Node, len(crdt.NodeArr)),
 		//Adicionar outros campos que pertençam ao NoOpCrdt
 	}

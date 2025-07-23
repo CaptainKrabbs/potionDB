@@ -1,7 +1,9 @@
 package crdt
 
 import (
+	"bytes"
 	"fmt"
+	"encoding/gob"
 	"potionDB/crdt/graphPackages/hashset"
 	"potionDB/crdt/proto"
 )
@@ -10,34 +12,33 @@ import (
 type Artist string
 type Album string
 
-type CrdtData interface {
-	Copy() CrdtData
+type NoOpState interface {
+	Copy() NoOpState
 	GetCRDTType() proto.CRDTType
 	GetREADType() proto.READType
-
-	//for protobuf
-	ProcessFromUpdateObject(*proto.ApbUpdateOperation) UpdateArguments
+	ToReadResp() *proto.ApbReadObjectResp
+	FromReadResp(*proto.ApbReadObjectResp) State
 }
 
 type MusicMap map[Artist]*hashset.HashSet[Album]
 
 // State type
-type MusicData struct {
-	Data MusicMap
+type MusicState struct {
+	State MusicMap
 }
 
-func InitMusicData() *MusicData {
-	return &MusicData{Data: make(map[Artist]*hashset.HashSet[Album])}
+func InitMusicState() *MusicState {
+	return &MusicState{State: make(map[Artist]*hashset.HashSet[Album])}
 }
 
-func (d *MusicData) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
-func (d *MusicData) GetREADType() proto.READType { return proto.READType_FULL }
+func (d *MusicState) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+func (d *MusicState) GetREADType() proto.READType { return proto.READType_FULL }
 
 // Returns a deep copy of the artists and albums
 // using copy() when copying the slice since the slice elements are value type
-func (d *MusicData) Copy() CrdtData {
+func (d *MusicState) Copy() NoOpState {
 	newMap := make(MusicMap)
-	for artist, artistAlbums := range d.Data {
+	for artist, artistAlbums := range d.State {
 
 		var newAlbums *hashset.HashSet[Album] = hashset.New[Album]()
 		for _, album := range artistAlbums.Keys() {
@@ -45,37 +46,28 @@ func (d *MusicData) Copy() CrdtData {
 		}
 		newMap[artist] = newAlbums
 	}
-	return &MusicData{newMap}
+	return &MusicState{newMap}
 }
 
-
-func (d *MusicData) ProcessFromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if opCode := protobuf.NoOp.GetOpCode(); opCode >= 0 || opCode < len(musicOpsStatic) {
-		return musicOpsStatic[opCode].FromUpdateObject(protobuf)
-	} else {
-		//Would technically be an error just doing this as a placeholder.
-		return (&NoOp{}).FromUpdateObject(protobuf)
+func (d *MusicState) ToReadResp() (protobuf *proto.ApbReadObjectResp) {
+	stateType := proto.NoOpStateType_MUSIC_STATE
+	var buf bytes.Buffer
+	enc := gob.NewEncoder(&buf)
+	if err := enc.Encode(d); err != nil {
+		panic(err)
 	}
+	return &proto.ApbReadObjectResp{Noop: &proto.ApbGetNoOpResp{Type: &stateType, Value: buf.Bytes()}}
 }
 
-//Operation Codes
-var (
-	musicOpsStatic []Operation = []Operation{&NoOp{}, &AddArtist{}, &RmvArtist{}, &UpdArtist{}, &AddAlbum{}, &RmvAlbum{}}
-	AddArtistOpCode int32 = 1
-	RmvArtistOpCode int32 = 2
-	UpdArtistOpCode int32 = 3
-	AddAlbumOpCode int32 = 4
-	RmvAlbumOpCode int32 = 5
-
-	addArtistNumParams int32 = 1
-	rmvArtistNumParams int32 = 1
-	updArtistNumParams int32 = 1
-	addAlbumNumParams int32 = 2
-	rmvAlbumNumParams int32 = 2
-
-	artistNameParamIdx int = 0
-	albumNameParamIdx int = 1
-)
+func (d *MusicState) FromReadResp(protobuf *proto.ApbReadObjectResp) (state State) {
+	var buf bytes.Buffer
+	var decodedState NoOpState
+	dec := gob.NewDecoder(&buf)
+	if err := dec.Decode(&decodedState); err != nil {
+		panic(err)
+	}
+	return decodedState
+}
 
 // Operation implementation structs
 // BlockGeneration on Delete.Loses approach principle on conflict
@@ -96,8 +88,8 @@ func (a *AddArtist) Copy() Operation {
 
 func (a *AddArtist) Precondition(state State) bool {
 	// Precondition: !artistExists
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		_, artistExists := artistAlbums.Data[a.ArtistName]
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		_, artistExists := artistAlbums.State[a.ArtistName]
 		return !artistExists
 	}
 	// returns false if the state isn't a type used by musicApp (shouldn't be triggered)
@@ -109,8 +101,8 @@ func (a *AddArtist) BlockGenerator() []Operation {
 }
 
 func (a *AddArtist) Process(state State) {
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		artistAlbums.Data[a.ArtistName] = hashset.New[Album]()
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		artistAlbums.State[a.ArtistName] = hashset.New[Album]()
 	}
 }
 
@@ -119,14 +111,13 @@ func (a *AddArtist) String() string {
 }
 
 func (a *AddArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: AddArtistOpCode, parameters: []byte(a.ArtistName)}}
+	updType := proto.NoOpStateType_MUSIC_STATE
+	musicUpd := proto.ApbNoOpMusicStateUpdate{AddArtistOp: &proto.ApbNoOpMusicStateAddArtist{ArtistName: (*string)(&a.ArtistName)}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
 }
 
 func (a *AddArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if len(protobuf.NoOp.GetParams()) != addArtistNumParams {
-		return NoOp{}
-	}
-	return AddArtist{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string)}
+	return AddArtist{ArtistName: Artist(*protobuf.Noop.MusicUpd.AddArtistOp.ArtistName)}
 }
 
 // --------------------RmvArtist
@@ -145,8 +136,8 @@ func (a *RmvArtist) Copy() Operation {
 
 func (a *RmvArtist) Precondition(state State) bool {
 	// Precondition: artistExists
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		_, artistExists := artistAlbums.Data[a.ArtistName]
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		_, artistExists := artistAlbums.State[a.ArtistName]
 		return artistExists
 	}
 	return false
@@ -157,8 +148,8 @@ func (a *RmvArtist) BlockGenerator() []Operation {
 }
 
 func (a *RmvArtist) Process(state State) {
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		delete(artistAlbums.Data, a.ArtistName)
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		delete(artistAlbums.State, a.ArtistName)
 	}
 }
 
@@ -167,14 +158,13 @@ func (a *RmvArtist) String() string {
 }
 
 func (a *RmvArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+	updType := proto.NoOpStateType_MUSIC_STATE
+	musicUpd := proto.ApbNoOpMusicStateUpdate{RmvArtistOp: &proto.ApbNoOpMusicStateRmvArtist{ArtistName: (*string)(&a.ArtistName)}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
 }
 
 func (a *RmvArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if len(protobuf.NoOp.GetParams()) != rmvArtistNumParams {
-		return NoOp{}
-	}
-	return RmvArtist{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string)}
+	return RmvArtist{ArtistName: Artist(*protobuf.Noop.MusicUpd.RmvArtistOp.ArtistName)}
 }
 
 // --------------------UpdArtist
@@ -193,8 +183,8 @@ func (a *UpdArtist) Copy() Operation {
 
 func (a *UpdArtist) Precondition(state State) bool {
 	// Precondition: artistExists
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		_, artistExists := artistAlbums.Data[a.ArtistName]
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		_, artistExists := artistAlbums.State[a.ArtistName]
 		return artistExists
 	}
 	return false
@@ -214,14 +204,13 @@ func (a *UpdArtist) String() string {
 }
 
 func (a *UpdArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+	updType := proto.NoOpStateType_MUSIC_STATE
+	musicUpd := proto.ApbNoOpMusicStateUpdate{UpdArtistOp: &proto.ApbNoOpMusicStateUpdArtist{ArtistName: (*string)(&a.ArtistName)}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
 }
 
 func (a *UpdArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if len(protobuf.NoOp.GetParams()) != updArtistNumParams {
-		return NoOp{}
-	}
-	return UpdArtist{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string)}
+	return UpdArtist{ArtistName: Artist(*protobuf.Noop.MusicUpd.UpdArtistOp.ArtistName)}
 }
 
 // --------------------AddAlbum
@@ -248,8 +237,8 @@ func (a *AddAlbum) Precondition(state State) bool {
 		To check an album exists we need to get the albums
 		from the value at the artist name key.
 	*/
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		albums, artistExists := artistAlbums.Data[a.ArtistName]
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		albums, artistExists := artistAlbums.State[a.ArtistName]
 		return artistExists && !albums.Contains(a.AlbumName)
 	}
 	return false
@@ -262,8 +251,8 @@ func (a *AddAlbum) BlockGenerator() []Operation {
 }
 
 func (a *AddAlbum) Process(state State) {
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		artistAlbums.Data[a.ArtistName].Add(a.AlbumName)
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		artistAlbums.State[a.ArtistName].Add(a.AlbumName)
 	}
 }
 
@@ -272,14 +261,13 @@ func (a *AddAlbum) String() string {
 }
 
 func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+	updType := proto.NoOpStateType_MUSIC_STATE
+	musicUpd := proto.ApbNoOpMusicStateUpdate{AddAlbumOp: &proto.ApbNoOpMusicStateAddAlbum{ArtistName: (*string)(&a.ArtistName), AlbumName: (*string)(&a.AlbumName)}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
 }
 
 func (a *AddAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if len(protobuf.NoOp.GetParams()) != addAlbumNumParams {
-		return NoOp{}
-	}
-	return AddAlbum{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string), AlbumName: protobuf.NoOp.GetParams()[albumNameParamIdx].(string)}
+	return AddAlbum{ArtistName: Artist(*protobuf.Noop.MusicUpd.AddAlbumOp.ArtistName), AlbumName: Album(*protobuf.Noop.MusicUpd.AddAlbumOp.AlbumName)}
 }
 
 // --------------------RmvAlbum
@@ -299,8 +287,8 @@ func (a *RmvAlbum) Copy() Operation {
 
 func (a *RmvAlbum) Precondition(state State) bool {
 	// Precondition: artistExists && albumExists
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		albums, artistExists := artistAlbums.Data[a.ArtistName]
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		albums, artistExists := artistAlbums.State[a.ArtistName]
 		return artistExists && albums.Contains(a.AlbumName)
 	}
 	return false
@@ -313,8 +301,8 @@ func (a *RmvAlbum) BlockGenerator() []Operation {
 }
 
 func (a *RmvAlbum) Process(state State) {
-	if artistAlbums, isMusicData := state.(*MusicData); isMusicData {
-		artistAlbums.Data[a.ArtistName].Delete(a.AlbumName)
+	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
+		artistAlbums.State[a.ArtistName].Delete(a.AlbumName)
 	}
 }
 
@@ -323,14 +311,13 @@ func (a *RmvAlbum) String() string {
 }
 
 func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{op_code: RmvArtistOpCode, parameters: [][]byte{[]byte(a.ArtistName)}}}
+	updType := proto.NoOpStateType_MUSIC_STATE
+	musicUpd := proto.ApbNoOpMusicStateUpdate{RmvAlbumOp: &proto.ApbNoOpMusicStateRmvAlbum{ArtistName: (*string)(&a.ArtistName), AlbumName: (*string)(&a.AlbumName)}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
 }
 
 func (a *RmvAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if len(protobuf.NoOp.GetParams()) != rmvAlbumNumParams {
-		return NoOp{}
-	}
-	return RmvAlbum{ArtistName: protobuf.NoOp.GetParams()[artistNameParamIdx].(string), AlbumName: protobuf.NoOp.GetParams()[albumNameParamIdx].(string)}
+	return RmvAlbum{ArtistName: Artist(*protobuf.Noop.MusicUpd.RmvAlbumOp.ArtistName), AlbumName: Album(*protobuf.Noop.MusicUpd.RmvAlbumOp.AlbumName)}
 }
 
 // operations
