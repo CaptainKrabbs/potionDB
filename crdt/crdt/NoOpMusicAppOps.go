@@ -1,73 +1,33 @@
 package crdt
 
 import (
-	"bytes"
 	"fmt"
-	"encoding/gob"
 	"potionDB/crdt/graphPackages/hashset"
 	"potionDB/crdt/proto"
 )
 
-// App types
-type Artist string
-type Album string
+var (
+	MusicStateType int32 = 1
+	//Operation codes for App using MusicState as NoOpState
+	AddArtistOpCode int32 = 1
+	RmvArtistOpCode int32 = 2
+	UpdArtistOpCode int32 = 3
+	AddAlbumOpCode int32 = 4
+	RmvAlbumOpCode int32 = 5
 
-type NoOpState interface {
-	Copy() NoOpState
-	GetCRDTType() proto.CRDTType
-	GetREADType() proto.READType
-	ToReadResp() *proto.ApbReadObjectResp
-	FromReadResp(*proto.ApbReadObjectResp) State
-}
+	//Required number of params per operation
+	AddArtistNumParams = 1
+	RmvArtistNumParams = 1
+	UpdArtistNumParams = 1
+	AddAlbumNumParams = 2
+	RmvAlbumNumParams = 2
 
-type MusicMap map[Artist]*hashset.HashSet[Album]
+	//Expected Parameter index
+	ArtistNameParamIdx = 0
+	AlbumNameParamIdx = 1
 
-// State type
-type MusicState struct {
-	State MusicMap
-}
-
-func InitMusicState() *MusicState {
-	return &MusicState{State: make(map[Artist]*hashset.HashSet[Album])}
-}
-
-func (d *MusicState) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
-func (d *MusicState) GetREADType() proto.READType { return proto.READType_FULL }
-
-// Returns a deep copy of the artists and albums
-// using copy() when copying the slice since the slice elements are value type
-func (d *MusicState) Copy() NoOpState {
-	newMap := make(MusicMap)
-	for artist, artistAlbums := range d.State {
-
-		var newAlbums *hashset.HashSet[Album] = hashset.New[Album]()
-		for _, album := range artistAlbums.Keys() {
-			newAlbums.Add(album)
-		}
-		newMap[artist] = newAlbums
-	}
-	return &MusicState{newMap}
-}
-
-func (d *MusicState) ToReadResp() (protobuf *proto.ApbReadObjectResp) {
-	stateType := proto.NoOpStateType_MUSIC_STATE
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	if err := enc.Encode(d); err != nil {
-		panic(err)
-	}
-	return &proto.ApbReadObjectResp{Noop: &proto.ApbGetNoOpResp{Type: &stateType, Value: buf.Bytes()}}
-}
-
-func (d *MusicState) FromReadResp(protobuf *proto.ApbReadObjectResp) (state State) {
-	var buf bytes.Buffer
-	var decodedState NoOpState
-	dec := gob.NewDecoder(&buf)
-	if err := dec.Decode(&decodedState); err != nil {
-		panic(err)
-	}
-	return decodedState
-}
+	musicOpStatic = []Operation{&AddArtist{}, &RmvArtist{}, &UpdArtist{}, &AddAlbum{}, &RmvAlbum{}}
+)
 
 // Operation implementation structs
 // BlockGeneration on Delete.Loses approach principle on conflict
@@ -110,14 +70,34 @@ func (a *AddArtist) String() string {
 	return fmt.Sprintf("Operation: AddArtist(%v)", a.ArtistName)
 }
 
+func (a *AddArtist) GetOpName() string {
+	return "AddArtist"
+}
+
+func (a *AddArtist) GetStateType() (num int32) {
+	return MusicStateType
+}
+
+func (a *AddArtist) GetOpCode() (num int32) {
+	return AddArtistOpCode
+}
+
+func (a *AddArtist) GetNumParams() (num int) {
+	return AddArtistNumParams
+}
+
+func (a *AddArtist) GetSerializedParams() ([][]byte) {
+	return [][]byte{[]byte(a.ArtistName)}
+}
+
+
 func (a *AddArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	updType := proto.NoOpStateType_MUSIC_STATE
-	musicUpd := proto.ApbNoOpMusicStateUpdate{AddArtistOp: &proto.ApbNoOpMusicStateAddArtist{ArtistName: (*string)(&a.ArtistName)}}
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
+	return ToUpdateObjectFrame(a)
 }
 
 func (a *AddArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	return AddArtist{ArtistName: Artist(*protobuf.Noop.MusicUpd.AddArtistOp.ArtistName)}
+	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	return AddArtist{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx])}
 }
 
 // --------------------RmvArtist
@@ -157,14 +137,34 @@ func (a *RmvArtist) String() string {
 	return fmt.Sprintf("Operation: RmvArtist(%v)", a.ArtistName)
 }
 
+func (a *RmvArtist) GetOpName() string {
+	return "RmvArtist"
+}
+
+func (a *RmvArtist) GetStateType() (num int32) {
+	return MusicStateType
+}
+
+func (a *RmvArtist) GetOpCode() (num int32) {
+	return RmvArtistOpCode
+}
+
+func (a *RmvArtist) GetNumParams() (num int) {
+	return RmvArtistNumParams
+}
+
+func (a *RmvArtist) GetSerializedParams() ([][]byte) {
+	return [][]byte{[]byte(a.ArtistName)}
+}
+
+
 func (a *RmvArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	updType := proto.NoOpStateType_MUSIC_STATE
-	musicUpd := proto.ApbNoOpMusicStateUpdate{RmvArtistOp: &proto.ApbNoOpMusicStateRmvArtist{ArtistName: (*string)(&a.ArtistName)}}
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
+	return ToUpdateObjectFrame(a)
 }
 
 func (a *RmvArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	return RmvArtist{ArtistName: Artist(*protobuf.Noop.MusicUpd.RmvArtistOp.ArtistName)}
+	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	return RmvArtist{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx])}
 }
 
 // --------------------UpdArtist
@@ -203,14 +203,34 @@ func (a *UpdArtist) String() string {
 	return fmt.Sprintf("Operation: UpdArtist(%v)", a.ArtistName)
 }
 
+func (a *UpdArtist) GetOpName() string {
+	return "UpdArtist"
+}
+
+func (a *UpdArtist) GetStateType() (num int32) {
+	return MusicStateType
+}
+
+func (a *UpdArtist) GetOpCode() (num int32) {
+	return UpdArtistOpCode
+}
+
+func (a *UpdArtist) GetNumParams() (num int) {
+	return UpdArtistNumParams
+}
+
+func (a *UpdArtist) GetSerializedParams() ([][]byte) {
+	return [][]byte{[]byte(a.ArtistName)}
+}
+
+
 func (a *UpdArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	updType := proto.NoOpStateType_MUSIC_STATE
-	musicUpd := proto.ApbNoOpMusicStateUpdate{UpdArtistOp: &proto.ApbNoOpMusicStateUpdArtist{ArtistName: (*string)(&a.ArtistName)}}
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
+	return ToUpdateObjectFrame(a)
 }
 
 func (a *UpdArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	return UpdArtist{ArtistName: Artist(*protobuf.Noop.MusicUpd.UpdArtistOp.ArtistName)}
+	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	return UpdArtist{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx])}
 }
 
 // --------------------AddAlbum
@@ -260,14 +280,33 @@ func (a *AddAlbum) String() string {
 	return fmt.Sprintf("Operation: AddAlbum(%v, %v)", a.AlbumName, a.ArtistName)
 }
 
+func (a *AddAlbum) GetOpName() string {
+	return "AddAlbum"
+}
+
+func (a *AddAlbum) GetStateType() (num int32) {
+	return MusicStateType
+}
+
+func (a *AddAlbum) GetOpCode() (num int32) {
+	return AddAlbumOpCode
+}
+
+func (a *AddAlbum) GetNumParams() (num int) {
+	return AddAlbumNumParams
+}
+
+func (a *AddAlbum) GetSerializedParams() ([][]byte) {
+	return [][]byte{[]byte(a.ArtistName), []byte(a.AlbumName)}
+}
+
 func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	updType := proto.NoOpStateType_MUSIC_STATE
-	musicUpd := proto.ApbNoOpMusicStateUpdate{AddAlbumOp: &proto.ApbNoOpMusicStateAddAlbum{ArtistName: (*string)(&a.ArtistName), AlbumName: (*string)(&a.AlbumName)}}
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
+	return ToUpdateObjectFrame(a)
 }
 
 func (a *AddAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	return AddAlbum{ArtistName: Artist(*protobuf.Noop.MusicUpd.AddAlbumOp.ArtistName), AlbumName: Album(*protobuf.Noop.MusicUpd.AddAlbumOp.AlbumName)}
+	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	return AddAlbum{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(*&protobuf.Noop.Params[AlbumNameParamIdx])}
 }
 
 // --------------------RmvAlbum
@@ -310,14 +349,33 @@ func (a *RmvAlbum) String() string {
 	return fmt.Sprintf("Operation: RmvAlbum(%v, %v)", a.ArtistName, a.AlbumName)
 }
 
+func (a *RmvAlbum) GetOpName() string {
+	return "RmvAlbum"
+}
+
+func (a *RmvAlbum) GetStateType() (num int32) {
+	return MusicStateType
+}
+
+func (a *RmvAlbum) GetOpCode() (num int32) {
+	return RmvAlbumOpCode
+}
+
+func (a *RmvAlbum) GetNumParams() (num int) {
+	return RmvAlbumNumParams
+}
+
+func (a *RmvAlbum) GetSerializedParams() ([][]byte) {
+	return [][]byte{[]byte(a.ArtistName), []byte(a.AlbumName)}
+}
+
 func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	updType := proto.NoOpStateType_MUSIC_STATE
-	musicUpd := proto.ApbNoOpMusicStateUpdate{RmvAlbumOp: &proto.ApbNoOpMusicStateRmvAlbum{ArtistName: (*string)(&a.ArtistName), AlbumName: (*string)(&a.AlbumName)}}
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, MusicUpd: &musicUpd}}
+	return ToUpdateObjectFrame(a)
 }
 
 func (a *RmvAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	return RmvAlbum{ArtistName: Artist(*protobuf.Noop.MusicUpd.RmvAlbumOp.ArtistName), AlbumName: Album(*protobuf.Noop.MusicUpd.RmvAlbumOp.AlbumName)}
+	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	return RmvAlbum{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(*&protobuf.Noop.Params[AlbumNameParamIdx])}
 }
 
 // operations

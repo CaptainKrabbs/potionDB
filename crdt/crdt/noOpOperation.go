@@ -1,6 +1,7 @@
 package crdt
 
 import (
+	"fmt"
 	"potionDB/crdt/clocksi"
 	"potionDB/crdt/proto"
 )
@@ -13,11 +14,42 @@ type Operation interface {
 	BlockGenerator() []Operation
 	Process(state State)
 	GetCRDTType() proto.CRDTType
-	String() string
+	String() string    //Returns formatted string of name and parameters
+	GetOpName() string //Returns formatted string of name
 
 	//for protobuf
+	GetStateType() int32
+	GetOpCode() int32
+	GetNumParams() int
+	GetSerializedParams() [][]byte
 	FromUpdateObject(*proto.ApbUpdateOperation) UpdateArguments
 	ToUpdateObject() *proto.ApbUpdateOperation
+}
+
+type OperationAbstract struct {
+}
+
+//Auxiliary method for ToUpdateObject that does the entire logic since method logic is always the same
+func ToUpdateObjectFrame(a Operation) (protobuf *proto.ApbUpdateOperation) {
+	stateType := a.GetStateType()
+	opCode := a.GetOpCode()
+	params := a.GetSerializedParams()
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{StateType: &stateType, OpCode: &opCode, Params: params}}
+}
+
+//Auxiliary method for FromUpdateObject
+func ValidateOpProtobuf(a Operation, protobuf *proto.ApbUpdateOperation) (ok bool) {
+	//Fail conditions: wrong
+	if a.GetStateType() != *protobuf.GetNoop().StateType {
+		fmt.Printf("Error occurred: Invalid State type for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetStateType(), protobuf.GetNoop().StateType)
+	} else if a.GetOpCode() != *protobuf.GetNoop().OpCode {
+		fmt.Printf("Error occurred: Invalid Operation code for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetOpCode(), protobuf.GetNoop().OpCode)
+	} else if a.GetNumParams() != len(protobuf.GetNoop().GetParams()) {
+		fmt.Printf("Error occurred: Invalid number of parameters for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetNumParams(), len(protobuf.GetNoop().Params))
+	} else {
+		return true
+	}
+	return false
 }
 
 // Message struct that stores an operation and those it blocks
@@ -68,3 +100,67 @@ func (actualCall *Call) Blocks(otherCall *Call) bool {
 
 func (call Call) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP}
 func (call Call) MustReplicate() bool {return false}
+
+//----------NoOp
+
+var (
+	GenericStateType int32 = 0
+	NoOpCode int32 = 0
+	NoOpNumParams = 0
+)
+
+// Methods for NoOp, the rest of the operations are in noOpMusicApp.go
+func (a *NoOp) OpEqual(o Operation) bool {
+	_, ok := o.(*NoOp)
+	return ok
+}
+
+func (a *NoOp) Copy() Operation {
+	return &NoOp{}
+}
+
+func (a *NoOp) Precondition(state State) bool {
+	return true
+}
+
+func (a *NoOp) BlockGenerator() []Operation {
+	return nil
+}
+
+func (a *NoOp) Process(state State) {
+}
+
+func (a *NoOp) String() string {
+	return "Operation: NoOp"
+}
+
+
+func (a *NoOp) GetOpName() string {
+	return "NoOp"
+}
+
+func (a *NoOp) GetStateType() (num int32) {
+	return GenericStateType
+}
+
+func (a *NoOp) GetOpCode() (num int32) {
+	return NoOpCode
+}
+
+func (a *NoOp) GetNumParams() (num int) {
+	return NoOpNumParams
+}
+
+func (a *NoOp) GetSerializedParams() ([][]byte) {
+	return [][]byte{}
+}
+
+
+func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return ToUpdateObjectFrame(a)
+}
+
+func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	return NoOp{}
+}

@@ -249,10 +249,8 @@ func ReadRespProtoToAntidoteState(protobuf *proto.ApbReadObjectResp, crdtType pr
 	case proto.CRDTType_MVREG:
 		state = MVRegisterState{}.FromReadResp(protobuf)
 	case proto.CRDTType_NOOP:
-		switch *protobuf.Noop.Type {
-		case proto.NoOpStateType_GENERIC: //Shouldn't happen
-			return nil
-		case proto.NoOpStateType_MUSIC_STATE:
+		switch *protobuf.Noop.StateType {
+		case MusicStateType:
 			state = (&MusicState{}).FromReadResp(protobuf)
 		}
 	}
@@ -649,26 +647,10 @@ func updateMultiArrayProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation) (
 
 func updateNoOpProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	noOp := protobuf.GetNoop()
-	noOpType := noOp.GetType()
+	noOpType := noOp.GetStateType()
 	switch noOpType {
-	case proto.NoOpStateType_GENERIC:
-		return (&NoOp{}).FromUpdateObject(protobuf)
-	case proto.NoOpStateType_MUSIC_STATE:
-		if noOp.GetMusicUpd().GetAddArtistOp() != nil {
-			return (&AddArtist{}).FromUpdateObject(protobuf)
-		}
-		if noOp.GetMusicUpd().GetRmvArtistOp() != nil {
-			return (&RmvArtist{}).FromUpdateObject(protobuf)
-		}
-		if noOp.GetMusicUpd().GetUpdArtistOp() != nil {
-			return (&UpdArtist{}).FromUpdateObject(protobuf)
-		}
-		if noOp.GetMusicUpd().GetAddAlbumOp() != nil {
-			return (&AddAlbum{}).FromUpdateObject(protobuf)
-		}
-		if noOp.GetMusicUpd().GetRmvAlbumOp() != nil {
-			return (&RmvAlbum{}).FromUpdateObject(protobuf)
-		}
+	case MusicStateType:
+		return (&MusicState{}).FromUpdateObject(protobuf)
 	default:
 		fmt.Printf("[CRDTProtoLib][ERROR]Unknown type of no op update. NoOpType: %+v.\n", noOpType)
 	}

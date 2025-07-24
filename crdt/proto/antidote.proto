@@ -548,56 +548,15 @@ message ApbGetDateResp {
 //--------------------
 // NoOp
 
-enum NoOpStateType {
-    GENERIC = 0;
-    MUSIC_STATE = 1;
-}
-
 message ApbNoOpUpdate {
-    required NoOpStateType type = 1;
-    optional ApbNoOpGenericUpdate genericUpd = 2; //NoOp is the only operation
-    optional ApbNoOpMusicStateUpdate musicUpd = 3;
-    //can add more use cases for no ops below
-}
-
-message ApbNoOpGenericUpdate {
-    required ApbNoOpGenericNoOp NoOp = 1;
-}
-
-message ApbNoOpGenericNoOp {
-}
-
-//-----Operations for MusicState
-message ApbNoOpMusicStateUpdate {
-    //possible operations for the MusicApp
-    optional ApbNoOpMusicStateAddArtist addArtistOp = 1;
-    optional ApbNoOpMusicStateRmvArtist rmvArtistOp = 2;
-    optional ApbNoOpMusicStateUpdArtist updArtistOp = 3;
-    optional ApbNoOpMusicStateAddAlbum addAlbumOp= 4;
-    optional ApbNoOpMusicStateRmvAlbum rmvAlbumOp = 5;
-}
-
-message ApbNoOpMusicStateAddArtist {
-    required string artistName = 1;
-}
-message ApbNoOpMusicStateRmvArtist {
-    required string artistName = 1;
-}
-message ApbNoOpMusicStateUpdArtist {
-    required string artistName = 1;
-}
-message ApbNoOpMusicStateAddAlbum {
-    required string artistName = 1;
-    required string albumName = 2;
-}
-message ApbNoOpMusicStateRmvAlbum {
-    required string artistName = 1;
-    required string albumName = 2;
+    required int32 stateType = 1;
+    required int32 opCode = 2;
+    repeated bytes params = 3;
 }
 
 message ApbGetNoOpResp {
-    required NoOpStateType type = 1;
-    optional bytes value = 2; //the generic type data stored for the state
+    required int32 stateType = 1;
+    repeated bytes params = 2; //the generic type data stored for the state
 }
 
 //--------------------------------------------------------------

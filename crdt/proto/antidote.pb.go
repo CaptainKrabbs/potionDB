@@ -220,62 +220,6 @@ func (MultiArrayType) EnumDescriptor() ([]byte, []int) {
 	return file_antidote_proto_rawDescGZIP(), []int{1}
 }
 
-type NoOpStateType int32
-
-const (
-	NoOpStateType_GENERIC     NoOpStateType = 0
-	NoOpStateType_MUSIC_STATE NoOpStateType = 1
-)
-
-// Enum value maps for NoOpStateType.
-var (
-	NoOpStateType_name = map[int32]string{
-		0: "GENERIC",
-		1: "MUSIC_STATE",
-	}
-	NoOpStateType_value = map[string]int32{
-		"GENERIC":     0,
-		"MUSIC_STATE": 1,
-	}
-)
-
-func (x NoOpStateType) Enum() *NoOpStateType {
-	p := new(NoOpStateType)
-	*p = x
-	return p
-}
-
-func (x NoOpStateType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (NoOpStateType) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[2].Descriptor()
-}
-
-func (NoOpStateType) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[2]
-}
-
-func (x NoOpStateType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Do not use.
-func (x *NoOpStateType) UnmarshalJSON(b []byte) error {
-	num, err := protoimpl.X.UnmarshalJSONEnum(x.Descriptor(), b)
-	if err != nil {
-		return err
-	}
-	*x = NoOpStateType(num)
-	return nil
-}
-
-// Deprecated: Use NoOpStateType.Descriptor instead.
-func (NoOpStateType) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{2}
-}
-
 type ROW_Policy int32
 
 const (
@@ -312,11 +256,11 @@ func (x ROW_Policy) String() string {
 }
 
 func (ROW_Policy) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[3].Descriptor()
+	return file_antidote_proto_enumTypes[2].Descriptor()
 }
 
 func (ROW_Policy) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[3]
+	return &file_antidote_proto_enumTypes[2]
 }
 
 func (x ROW_Policy) Number() protoreflect.EnumNumber {
@@ -335,7 +279,7 @@ func (x *ROW_Policy) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use ROW_Policy.Descriptor instead.
 func (ROW_Policy) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{3}
+	return file_antidote_proto_rawDescGZIP(), []int{2}
 }
 
 type COL_Policy int32
@@ -374,11 +318,11 @@ func (x COL_Policy) String() string {
 }
 
 func (COL_Policy) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[4].Descriptor()
+	return file_antidote_proto_enumTypes[3].Descriptor()
 }
 
 func (COL_Policy) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[4]
+	return &file_antidote_proto_enumTypes[3]
 }
 
 func (x COL_Policy) Number() protoreflect.EnumNumber {
@@ -397,7 +341,7 @@ func (x *COL_Policy) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use COL_Policy.Descriptor instead.
 func (COL_Policy) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{4}
+	return file_antidote_proto_rawDescGZIP(), []int{3}
 }
 
 type SQL_Datatype int32
@@ -439,11 +383,11 @@ func (x SQL_Datatype) String() string {
 }
 
 func (SQL_Datatype) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[5].Descriptor()
+	return file_antidote_proto_enumTypes[4].Descriptor()
 }
 
 func (SQL_Datatype) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[5]
+	return &file_antidote_proto_enumTypes[4]
 }
 
 func (x SQL_Datatype) Number() protoreflect.EnumNumber {
@@ -462,7 +406,7 @@ func (x *SQL_Datatype) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use SQL_Datatype.Descriptor instead.
 func (SQL_Datatype) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{5}
+	return file_antidote_proto_rawDescGZIP(), []int{4}
 }
 
 type SQL_Type int32
@@ -513,11 +457,11 @@ func (x SQL_Type) String() string {
 }
 
 func (SQL_Type) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[6].Descriptor()
+	return file_antidote_proto_enumTypes[5].Descriptor()
 }
 
 func (SQL_Type) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[6]
+	return &file_antidote_proto_enumTypes[5]
 }
 
 func (x SQL_Type) Number() protoreflect.EnumNumber {
@@ -536,7 +480,7 @@ func (x *SQL_Type) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use SQL_Type.Descriptor instead.
 func (SQL_Type) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{6}
+	return file_antidote_proto_rawDescGZIP(), []int{5}
 }
 
 type READType int32
@@ -687,11 +631,11 @@ func (x READType) String() string {
 }
 
 func (READType) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[7].Descriptor()
+	return file_antidote_proto_enumTypes[6].Descriptor()
 }
 
 func (READType) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[7]
+	return &file_antidote_proto_enumTypes[6]
 }
 
 func (x READType) Number() protoreflect.EnumNumber {
@@ -710,7 +654,7 @@ func (x *READType) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use READType.Descriptor instead.
 func (READType) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{7}
+	return file_antidote_proto_rawDescGZIP(), []int{6}
 }
 
 type COMPType int32
@@ -755,11 +699,11 @@ func (x COMPType) String() string {
 }
 
 func (COMPType) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[8].Descriptor()
+	return file_antidote_proto_enumTypes[7].Descriptor()
 }
 
 func (COMPType) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[8]
+	return &file_antidote_proto_enumTypes[7]
 }
 
 func (x COMPType) Number() protoreflect.EnumNumber {
@@ -778,7 +722,7 @@ func (x *COMPType) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use COMPType.Descriptor instead.
 func (COMPType) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{8}
+	return file_antidote_proto_rawDescGZIP(), []int{7}
 }
 
 type AGGRType int32
@@ -817,11 +761,11 @@ func (x AGGRType) String() string {
 }
 
 func (AGGRType) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[9].Descriptor()
+	return file_antidote_proto_enumTypes[8].Descriptor()
 }
 
 func (AGGRType) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[9]
+	return &file_antidote_proto_enumTypes[8]
 }
 
 func (x AGGRType) Number() protoreflect.EnumNumber {
@@ -840,7 +784,7 @@ func (x *AGGRType) UnmarshalJSON(b []byte) error {
 
 // Deprecated: Use AGGRType.Descriptor instead.
 func (AGGRType) EnumDescriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{9}
+	return file_antidote_proto_rawDescGZIP(), []int{8}
 }
 
 type ApbSetUpdate_SetOpType int32
@@ -873,11 +817,11 @@ func (x ApbSetUpdate_SetOpType) String() string {
 }
 
 func (ApbSetUpdate_SetOpType) Descriptor() protoreflect.EnumDescriptor {
-	return file_antidote_proto_enumTypes[10].Descriptor()
+	return file_antidote_proto_enumTypes[9].Descriptor()
 }
 
 func (ApbSetUpdate_SetOpType) Type() protoreflect.EnumType {
-	return &file_antidote_proto_enumTypes[10]
+	return &file_antidote_proto_enumTypes[9]
 }
 
 func (x ApbSetUpdate_SetOpType) Number() protoreflect.EnumNumber {
@@ -5193,10 +5137,10 @@ func (x *ApbGetDateResp) GetSecond() int32 {
 }
 
 type ApbNoOpUpdate struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Type          *NoOpStateType           `protobuf:"varint,1,req,name=type,enum=NoOpStateType" json:"type,omitempty"`
-	GenericUpd    *ApbNoOpGenericUpdate    `protobuf:"bytes,2,opt,name=genericUpd" json:"genericUpd,omitempty"` //NoOp is the only operation
-	MusicUpd      *ApbNoOpMusicStateUpdate `protobuf:"bytes,3,opt,name=musicUpd" json:"musicUpd,omitempty"`     //can add more use cases for no ops below
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	StateType     *int32                 `protobuf:"varint,1,req,name=stateType" json:"stateType,omitempty"`
+	OpCode        *int32                 `protobuf:"varint,2,req,name=opCode" json:"opCode,omitempty"`
+	Params        [][]byte               `protobuf:"bytes,3,rep,name=params" json:"params,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5231,432 +5175,38 @@ func (*ApbNoOpUpdate) Descriptor() ([]byte, []int) {
 	return file_antidote_proto_rawDescGZIP(), []int{76}
 }
 
-func (x *ApbNoOpUpdate) GetType() NoOpStateType {
-	if x != nil && x.Type != nil {
-		return *x.Type
+func (x *ApbNoOpUpdate) GetStateType() int32 {
+	if x != nil && x.StateType != nil {
+		return *x.StateType
 	}
-	return NoOpStateType_GENERIC
+	return 0
 }
 
-func (x *ApbNoOpUpdate) GetGenericUpd() *ApbNoOpGenericUpdate {
+func (x *ApbNoOpUpdate) GetOpCode() int32 {
+	if x != nil && x.OpCode != nil {
+		return *x.OpCode
+	}
+	return 0
+}
+
+func (x *ApbNoOpUpdate) GetParams() [][]byte {
 	if x != nil {
-		return x.GenericUpd
+		return x.Params
 	}
 	return nil
-}
-
-func (x *ApbNoOpUpdate) GetMusicUpd() *ApbNoOpMusicStateUpdate {
-	if x != nil {
-		return x.MusicUpd
-	}
-	return nil
-}
-
-type ApbNoOpGenericUpdate struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	NoOp          *ApbNoOpGenericNoOp    `protobuf:"bytes,1,req,name=NoOp" json:"NoOp,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpGenericUpdate) Reset() {
-	*x = ApbNoOpGenericUpdate{}
-	mi := &file_antidote_proto_msgTypes[77]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpGenericUpdate) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpGenericUpdate) ProtoMessage() {}
-
-func (x *ApbNoOpGenericUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[77]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpGenericUpdate.ProtoReflect.Descriptor instead.
-func (*ApbNoOpGenericUpdate) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{77}
-}
-
-func (x *ApbNoOpGenericUpdate) GetNoOp() *ApbNoOpGenericNoOp {
-	if x != nil {
-		return x.NoOp
-	}
-	return nil
-}
-
-type ApbNoOpGenericNoOp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpGenericNoOp) Reset() {
-	*x = ApbNoOpGenericNoOp{}
-	mi := &file_antidote_proto_msgTypes[78]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpGenericNoOp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpGenericNoOp) ProtoMessage() {}
-
-func (x *ApbNoOpGenericNoOp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[78]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpGenericNoOp.ProtoReflect.Descriptor instead.
-func (*ApbNoOpGenericNoOp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{78}
-}
-
-// -----Operations for MusicState
-type ApbNoOpMusicStateUpdate struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// possible operations for the MusicApp
-	AddArtistOp   *ApbNoOpMusicStateAddArtist `protobuf:"bytes,1,opt,name=addArtistOp" json:"addArtistOp,omitempty"`
-	RmvArtistOp   *ApbNoOpMusicStateRmvArtist `protobuf:"bytes,2,opt,name=rmvArtistOp" json:"rmvArtistOp,omitempty"`
-	UpdArtistOp   *ApbNoOpMusicStateUpdArtist `protobuf:"bytes,3,opt,name=updArtistOp" json:"updArtistOp,omitempty"`
-	AddAlbumOp    *ApbNoOpMusicStateAddAlbum  `protobuf:"bytes,4,opt,name=addAlbumOp" json:"addAlbumOp,omitempty"`
-	RmvAlbumOp    *ApbNoOpMusicStateRmvAlbum  `protobuf:"bytes,5,opt,name=rmvAlbumOp" json:"rmvAlbumOp,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpMusicStateUpdate) Reset() {
-	*x = ApbNoOpMusicStateUpdate{}
-	mi := &file_antidote_proto_msgTypes[79]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpMusicStateUpdate) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpMusicStateUpdate) ProtoMessage() {}
-
-func (x *ApbNoOpMusicStateUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[79]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpMusicStateUpdate.ProtoReflect.Descriptor instead.
-func (*ApbNoOpMusicStateUpdate) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{79}
-}
-
-func (x *ApbNoOpMusicStateUpdate) GetAddArtistOp() *ApbNoOpMusicStateAddArtist {
-	if x != nil {
-		return x.AddArtistOp
-	}
-	return nil
-}
-
-func (x *ApbNoOpMusicStateUpdate) GetRmvArtistOp() *ApbNoOpMusicStateRmvArtist {
-	if x != nil {
-		return x.RmvArtistOp
-	}
-	return nil
-}
-
-func (x *ApbNoOpMusicStateUpdate) GetUpdArtistOp() *ApbNoOpMusicStateUpdArtist {
-	if x != nil {
-		return x.UpdArtistOp
-	}
-	return nil
-}
-
-func (x *ApbNoOpMusicStateUpdate) GetAddAlbumOp() *ApbNoOpMusicStateAddAlbum {
-	if x != nil {
-		return x.AddAlbumOp
-	}
-	return nil
-}
-
-func (x *ApbNoOpMusicStateUpdate) GetRmvAlbumOp() *ApbNoOpMusicStateRmvAlbum {
-	if x != nil {
-		return x.RmvAlbumOp
-	}
-	return nil
-}
-
-type ApbNoOpMusicStateAddArtist struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArtistName    *string                `protobuf:"bytes,1,req,name=artistName" json:"artistName,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpMusicStateAddArtist) Reset() {
-	*x = ApbNoOpMusicStateAddArtist{}
-	mi := &file_antidote_proto_msgTypes[80]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpMusicStateAddArtist) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpMusicStateAddArtist) ProtoMessage() {}
-
-func (x *ApbNoOpMusicStateAddArtist) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[80]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpMusicStateAddArtist.ProtoReflect.Descriptor instead.
-func (*ApbNoOpMusicStateAddArtist) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{80}
-}
-
-func (x *ApbNoOpMusicStateAddArtist) GetArtistName() string {
-	if x != nil && x.ArtistName != nil {
-		return *x.ArtistName
-	}
-	return ""
-}
-
-type ApbNoOpMusicStateRmvArtist struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArtistName    *string                `protobuf:"bytes,1,req,name=artistName" json:"artistName,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpMusicStateRmvArtist) Reset() {
-	*x = ApbNoOpMusicStateRmvArtist{}
-	mi := &file_antidote_proto_msgTypes[81]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpMusicStateRmvArtist) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpMusicStateRmvArtist) ProtoMessage() {}
-
-func (x *ApbNoOpMusicStateRmvArtist) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[81]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpMusicStateRmvArtist.ProtoReflect.Descriptor instead.
-func (*ApbNoOpMusicStateRmvArtist) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{81}
-}
-
-func (x *ApbNoOpMusicStateRmvArtist) GetArtistName() string {
-	if x != nil && x.ArtistName != nil {
-		return *x.ArtistName
-	}
-	return ""
-}
-
-type ApbNoOpMusicStateUpdArtist struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArtistName    *string                `protobuf:"bytes,1,req,name=artistName" json:"artistName,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpMusicStateUpdArtist) Reset() {
-	*x = ApbNoOpMusicStateUpdArtist{}
-	mi := &file_antidote_proto_msgTypes[82]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpMusicStateUpdArtist) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpMusicStateUpdArtist) ProtoMessage() {}
-
-func (x *ApbNoOpMusicStateUpdArtist) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[82]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpMusicStateUpdArtist.ProtoReflect.Descriptor instead.
-func (*ApbNoOpMusicStateUpdArtist) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{82}
-}
-
-func (x *ApbNoOpMusicStateUpdArtist) GetArtistName() string {
-	if x != nil && x.ArtistName != nil {
-		return *x.ArtistName
-	}
-	return ""
-}
-
-type ApbNoOpMusicStateAddAlbum struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArtistName    *string                `protobuf:"bytes,1,req,name=artistName" json:"artistName,omitempty"`
-	AlbumName     *string                `protobuf:"bytes,2,req,name=albumName" json:"albumName,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpMusicStateAddAlbum) Reset() {
-	*x = ApbNoOpMusicStateAddAlbum{}
-	mi := &file_antidote_proto_msgTypes[83]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpMusicStateAddAlbum) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpMusicStateAddAlbum) ProtoMessage() {}
-
-func (x *ApbNoOpMusicStateAddAlbum) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[83]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpMusicStateAddAlbum.ProtoReflect.Descriptor instead.
-func (*ApbNoOpMusicStateAddAlbum) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{83}
-}
-
-func (x *ApbNoOpMusicStateAddAlbum) GetArtistName() string {
-	if x != nil && x.ArtistName != nil {
-		return *x.ArtistName
-	}
-	return ""
-}
-
-func (x *ApbNoOpMusicStateAddAlbum) GetAlbumName() string {
-	if x != nil && x.AlbumName != nil {
-		return *x.AlbumName
-	}
-	return ""
-}
-
-type ApbNoOpMusicStateRmvAlbum struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ArtistName    *string                `protobuf:"bytes,1,req,name=artistName" json:"artistName,omitempty"`
-	AlbumName     *string                `protobuf:"bytes,2,req,name=albumName" json:"albumName,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ApbNoOpMusicStateRmvAlbum) Reset() {
-	*x = ApbNoOpMusicStateRmvAlbum{}
-	mi := &file_antidote_proto_msgTypes[84]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ApbNoOpMusicStateRmvAlbum) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ApbNoOpMusicStateRmvAlbum) ProtoMessage() {}
-
-func (x *ApbNoOpMusicStateRmvAlbum) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[84]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ApbNoOpMusicStateRmvAlbum.ProtoReflect.Descriptor instead.
-func (*ApbNoOpMusicStateRmvAlbum) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{84}
-}
-
-func (x *ApbNoOpMusicStateRmvAlbum) GetArtistName() string {
-	if x != nil && x.ArtistName != nil {
-		return *x.ArtistName
-	}
-	return ""
-}
-
-func (x *ApbNoOpMusicStateRmvAlbum) GetAlbumName() string {
-	if x != nil && x.AlbumName != nil {
-		return *x.AlbumName
-	}
-	return ""
 }
 
 type ApbGetNoOpResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Type          *NoOpStateType         `protobuf:"varint,1,req,name=type,enum=NoOpStateType" json:"type,omitempty"`
-	Value         []byte                 `protobuf:"bytes,2,opt,name=value" json:"value,omitempty"` //the generic type data stored for the state
+	StateType     *int32                 `protobuf:"varint,1,req,name=stateType" json:"stateType,omitempty"`
+	Params        [][]byte               `protobuf:"bytes,2,rep,name=params" json:"params,omitempty"` //the generic type data stored for the state
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
 func (x *ApbGetNoOpResp) Reset() {
 	*x = ApbGetNoOpResp{}
-	mi := &file_antidote_proto_msgTypes[85]
+	mi := &file_antidote_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5668,7 +5218,7 @@ func (x *ApbGetNoOpResp) String() string {
 func (*ApbGetNoOpResp) ProtoMessage() {}
 
 func (x *ApbGetNoOpResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[85]
+	mi := &file_antidote_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5681,19 +5231,19 @@ func (x *ApbGetNoOpResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbGetNoOpResp.ProtoReflect.Descriptor instead.
 func (*ApbGetNoOpResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{85}
+	return file_antidote_proto_rawDescGZIP(), []int{77}
 }
 
-func (x *ApbGetNoOpResp) GetType() NoOpStateType {
-	if x != nil && x.Type != nil {
-		return *x.Type
+func (x *ApbGetNoOpResp) GetStateType() int32 {
+	if x != nil && x.StateType != nil {
+		return *x.StateType
 	}
-	return NoOpStateType_GENERIC
+	return 0
 }
 
-func (x *ApbGetNoOpResp) GetValue() []byte {
+func (x *ApbGetNoOpResp) GetParams() [][]byte {
 	if x != nil {
-		return x.Value
+		return x.Params
 	}
 	return nil
 }
@@ -5709,7 +5259,7 @@ type ApbTxnProperties struct {
 
 func (x *ApbTxnProperties) Reset() {
 	*x = ApbTxnProperties{}
-	mi := &file_antidote_proto_msgTypes[86]
+	mi := &file_antidote_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5721,7 +5271,7 @@ func (x *ApbTxnProperties) String() string {
 func (*ApbTxnProperties) ProtoMessage() {}
 
 func (x *ApbTxnProperties) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[86]
+	mi := &file_antidote_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5734,7 +5284,7 @@ func (x *ApbTxnProperties) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTxnProperties.ProtoReflect.Descriptor instead.
 func (*ApbTxnProperties) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{86}
+	return file_antidote_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *ApbTxnProperties) GetReadWrite() uint32 {
@@ -5763,7 +5313,7 @@ type ApbBoundObject struct {
 
 func (x *ApbBoundObject) Reset() {
 	*x = ApbBoundObject{}
-	mi := &file_antidote_proto_msgTypes[87]
+	mi := &file_antidote_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5775,7 +5325,7 @@ func (x *ApbBoundObject) String() string {
 func (*ApbBoundObject) ProtoMessage() {}
 
 func (x *ApbBoundObject) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[87]
+	mi := &file_antidote_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5788,7 +5338,7 @@ func (x *ApbBoundObject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbBoundObject.ProtoReflect.Descriptor instead.
 func (*ApbBoundObject) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{87}
+	return file_antidote_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *ApbBoundObject) GetKey() []byte {
@@ -5823,7 +5373,7 @@ type ApbReadObjects struct {
 
 func (x *ApbReadObjects) Reset() {
 	*x = ApbReadObjects{}
-	mi := &file_antidote_proto_msgTypes[88]
+	mi := &file_antidote_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5835,7 +5385,7 @@ func (x *ApbReadObjects) String() string {
 func (*ApbReadObjects) ProtoMessage() {}
 
 func (x *ApbReadObjects) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[88]
+	mi := &file_antidote_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5848,7 +5398,7 @@ func (x *ApbReadObjects) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbReadObjects.ProtoReflect.Descriptor instead.
 func (*ApbReadObjects) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{88}
+	return file_antidote_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *ApbReadObjects) GetBoundobjects() []*ApbBoundObject {
@@ -5876,7 +5426,7 @@ type ApbUpdateOp struct {
 
 func (x *ApbUpdateOp) Reset() {
 	*x = ApbUpdateOp{}
-	mi := &file_antidote_proto_msgTypes[89]
+	mi := &file_antidote_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5888,7 +5438,7 @@ func (x *ApbUpdateOp) String() string {
 func (*ApbUpdateOp) ProtoMessage() {}
 
 func (x *ApbUpdateOp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[89]
+	mi := &file_antidote_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5901,7 +5451,7 @@ func (x *ApbUpdateOp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbUpdateOp.ProtoReflect.Descriptor instead.
 func (*ApbUpdateOp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{89}
+	return file_antidote_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *ApbUpdateOp) GetBoundobject() *ApbBoundObject {
@@ -5945,7 +5495,7 @@ type ApbUpdateOperation struct {
 
 func (x *ApbUpdateOperation) Reset() {
 	*x = ApbUpdateOperation{}
-	mi := &file_antidote_proto_msgTypes[90]
+	mi := &file_antidote_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5957,7 +5507,7 @@ func (x *ApbUpdateOperation) String() string {
 func (*ApbUpdateOperation) ProtoMessage() {}
 
 func (x *ApbUpdateOperation) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[90]
+	mi := &file_antidote_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5970,7 +5520,7 @@ func (x *ApbUpdateOperation) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbUpdateOperation.ProtoReflect.Descriptor instead.
 func (*ApbUpdateOperation) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{90}
+	return file_antidote_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *ApbUpdateOperation) GetCounterop() *ApbCounterUpdate {
@@ -6117,7 +5667,7 @@ type ApbUpdateObjects struct {
 
 func (x *ApbUpdateObjects) Reset() {
 	*x = ApbUpdateObjects{}
-	mi := &file_antidote_proto_msgTypes[91]
+	mi := &file_antidote_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6129,7 +5679,7 @@ func (x *ApbUpdateObjects) String() string {
 func (*ApbUpdateObjects) ProtoMessage() {}
 
 func (x *ApbUpdateObjects) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[91]
+	mi := &file_antidote_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6142,7 +5692,7 @@ func (x *ApbUpdateObjects) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbUpdateObjects.ProtoReflect.Descriptor instead.
 func (*ApbUpdateObjects) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{91}
+	return file_antidote_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *ApbUpdateObjects) GetUpdates() []*ApbUpdateOp {
@@ -6170,7 +5720,7 @@ type ApbStartTransaction struct {
 
 func (x *ApbStartTransaction) Reset() {
 	*x = ApbStartTransaction{}
-	mi := &file_antidote_proto_msgTypes[92]
+	mi := &file_antidote_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6182,7 +5732,7 @@ func (x *ApbStartTransaction) String() string {
 func (*ApbStartTransaction) ProtoMessage() {}
 
 func (x *ApbStartTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[92]
+	mi := &file_antidote_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6195,7 +5745,7 @@ func (x *ApbStartTransaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStartTransaction.ProtoReflect.Descriptor instead.
 func (*ApbStartTransaction) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{92}
+	return file_antidote_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *ApbStartTransaction) GetTimestamp() []byte {
@@ -6222,7 +5772,7 @@ type ApbAbortTransaction struct {
 
 func (x *ApbAbortTransaction) Reset() {
 	*x = ApbAbortTransaction{}
-	mi := &file_antidote_proto_msgTypes[93]
+	mi := &file_antidote_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6234,7 +5784,7 @@ func (x *ApbAbortTransaction) String() string {
 func (*ApbAbortTransaction) ProtoMessage() {}
 
 func (x *ApbAbortTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[93]
+	mi := &file_antidote_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6247,7 +5797,7 @@ func (x *ApbAbortTransaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbAbortTransaction.ProtoReflect.Descriptor instead.
 func (*ApbAbortTransaction) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{93}
+	return file_antidote_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *ApbAbortTransaction) GetTransactionDescriptor() []byte {
@@ -6267,7 +5817,7 @@ type ApbCommitTransaction struct {
 
 func (x *ApbCommitTransaction) Reset() {
 	*x = ApbCommitTransaction{}
-	mi := &file_antidote_proto_msgTypes[94]
+	mi := &file_antidote_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6279,7 +5829,7 @@ func (x *ApbCommitTransaction) String() string {
 func (*ApbCommitTransaction) ProtoMessage() {}
 
 func (x *ApbCommitTransaction) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[94]
+	mi := &file_antidote_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6292,7 +5842,7 @@ func (x *ApbCommitTransaction) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCommitTransaction.ProtoReflect.Descriptor instead.
 func (*ApbCommitTransaction) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{94}
+	return file_antidote_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *ApbCommitTransaction) GetTransactionDescriptor() []byte {
@@ -6312,7 +5862,7 @@ type ApbStaticUpdateObjects struct {
 
 func (x *ApbStaticUpdateObjects) Reset() {
 	*x = ApbStaticUpdateObjects{}
-	mi := &file_antidote_proto_msgTypes[95]
+	mi := &file_antidote_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6324,7 +5874,7 @@ func (x *ApbStaticUpdateObjects) String() string {
 func (*ApbStaticUpdateObjects) ProtoMessage() {}
 
 func (x *ApbStaticUpdateObjects) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[95]
+	mi := &file_antidote_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6337,7 +5887,7 @@ func (x *ApbStaticUpdateObjects) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStaticUpdateObjects.ProtoReflect.Descriptor instead.
 func (*ApbStaticUpdateObjects) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{95}
+	return file_antidote_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *ApbStaticUpdateObjects) GetTransaction() *ApbStartTransaction {
@@ -6364,7 +5914,7 @@ type ApbStaticReadObjects struct {
 
 func (x *ApbStaticReadObjects) Reset() {
 	*x = ApbStaticReadObjects{}
-	mi := &file_antidote_proto_msgTypes[96]
+	mi := &file_antidote_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6376,7 +5926,7 @@ func (x *ApbStaticReadObjects) String() string {
 func (*ApbStaticReadObjects) ProtoMessage() {}
 
 func (x *ApbStaticReadObjects) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[96]
+	mi := &file_antidote_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6389,7 +5939,7 @@ func (x *ApbStaticReadObjects) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStaticReadObjects.ProtoReflect.Descriptor instead.
 func (*ApbStaticReadObjects) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{96}
+	return file_antidote_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *ApbStaticReadObjects) GetTransaction() *ApbStartTransaction {
@@ -6418,7 +5968,7 @@ type ApbStartTransactionResp struct {
 
 func (x *ApbStartTransactionResp) Reset() {
 	*x = ApbStartTransactionResp{}
-	mi := &file_antidote_proto_msgTypes[97]
+	mi := &file_antidote_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6430,7 +5980,7 @@ func (x *ApbStartTransactionResp) String() string {
 func (*ApbStartTransactionResp) ProtoMessage() {}
 
 func (x *ApbStartTransactionResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[97]
+	mi := &file_antidote_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6443,7 +5993,7 @@ func (x *ApbStartTransactionResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStartTransactionResp.ProtoReflect.Descriptor instead.
 func (*ApbStartTransactionResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{97}
+	return file_antidote_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *ApbStartTransactionResp) GetSuccess() bool {
@@ -6494,7 +6044,7 @@ type ApbReadObjectResp struct {
 
 func (x *ApbReadObjectResp) Reset() {
 	*x = ApbReadObjectResp{}
-	mi := &file_antidote_proto_msgTypes[98]
+	mi := &file_antidote_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6506,7 +6056,7 @@ func (x *ApbReadObjectResp) String() string {
 func (*ApbReadObjectResp) ProtoMessage() {}
 
 func (x *ApbReadObjectResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[98]
+	mi := &file_antidote_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6519,7 +6069,7 @@ func (x *ApbReadObjectResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbReadObjectResp.ProtoReflect.Descriptor instead.
 func (*ApbReadObjectResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{98}
+	return file_antidote_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *ApbReadObjectResp) GetCounter() *ApbGetCounterResp {
@@ -6652,7 +6202,7 @@ type ApbReadObjectsResp struct {
 
 func (x *ApbReadObjectsResp) Reset() {
 	*x = ApbReadObjectsResp{}
-	mi := &file_antidote_proto_msgTypes[99]
+	mi := &file_antidote_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6664,7 +6214,7 @@ func (x *ApbReadObjectsResp) String() string {
 func (*ApbReadObjectsResp) ProtoMessage() {}
 
 func (x *ApbReadObjectsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[99]
+	mi := &file_antidote_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6677,7 +6227,7 @@ func (x *ApbReadObjectsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbReadObjectsResp.ProtoReflect.Descriptor instead.
 func (*ApbReadObjectsResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{99}
+	return file_antidote_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *ApbReadObjectsResp) GetSuccess() bool {
@@ -6713,7 +6263,7 @@ type ApbCommitResp struct {
 
 func (x *ApbCommitResp) Reset() {
 	*x = ApbCommitResp{}
-	mi := &file_antidote_proto_msgTypes[100]
+	mi := &file_antidote_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6725,7 +6275,7 @@ func (x *ApbCommitResp) String() string {
 func (*ApbCommitResp) ProtoMessage() {}
 
 func (x *ApbCommitResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[100]
+	mi := &file_antidote_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6738,7 +6288,7 @@ func (x *ApbCommitResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCommitResp.ProtoReflect.Descriptor instead.
 func (*ApbCommitResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{100}
+	return file_antidote_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *ApbCommitResp) GetSuccess() bool {
@@ -6772,7 +6322,7 @@ type ApbStaticReadObjectsResp struct {
 
 func (x *ApbStaticReadObjectsResp) Reset() {
 	*x = ApbStaticReadObjectsResp{}
-	mi := &file_antidote_proto_msgTypes[101]
+	mi := &file_antidote_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6784,7 +6334,7 @@ func (x *ApbStaticReadObjectsResp) String() string {
 func (*ApbStaticReadObjectsResp) ProtoMessage() {}
 
 func (x *ApbStaticReadObjectsResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[101]
+	mi := &file_antidote_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6797,7 +6347,7 @@ func (x *ApbStaticReadObjectsResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStaticReadObjectsResp.ProtoReflect.Descriptor instead.
 func (*ApbStaticReadObjectsResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{101}
+	return file_antidote_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *ApbStaticReadObjectsResp) GetObjects() *ApbReadObjectsResp {
@@ -6824,7 +6374,7 @@ type ApbMultiClientConnect struct {
 
 func (x *ApbMultiClientConnect) Reset() {
 	*x = ApbMultiClientConnect{}
-	mi := &file_antidote_proto_msgTypes[102]
+	mi := &file_antidote_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6836,7 +6386,7 @@ func (x *ApbMultiClientConnect) String() string {
 func (*ApbMultiClientConnect) ProtoMessage() {}
 
 func (x *ApbMultiClientConnect) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[102]
+	mi := &file_antidote_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6849,7 +6399,7 @@ func (x *ApbMultiClientConnect) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiClientConnect.ProtoReflect.Descriptor instead.
 func (*ApbMultiClientConnect) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{102}
+	return file_antidote_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *ApbMultiClientConnect) GetNClients() uint32 {
@@ -6867,7 +6417,7 @@ type ApbMultiClientConnectResp struct {
 
 func (x *ApbMultiClientConnectResp) Reset() {
 	*x = ApbMultiClientConnectResp{}
-	mi := &file_antidote_proto_msgTypes[103]
+	mi := &file_antidote_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6879,7 +6429,7 @@ func (x *ApbMultiClientConnectResp) String() string {
 func (*ApbMultiClientConnectResp) ProtoMessage() {}
 
 func (x *ApbMultiClientConnectResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[103]
+	mi := &file_antidote_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6892,7 +6442,7 @@ func (x *ApbMultiClientConnectResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiClientConnectResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiClientConnectResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{103}
+	return file_antidote_proto_rawDescGZIP(), []int{95}
 }
 
 // Replica connection
@@ -6905,7 +6455,7 @@ type ApbConnectReplica struct {
 
 func (x *ApbConnectReplica) Reset() {
 	*x = ApbConnectReplica{}
-	mi := &file_antidote_proto_msgTypes[104]
+	mi := &file_antidote_proto_msgTypes[96]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6917,7 +6467,7 @@ func (x *ApbConnectReplica) String() string {
 func (*ApbConnectReplica) ProtoMessage() {}
 
 func (x *ApbConnectReplica) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[104]
+	mi := &file_antidote_proto_msgTypes[96]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6930,7 +6480,7 @@ func (x *ApbConnectReplica) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbConnectReplica.ProtoReflect.Descriptor instead.
 func (*ApbConnectReplica) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{104}
+	return file_antidote_proto_rawDescGZIP(), []int{96}
 }
 
 func (x *ApbConnectReplica) GetId() int64 {
@@ -6949,7 +6499,7 @@ type ApbConnectReplicaResp struct {
 
 func (x *ApbConnectReplicaResp) Reset() {
 	*x = ApbConnectReplicaResp{}
-	mi := &file_antidote_proto_msgTypes[105]
+	mi := &file_antidote_proto_msgTypes[97]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -6961,7 +6511,7 @@ func (x *ApbConnectReplicaResp) String() string {
 func (*ApbConnectReplicaResp) ProtoMessage() {}
 
 func (x *ApbConnectReplicaResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[105]
+	mi := &file_antidote_proto_msgTypes[97]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -6974,7 +6524,7 @@ func (x *ApbConnectReplicaResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbConnectReplicaResp.ProtoReflect.Descriptor instead.
 func (*ApbConnectReplicaResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{105}
+	return file_antidote_proto_rawDescGZIP(), []int{97}
 }
 
 func (x *ApbConnectReplicaResp) GetKnownIDs() []int64 {
@@ -6994,7 +6544,7 @@ type ApbResetServer struct {
 
 func (x *ApbResetServer) Reset() {
 	*x = ApbResetServer{}
-	mi := &file_antidote_proto_msgTypes[106]
+	mi := &file_antidote_proto_msgTypes[98]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7006,7 +6556,7 @@ func (x *ApbResetServer) String() string {
 func (*ApbResetServer) ProtoMessage() {}
 
 func (x *ApbResetServer) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[106]
+	mi := &file_antidote_proto_msgTypes[98]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7019,7 +6569,7 @@ func (x *ApbResetServer) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbResetServer.ProtoReflect.Descriptor instead.
 func (*ApbResetServer) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{106}
+	return file_antidote_proto_rawDescGZIP(), []int{98}
 }
 
 type ApbResetServerResp struct {
@@ -7030,7 +6580,7 @@ type ApbResetServerResp struct {
 
 func (x *ApbResetServerResp) Reset() {
 	*x = ApbResetServerResp{}
-	mi := &file_antidote_proto_msgTypes[107]
+	mi := &file_antidote_proto_msgTypes[99]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7042,7 +6592,7 @@ func (x *ApbResetServerResp) String() string {
 func (*ApbResetServerResp) ProtoMessage() {}
 
 func (x *ApbResetServerResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[107]
+	mi := &file_antidote_proto_msgTypes[99]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7055,7 +6605,7 @@ func (x *ApbResetServerResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbResetServerResp.ProtoReflect.Descriptor instead.
 func (*ApbResetServerResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{107}
+	return file_antidote_proto_rawDescGZIP(), []int{99}
 }
 
 // Triggers
@@ -7070,7 +6620,7 @@ type ApbNewTrigger struct {
 
 func (x *ApbNewTrigger) Reset() {
 	*x = ApbNewTrigger{}
-	mi := &file_antidote_proto_msgTypes[108]
+	mi := &file_antidote_proto_msgTypes[100]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7082,7 +6632,7 @@ func (x *ApbNewTrigger) String() string {
 func (*ApbNewTrigger) ProtoMessage() {}
 
 func (x *ApbNewTrigger) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[108]
+	mi := &file_antidote_proto_msgTypes[100]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7095,7 +6645,7 @@ func (x *ApbNewTrigger) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbNewTrigger.ProtoReflect.Descriptor instead.
 func (*ApbNewTrigger) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{108}
+	return file_antidote_proto_rawDescGZIP(), []int{100}
 }
 
 func (x *ApbNewTrigger) GetSource() *ApbTriggerInfo {
@@ -7131,7 +6681,7 @@ type ApbTriggerInfo struct {
 
 func (x *ApbTriggerInfo) Reset() {
 	*x = ApbTriggerInfo{}
-	mi := &file_antidote_proto_msgTypes[109]
+	mi := &file_antidote_proto_msgTypes[101]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7143,7 +6693,7 @@ func (x *ApbTriggerInfo) String() string {
 func (*ApbTriggerInfo) ProtoMessage() {}
 
 func (x *ApbTriggerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[109]
+	mi := &file_antidote_proto_msgTypes[101]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7156,7 +6706,7 @@ func (x *ApbTriggerInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTriggerInfo.ProtoReflect.Descriptor instead.
 func (*ApbTriggerInfo) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{109}
+	return file_antidote_proto_rawDescGZIP(), []int{101}
 }
 
 func (x *ApbTriggerInfo) GetObj() *ApbBoundObject {
@@ -7195,7 +6745,7 @@ type ApbNewTriggerReply struct {
 
 func (x *ApbNewTriggerReply) Reset() {
 	*x = ApbNewTriggerReply{}
-	mi := &file_antidote_proto_msgTypes[110]
+	mi := &file_antidote_proto_msgTypes[102]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7207,7 +6757,7 @@ func (x *ApbNewTriggerReply) String() string {
 func (*ApbNewTriggerReply) ProtoMessage() {}
 
 func (x *ApbNewTriggerReply) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[110]
+	mi := &file_antidote_proto_msgTypes[102]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7220,7 +6770,7 @@ func (x *ApbNewTriggerReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbNewTriggerReply.ProtoReflect.Descriptor instead.
 func (*ApbNewTriggerReply) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{110}
+	return file_antidote_proto_rawDescGZIP(), []int{102}
 }
 
 type ApbGetTriggers struct {
@@ -7231,7 +6781,7 @@ type ApbGetTriggers struct {
 
 func (x *ApbGetTriggers) Reset() {
 	*x = ApbGetTriggers{}
-	mi := &file_antidote_proto_msgTypes[111]
+	mi := &file_antidote_proto_msgTypes[103]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7243,7 +6793,7 @@ func (x *ApbGetTriggers) String() string {
 func (*ApbGetTriggers) ProtoMessage() {}
 
 func (x *ApbGetTriggers) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[111]
+	mi := &file_antidote_proto_msgTypes[103]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7256,7 +6806,7 @@ func (x *ApbGetTriggers) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbGetTriggers.ProtoReflect.Descriptor instead.
 func (*ApbGetTriggers) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{111}
+	return file_antidote_proto_rawDescGZIP(), []int{103}
 }
 
 type ApbGetTriggersReply struct {
@@ -7269,7 +6819,7 @@ type ApbGetTriggersReply struct {
 
 func (x *ApbGetTriggersReply) Reset() {
 	*x = ApbGetTriggersReply{}
-	mi := &file_antidote_proto_msgTypes[112]
+	mi := &file_antidote_proto_msgTypes[104]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7281,7 +6831,7 @@ func (x *ApbGetTriggersReply) String() string {
 func (*ApbGetTriggersReply) ProtoMessage() {}
 
 func (x *ApbGetTriggersReply) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[112]
+	mi := &file_antidote_proto_msgTypes[104]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7294,7 +6844,7 @@ func (x *ApbGetTriggersReply) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbGetTriggersReply.ProtoReflect.Descriptor instead.
 func (*ApbGetTriggersReply) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{112}
+	return file_antidote_proto_rawDescGZIP(), []int{104}
 }
 
 func (x *ApbGetTriggersReply) GetMapping() []*ApbNewTrigger {
@@ -7320,7 +6870,7 @@ type ApbStringSQL struct {
 
 func (x *ApbStringSQL) Reset() {
 	*x = ApbStringSQL{}
-	mi := &file_antidote_proto_msgTypes[113]
+	mi := &file_antidote_proto_msgTypes[105]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7332,7 +6882,7 @@ func (x *ApbStringSQL) String() string {
 func (*ApbStringSQL) ProtoMessage() {}
 
 func (x *ApbStringSQL) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[113]
+	mi := &file_antidote_proto_msgTypes[105]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7345,7 +6895,7 @@ func (x *ApbStringSQL) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStringSQL.ProtoReflect.Descriptor instead.
 func (*ApbStringSQL) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{113}
+	return file_antidote_proto_rawDescGZIP(), []int{105}
 }
 
 func (x *ApbStringSQL) GetSql() string {
@@ -7373,7 +6923,7 @@ type ApbTypedSQL struct {
 
 func (x *ApbTypedSQL) Reset() {
 	*x = ApbTypedSQL{}
-	mi := &file_antidote_proto_msgTypes[114]
+	mi := &file_antidote_proto_msgTypes[106]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7385,7 +6935,7 @@ func (x *ApbTypedSQL) String() string {
 func (*ApbTypedSQL) ProtoMessage() {}
 
 func (x *ApbTypedSQL) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[114]
+	mi := &file_antidote_proto_msgTypes[106]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7398,7 +6948,7 @@ func (x *ApbTypedSQL) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTypedSQL.ProtoReflect.Descriptor instead.
 func (*ApbTypedSQL) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{114}
+	return file_antidote_proto_rawDescGZIP(), []int{106}
 }
 
 func (x *ApbTypedSQL) GetTableName() string {
@@ -7485,7 +7035,7 @@ type ApbSQLCreateTable struct {
 
 func (x *ApbSQLCreateTable) Reset() {
 	*x = ApbSQLCreateTable{}
-	mi := &file_antidote_proto_msgTypes[115]
+	mi := &file_antidote_proto_msgTypes[107]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7497,7 +7047,7 @@ func (x *ApbSQLCreateTable) String() string {
 func (*ApbSQLCreateTable) ProtoMessage() {}
 
 func (x *ApbSQLCreateTable) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[115]
+	mi := &file_antidote_proto_msgTypes[107]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7510,7 +7060,7 @@ func (x *ApbSQLCreateTable) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLCreateTable.ProtoReflect.Descriptor instead.
 func (*ApbSQLCreateTable) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{115}
+	return file_antidote_proto_rawDescGZIP(), []int{107}
 }
 
 func (x *ApbSQLCreateTable) GetRowPolicy() ROW_Policy {
@@ -7564,7 +7114,7 @@ type ApbSQLCreateIndex struct {
 
 func (x *ApbSQLCreateIndex) Reset() {
 	*x = ApbSQLCreateIndex{}
-	mi := &file_antidote_proto_msgTypes[116]
+	mi := &file_antidote_proto_msgTypes[108]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7576,7 +7126,7 @@ func (x *ApbSQLCreateIndex) String() string {
 func (*ApbSQLCreateIndex) ProtoMessage() {}
 
 func (x *ApbSQLCreateIndex) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[116]
+	mi := &file_antidote_proto_msgTypes[108]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7589,7 +7139,7 @@ func (x *ApbSQLCreateIndex) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLCreateIndex.ProtoReflect.Descriptor instead.
 func (*ApbSQLCreateIndex) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{116}
+	return file_antidote_proto_rawDescGZIP(), []int{108}
 }
 
 func (x *ApbSQLCreateIndex) GetTableName() string {
@@ -7608,7 +7158,7 @@ type ApbSQLCreateView struct {
 
 func (x *ApbSQLCreateView) Reset() {
 	*x = ApbSQLCreateView{}
-	mi := &file_antidote_proto_msgTypes[117]
+	mi := &file_antidote_proto_msgTypes[109]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7620,7 +7170,7 @@ func (x *ApbSQLCreateView) String() string {
 func (*ApbSQLCreateView) ProtoMessage() {}
 
 func (x *ApbSQLCreateView) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[117]
+	mi := &file_antidote_proto_msgTypes[109]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7633,7 +7183,7 @@ func (x *ApbSQLCreateView) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLCreateView.ProtoReflect.Descriptor instead.
 func (*ApbSQLCreateView) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{117}
+	return file_antidote_proto_rawDescGZIP(), []int{109}
 }
 
 func (x *ApbSQLCreateView) GetTableName() string {
@@ -7652,7 +7202,7 @@ type ApbSQLInsert struct {
 
 func (x *ApbSQLInsert) Reset() {
 	*x = ApbSQLInsert{}
-	mi := &file_antidote_proto_msgTypes[118]
+	mi := &file_antidote_proto_msgTypes[110]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7664,7 +7214,7 @@ func (x *ApbSQLInsert) String() string {
 func (*ApbSQLInsert) ProtoMessage() {}
 
 func (x *ApbSQLInsert) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[118]
+	mi := &file_antidote_proto_msgTypes[110]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7677,7 +7227,7 @@ func (x *ApbSQLInsert) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLInsert.ProtoReflect.Descriptor instead.
 func (*ApbSQLInsert) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{118}
+	return file_antidote_proto_rawDescGZIP(), []int{110}
 }
 
 func (x *ApbSQLInsert) GetTableName() string {
@@ -7696,7 +7246,7 @@ type ApbSQLUpdate struct {
 
 func (x *ApbSQLUpdate) Reset() {
 	*x = ApbSQLUpdate{}
-	mi := &file_antidote_proto_msgTypes[119]
+	mi := &file_antidote_proto_msgTypes[111]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7708,7 +7258,7 @@ func (x *ApbSQLUpdate) String() string {
 func (*ApbSQLUpdate) ProtoMessage() {}
 
 func (x *ApbSQLUpdate) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[119]
+	mi := &file_antidote_proto_msgTypes[111]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7721,7 +7271,7 @@ func (x *ApbSQLUpdate) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLUpdate.ProtoReflect.Descriptor instead.
 func (*ApbSQLUpdate) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{119}
+	return file_antidote_proto_rawDescGZIP(), []int{111}
 }
 
 func (x *ApbSQLUpdate) GetTableName() string {
@@ -7740,7 +7290,7 @@ type ApbSQLDelete struct {
 
 func (x *ApbSQLDelete) Reset() {
 	*x = ApbSQLDelete{}
-	mi := &file_antidote_proto_msgTypes[120]
+	mi := &file_antidote_proto_msgTypes[112]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7752,7 +7302,7 @@ func (x *ApbSQLDelete) String() string {
 func (*ApbSQLDelete) ProtoMessage() {}
 
 func (x *ApbSQLDelete) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[120]
+	mi := &file_antidote_proto_msgTypes[112]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7765,7 +7315,7 @@ func (x *ApbSQLDelete) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLDelete.ProtoReflect.Descriptor instead.
 func (*ApbSQLDelete) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{120}
+	return file_antidote_proto_rawDescGZIP(), []int{112}
 }
 
 func (x *ApbSQLDelete) GetTableName() string {
@@ -7784,7 +7334,7 @@ type ApbSQLDrop struct {
 
 func (x *ApbSQLDrop) Reset() {
 	*x = ApbSQLDrop{}
-	mi := &file_antidote_proto_msgTypes[121]
+	mi := &file_antidote_proto_msgTypes[113]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7796,7 +7346,7 @@ func (x *ApbSQLDrop) String() string {
 func (*ApbSQLDrop) ProtoMessage() {}
 
 func (x *ApbSQLDrop) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[121]
+	mi := &file_antidote_proto_msgTypes[113]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7809,7 +7359,7 @@ func (x *ApbSQLDrop) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLDrop.ProtoReflect.Descriptor instead.
 func (*ApbSQLDrop) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{121}
+	return file_antidote_proto_rawDescGZIP(), []int{113}
 }
 
 func (x *ApbSQLDrop) GetTableName() string {
@@ -7828,7 +7378,7 @@ type ApbSQLQuery struct {
 
 func (x *ApbSQLQuery) Reset() {
 	*x = ApbSQLQuery{}
-	mi := &file_antidote_proto_msgTypes[122]
+	mi := &file_antidote_proto_msgTypes[114]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7840,7 +7390,7 @@ func (x *ApbSQLQuery) String() string {
 func (*ApbSQLQuery) ProtoMessage() {}
 
 func (x *ApbSQLQuery) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[122]
+	mi := &file_antidote_proto_msgTypes[114]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7853,7 +7403,7 @@ func (x *ApbSQLQuery) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLQuery.ProtoReflect.Descriptor instead.
 func (*ApbSQLQuery) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{122}
+	return file_antidote_proto_rawDescGZIP(), []int{114}
 }
 
 func (x *ApbSQLQuery) GetTableName() string {
@@ -7875,7 +7425,7 @@ type ApbSQLInvariant struct {
 
 func (x *ApbSQLInvariant) Reset() {
 	*x = ApbSQLInvariant{}
-	mi := &file_antidote_proto_msgTypes[123]
+	mi := &file_antidote_proto_msgTypes[115]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7887,7 +7437,7 @@ func (x *ApbSQLInvariant) String() string {
 func (*ApbSQLInvariant) ProtoMessage() {}
 
 func (x *ApbSQLInvariant) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[123]
+	mi := &file_antidote_proto_msgTypes[115]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7900,7 +7450,7 @@ func (x *ApbSQLInvariant) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLInvariant.ProtoReflect.Descriptor instead.
 func (*ApbSQLInvariant) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{123}
+	return file_antidote_proto_rawDescGZIP(), []int{115}
 }
 
 func (x *ApbSQLInvariant) GetPrimaryKey() *ApbSQLPrimaryKey {
@@ -7939,7 +7489,7 @@ type ApbSQLPrimaryKey struct {
 
 func (x *ApbSQLPrimaryKey) Reset() {
 	*x = ApbSQLPrimaryKey{}
-	mi := &file_antidote_proto_msgTypes[124]
+	mi := &file_antidote_proto_msgTypes[116]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7951,7 +7501,7 @@ func (x *ApbSQLPrimaryKey) String() string {
 func (*ApbSQLPrimaryKey) ProtoMessage() {}
 
 func (x *ApbSQLPrimaryKey) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[124]
+	mi := &file_antidote_proto_msgTypes[116]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7964,7 +7514,7 @@ func (x *ApbSQLPrimaryKey) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLPrimaryKey.ProtoReflect.Descriptor instead.
 func (*ApbSQLPrimaryKey) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{124}
+	return file_antidote_proto_rawDescGZIP(), []int{116}
 }
 
 type ApbSQLForeignKey struct {
@@ -7977,7 +7527,7 @@ type ApbSQLForeignKey struct {
 
 func (x *ApbSQLForeignKey) Reset() {
 	*x = ApbSQLForeignKey{}
-	mi := &file_antidote_proto_msgTypes[125]
+	mi := &file_antidote_proto_msgTypes[117]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7989,7 +7539,7 @@ func (x *ApbSQLForeignKey) String() string {
 func (*ApbSQLForeignKey) ProtoMessage() {}
 
 func (x *ApbSQLForeignKey) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[125]
+	mi := &file_antidote_proto_msgTypes[117]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8002,7 +7552,7 @@ func (x *ApbSQLForeignKey) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLForeignKey.ProtoReflect.Descriptor instead.
 func (*ApbSQLForeignKey) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{125}
+	return file_antidote_proto_rawDescGZIP(), []int{117}
 }
 
 func (x *ApbSQLForeignKey) GetForeignTable() string {
@@ -8029,7 +7579,7 @@ type ApbSQLCheck struct {
 
 func (x *ApbSQLCheck) Reset() {
 	*x = ApbSQLCheck{}
-	mi := &file_antidote_proto_msgTypes[126]
+	mi := &file_antidote_proto_msgTypes[118]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8041,7 +7591,7 @@ func (x *ApbSQLCheck) String() string {
 func (*ApbSQLCheck) ProtoMessage() {}
 
 func (x *ApbSQLCheck) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[126]
+	mi := &file_antidote_proto_msgTypes[118]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8054,7 +7604,7 @@ func (x *ApbSQLCheck) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSQLCheck.ProtoReflect.Descriptor instead.
 func (*ApbSQLCheck) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{126}
+	return file_antidote_proto_rawDescGZIP(), []int{118}
 }
 
 func (x *ApbSQLCheck) GetConditionType() COMPType {
@@ -8083,7 +7633,7 @@ type ApbRead struct {
 
 func (x *ApbRead) Reset() {
 	*x = ApbRead{}
-	mi := &file_antidote_proto_msgTypes[127]
+	mi := &file_antidote_proto_msgTypes[119]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8095,7 +7645,7 @@ func (x *ApbRead) String() string {
 func (*ApbRead) ProtoMessage() {}
 
 func (x *ApbRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[127]
+	mi := &file_antidote_proto_msgTypes[119]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8108,7 +7658,7 @@ func (x *ApbRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbRead.ProtoReflect.Descriptor instead.
 func (*ApbRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{127}
+	return file_antidote_proto_rawDescGZIP(), []int{119}
 }
 
 func (x *ApbRead) GetFullreads() []*ApbBoundObject {
@@ -8143,7 +7693,7 @@ type ApbStaticRead struct {
 
 func (x *ApbStaticRead) Reset() {
 	*x = ApbStaticRead{}
-	mi := &file_antidote_proto_msgTypes[128]
+	mi := &file_antidote_proto_msgTypes[120]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8155,7 +7705,7 @@ func (x *ApbStaticRead) String() string {
 func (*ApbStaticRead) ProtoMessage() {}
 
 func (x *ApbStaticRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[128]
+	mi := &file_antidote_proto_msgTypes[120]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8168,7 +7718,7 @@ func (x *ApbStaticRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbStaticRead.ProtoReflect.Descriptor instead.
 func (*ApbStaticRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{128}
+	return file_antidote_proto_rawDescGZIP(), []int{120}
 }
 
 func (x *ApbStaticRead) GetFullreads() []*ApbBoundObject {
@@ -8203,7 +7753,7 @@ type ApbPartialRead struct {
 
 func (x *ApbPartialRead) Reset() {
 	*x = ApbPartialRead{}
-	mi := &file_antidote_proto_msgTypes[129]
+	mi := &file_antidote_proto_msgTypes[121]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8215,7 +7765,7 @@ func (x *ApbPartialRead) String() string {
 func (*ApbPartialRead) ProtoMessage() {}
 
 func (x *ApbPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[129]
+	mi := &file_antidote_proto_msgTypes[121]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8228,7 +7778,7 @@ func (x *ApbPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{129}
+	return file_antidote_proto_rawDescGZIP(), []int{121}
 }
 
 func (x *ApbPartialRead) GetObject() *ApbBoundObject {
@@ -8270,7 +7820,7 @@ type ApbPartialReadArgs struct {
 
 func (x *ApbPartialReadArgs) Reset() {
 	*x = ApbPartialReadArgs{}
-	mi := &file_antidote_proto_msgTypes[130]
+	mi := &file_antidote_proto_msgTypes[122]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8282,7 +7832,7 @@ func (x *ApbPartialReadArgs) String() string {
 func (*ApbPartialReadArgs) ProtoMessage() {}
 
 func (x *ApbPartialReadArgs) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[130]
+	mi := &file_antidote_proto_msgTypes[122]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8295,7 +7845,7 @@ func (x *ApbPartialReadArgs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPartialReadArgs.ProtoReflect.Descriptor instead.
 func (*ApbPartialReadArgs) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{130}
+	return file_antidote_proto_rawDescGZIP(), []int{122}
 }
 
 func (x *ApbPartialReadArgs) GetSet() *ApbSetPartialRead {
@@ -8382,7 +7932,7 @@ type ApbProcessRead struct {
 
 func (x *ApbProcessRead) Reset() {
 	*x = ApbProcessRead{}
-	mi := &file_antidote_proto_msgTypes[131]
+	mi := &file_antidote_proto_msgTypes[123]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8394,7 +7944,7 @@ func (x *ApbProcessRead) String() string {
 func (*ApbProcessRead) ProtoMessage() {}
 
 func (x *ApbProcessRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[131]
+	mi := &file_antidote_proto_msgTypes[123]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8407,7 +7957,7 @@ func (x *ApbProcessRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbProcessRead.ProtoReflect.Descriptor instead.
 func (*ApbProcessRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{131}
+	return file_antidote_proto_rawDescGZIP(), []int{123}
 }
 
 func (x *ApbProcessRead) GetPrereads() []*ApbPartialRead {
@@ -8441,7 +7991,7 @@ type ApbSetPartialRead struct {
 
 func (x *ApbSetPartialRead) Reset() {
 	*x = ApbSetPartialRead{}
-	mi := &file_antidote_proto_msgTypes[132]
+	mi := &file_antidote_proto_msgTypes[124]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8453,7 +8003,7 @@ func (x *ApbSetPartialRead) String() string {
 func (*ApbSetPartialRead) ProtoMessage() {}
 
 func (x *ApbSetPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[132]
+	mi := &file_antidote_proto_msgTypes[124]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8466,7 +8016,7 @@ func (x *ApbSetPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSetPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbSetPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{132}
+	return file_antidote_proto_rawDescGZIP(), []int{124}
 }
 
 func (x *ApbSetPartialRead) GetLookup() *ApbSetLookupRead {
@@ -8503,7 +8053,7 @@ type ApbMapPartialRead struct {
 
 func (x *ApbMapPartialRead) Reset() {
 	*x = ApbMapPartialRead{}
-	mi := &file_antidote_proto_msgTypes[133]
+	mi := &file_antidote_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8515,7 +8065,7 @@ func (x *ApbMapPartialRead) String() string {
 func (*ApbMapPartialRead) ProtoMessage() {}
 
 func (x *ApbMapPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[133]
+	mi := &file_antidote_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8528,7 +8078,7 @@ func (x *ApbMapPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbMapPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{133}
+	return file_antidote_proto_rawDescGZIP(), []int{125}
 }
 
 func (x *ApbMapPartialRead) GetGetvalue() *ApbMapGetValueRead {
@@ -8625,7 +8175,7 @@ type ApbTopkPartialRead struct {
 
 func (x *ApbTopkPartialRead) Reset() {
 	*x = ApbTopkPartialRead{}
-	mi := &file_antidote_proto_msgTypes[134]
+	mi := &file_antidote_proto_msgTypes[126]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8637,7 +8187,7 @@ func (x *ApbTopkPartialRead) String() string {
 func (*ApbTopkPartialRead) ProtoMessage() {}
 
 func (x *ApbTopkPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[134]
+	mi := &file_antidote_proto_msgTypes[126]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8650,7 +8200,7 @@ func (x *ApbTopkPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTopkPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbTopkPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{134}
+	return file_antidote_proto_rawDescGZIP(), []int{126}
 }
 
 func (x *ApbTopkPartialRead) GetGetn() *ApbTopkGetNRead {
@@ -8676,7 +8226,7 @@ type ApbAvgPartialRead struct {
 
 func (x *ApbAvgPartialRead) Reset() {
 	*x = ApbAvgPartialRead{}
-	mi := &file_antidote_proto_msgTypes[135]
+	mi := &file_antidote_proto_msgTypes[127]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8688,7 +8238,7 @@ func (x *ApbAvgPartialRead) String() string {
 func (*ApbAvgPartialRead) ProtoMessage() {}
 
 func (x *ApbAvgPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[135]
+	mi := &file_antidote_proto_msgTypes[127]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8701,7 +8251,7 @@ func (x *ApbAvgPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbAvgPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbAvgPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{135}
+	return file_antidote_proto_rawDescGZIP(), []int{127}
 }
 
 func (x *ApbAvgPartialRead) GetGetfull() *ApbAvgFullRead {
@@ -8721,7 +8271,7 @@ type ApbPairCounterPartialRead struct {
 
 func (x *ApbPairCounterPartialRead) Reset() {
 	*x = ApbPairCounterPartialRead{}
-	mi := &file_antidote_proto_msgTypes[136]
+	mi := &file_antidote_proto_msgTypes[128]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8733,7 +8283,7 @@ func (x *ApbPairCounterPartialRead) String() string {
 func (*ApbPairCounterPartialRead) ProtoMessage() {}
 
 func (x *ApbPairCounterPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[136]
+	mi := &file_antidote_proto_msgTypes[128]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8746,7 +8296,7 @@ func (x *ApbPairCounterPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPairCounterPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbPairCounterPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{136}
+	return file_antidote_proto_rawDescGZIP(), []int{128}
 }
 
 func (x *ApbPairCounterPartialRead) GetFirst() *ApbPairCounterFirstRead {
@@ -8775,7 +8325,7 @@ type ApbArrayCounterPartialRead struct {
 
 func (x *ApbArrayCounterPartialRead) Reset() {
 	*x = ApbArrayCounterPartialRead{}
-	mi := &file_antidote_proto_msgTypes[137]
+	mi := &file_antidote_proto_msgTypes[129]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8787,7 +8337,7 @@ func (x *ApbArrayCounterPartialRead) String() string {
 func (*ApbArrayCounterPartialRead) ProtoMessage() {}
 
 func (x *ApbArrayCounterPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[137]
+	mi := &file_antidote_proto_msgTypes[129]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8800,7 +8350,7 @@ func (x *ApbArrayCounterPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbArrayCounterPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbArrayCounterPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{137}
+	return file_antidote_proto_rawDescGZIP(), []int{129}
 }
 
 func (x *ApbArrayCounterPartialRead) GetSingle() *ApbArrayCounterSingleRead {
@@ -8847,7 +8397,7 @@ type ApbMultiArrayPartialRead struct {
 
 func (x *ApbMultiArrayPartialRead) Reset() {
 	*x = ApbMultiArrayPartialRead{}
-	mi := &file_antidote_proto_msgTypes[138]
+	mi := &file_antidote_proto_msgTypes[130]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8859,7 +8409,7 @@ func (x *ApbMultiArrayPartialRead) String() string {
 func (*ApbMultiArrayPartialRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[138]
+	mi := &file_antidote_proto_msgTypes[130]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8872,7 +8422,7 @@ func (x *ApbMultiArrayPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{138}
+	return file_antidote_proto_rawDescGZIP(), []int{130}
 }
 
 func (x *ApbMultiArrayPartialRead) GetTypes() []MultiArrayType {
@@ -8941,7 +8491,7 @@ type ApbSetLookupRead struct {
 
 func (x *ApbSetLookupRead) Reset() {
 	*x = ApbSetLookupRead{}
-	mi := &file_antidote_proto_msgTypes[139]
+	mi := &file_antidote_proto_msgTypes[131]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8953,7 +8503,7 @@ func (x *ApbSetLookupRead) String() string {
 func (*ApbSetLookupRead) ProtoMessage() {}
 
 func (x *ApbSetLookupRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[139]
+	mi := &file_antidote_proto_msgTypes[131]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8966,7 +8516,7 @@ func (x *ApbSetLookupRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSetLookupRead.ProtoReflect.Descriptor instead.
 func (*ApbSetLookupRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{139}
+	return file_antidote_proto_rawDescGZIP(), []int{131}
 }
 
 func (x *ApbSetLookupRead) GetElement() []byte {
@@ -8984,7 +8534,7 @@ type ApbSetNElemsRead struct {
 
 func (x *ApbSetNElemsRead) Reset() {
 	*x = ApbSetNElemsRead{}
-	mi := &file_antidote_proto_msgTypes[140]
+	mi := &file_antidote_proto_msgTypes[132]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8996,7 +8546,7 @@ func (x *ApbSetNElemsRead) String() string {
 func (*ApbSetNElemsRead) ProtoMessage() {}
 
 func (x *ApbSetNElemsRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[140]
+	mi := &file_antidote_proto_msgTypes[132]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9009,7 +8559,7 @@ func (x *ApbSetNElemsRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSetNElemsRead.ProtoReflect.Descriptor instead.
 func (*ApbSetNElemsRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{140}
+	return file_antidote_proto_rawDescGZIP(), []int{132}
 }
 
 // MAP
@@ -9023,7 +8573,7 @@ type ApbMapGetValueRead struct {
 
 func (x *ApbMapGetValueRead) Reset() {
 	*x = ApbMapGetValueRead{}
-	mi := &file_antidote_proto_msgTypes[141]
+	mi := &file_antidote_proto_msgTypes[133]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9035,7 +8585,7 @@ func (x *ApbMapGetValueRead) String() string {
 func (*ApbMapGetValueRead) ProtoMessage() {}
 
 func (x *ApbMapGetValueRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[141]
+	mi := &file_antidote_proto_msgTypes[133]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9048,7 +8598,7 @@ func (x *ApbMapGetValueRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetValueRead.ProtoReflect.Descriptor instead.
 func (*ApbMapGetValueRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{141}
+	return file_antidote_proto_rawDescGZIP(), []int{133}
 }
 
 func (x *ApbMapGetValueRead) GetKey() []byte {
@@ -9074,7 +8624,7 @@ type ApbMapHasKeyRead struct {
 
 func (x *ApbMapHasKeyRead) Reset() {
 	*x = ApbMapHasKeyRead{}
-	mi := &file_antidote_proto_msgTypes[142]
+	mi := &file_antidote_proto_msgTypes[134]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9086,7 +8636,7 @@ func (x *ApbMapHasKeyRead) String() string {
 func (*ApbMapHasKeyRead) ProtoMessage() {}
 
 func (x *ApbMapHasKeyRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[142]
+	mi := &file_antidote_proto_msgTypes[134]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9099,7 +8649,7 @@ func (x *ApbMapHasKeyRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapHasKeyRead.ProtoReflect.Descriptor instead.
 func (*ApbMapHasKeyRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{142}
+	return file_antidote_proto_rawDescGZIP(), []int{134}
 }
 
 func (x *ApbMapHasKeyRead) GetKey() []byte {
@@ -9117,7 +8667,7 @@ type ApbMapGetKeysRead struct {
 
 func (x *ApbMapGetKeysRead) Reset() {
 	*x = ApbMapGetKeysRead{}
-	mi := &file_antidote_proto_msgTypes[143]
+	mi := &file_antidote_proto_msgTypes[135]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9129,7 +8679,7 @@ func (x *ApbMapGetKeysRead) String() string {
 func (*ApbMapGetKeysRead) ProtoMessage() {}
 
 func (x *ApbMapGetKeysRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[143]
+	mi := &file_antidote_proto_msgTypes[135]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9142,7 +8692,7 @@ func (x *ApbMapGetKeysRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetKeysRead.ProtoReflect.Descriptor instead.
 func (*ApbMapGetKeysRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{143}
+	return file_antidote_proto_rawDescGZIP(), []int{135}
 }
 
 // Note: The 2nd argument is optional.
@@ -9157,7 +8707,7 @@ type ApbMapGetValuesRead struct {
 
 func (x *ApbMapGetValuesRead) Reset() {
 	*x = ApbMapGetValuesRead{}
-	mi := &file_antidote_proto_msgTypes[144]
+	mi := &file_antidote_proto_msgTypes[136]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9169,7 +8719,7 @@ func (x *ApbMapGetValuesRead) String() string {
 func (*ApbMapGetValuesRead) ProtoMessage() {}
 
 func (x *ApbMapGetValuesRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[144]
+	mi := &file_antidote_proto_msgTypes[136]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9182,7 +8732,7 @@ func (x *ApbMapGetValuesRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetValuesRead.ProtoReflect.Descriptor instead.
 func (*ApbMapGetValuesRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{144}
+	return file_antidote_proto_rawDescGZIP(), []int{136}
 }
 
 func (x *ApbMapGetValuesRead) GetKeys() [][]byte {
@@ -9212,7 +8762,7 @@ type ApbMapAggregateRead struct {
 
 func (x *ApbMapAggregateRead) Reset() {
 	*x = ApbMapAggregateRead{}
-	mi := &file_antidote_proto_msgTypes[145]
+	mi := &file_antidote_proto_msgTypes[137]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9224,7 +8774,7 @@ func (x *ApbMapAggregateRead) String() string {
 func (*ApbMapAggregateRead) ProtoMessage() {}
 
 func (x *ApbMapAggregateRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[145]
+	mi := &file_antidote_proto_msgTypes[137]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9237,7 +8787,7 @@ func (x *ApbMapAggregateRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapAggregateRead.ProtoReflect.Descriptor instead.
 func (*ApbMapAggregateRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{145}
+	return file_antidote_proto_rawDescGZIP(), []int{137}
 }
 
 func (x *ApbMapAggregateRead) GetAggregationtype() AGGRType {
@@ -9285,7 +8835,7 @@ type ApbMapGetAllValuesRead struct {
 
 func (x *ApbMapGetAllValuesRead) Reset() {
 	*x = ApbMapGetAllValuesRead{}
-	mi := &file_antidote_proto_msgTypes[146]
+	mi := &file_antidote_proto_msgTypes[138]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9297,7 +8847,7 @@ func (x *ApbMapGetAllValuesRead) String() string {
 func (*ApbMapGetAllValuesRead) ProtoMessage() {}
 
 func (x *ApbMapGetAllValuesRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[146]
+	mi := &file_antidote_proto_msgTypes[138]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9310,7 +8860,7 @@ func (x *ApbMapGetAllValuesRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetAllValuesRead.ProtoReflect.Descriptor instead.
 func (*ApbMapGetAllValuesRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{146}
+	return file_antidote_proto_rawDescGZIP(), []int{138}
 }
 
 func (x *ApbMapGetAllValuesRead) GetArgs() *ApbMapEmbPartialArgs {
@@ -9329,7 +8879,7 @@ type ApbMapCondRead struct {
 
 func (x *ApbMapCondRead) Reset() {
 	*x = ApbMapCondRead{}
-	mi := &file_antidote_proto_msgTypes[147]
+	mi := &file_antidote_proto_msgTypes[139]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9341,7 +8891,7 @@ func (x *ApbMapCondRead) String() string {
 func (*ApbMapCondRead) ProtoMessage() {}
 
 func (x *ApbMapCondRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[147]
+	mi := &file_antidote_proto_msgTypes[139]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9354,7 +8904,7 @@ func (x *ApbMapCondRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapCondRead.ProtoReflect.Descriptor instead.
 func (*ApbMapCondRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{147}
+	return file_antidote_proto_rawDescGZIP(), []int{139}
 }
 
 func (x *ApbMapCondRead) GetCondargs() []*ApbMapCondArgs {
@@ -9374,7 +8924,7 @@ type ApbMapAllCondRead struct {
 
 func (x *ApbMapAllCondRead) Reset() {
 	*x = ApbMapAllCondRead{}
-	mi := &file_antidote_proto_msgTypes[148]
+	mi := &file_antidote_proto_msgTypes[140]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9386,7 +8936,7 @@ func (x *ApbMapAllCondRead) String() string {
 func (*ApbMapAllCondRead) ProtoMessage() {}
 
 func (x *ApbMapAllCondRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[148]
+	mi := &file_antidote_proto_msgTypes[140]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9399,7 +8949,7 @@ func (x *ApbMapAllCondRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapAllCondRead.ProtoReflect.Descriptor instead.
 func (*ApbMapAllCondRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{148}
+	return file_antidote_proto_rawDescGZIP(), []int{140}
 }
 
 func (x *ApbMapAllCondRead) GetCondarg() *ApbMapCondArgs {
@@ -9426,7 +8976,7 @@ type ApbMapExceptCondRead struct {
 
 func (x *ApbMapExceptCondRead) Reset() {
 	*x = ApbMapExceptCondRead{}
-	mi := &file_antidote_proto_msgTypes[149]
+	mi := &file_antidote_proto_msgTypes[141]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9438,7 +8988,7 @@ func (x *ApbMapExceptCondRead) String() string {
 func (*ApbMapExceptCondRead) ProtoMessage() {}
 
 func (x *ApbMapExceptCondRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[149]
+	mi := &file_antidote_proto_msgTypes[141]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9451,7 +9001,7 @@ func (x *ApbMapExceptCondRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapExceptCondRead.ProtoReflect.Descriptor instead.
 func (*ApbMapExceptCondRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{149}
+	return file_antidote_proto_rawDescGZIP(), []int{141}
 }
 
 func (x *ApbMapExceptCondRead) GetKeys() [][]byte {
@@ -9478,7 +9028,7 @@ type ApbMapExceptRead struct {
 
 func (x *ApbMapExceptRead) Reset() {
 	*x = ApbMapExceptRead{}
-	mi := &file_antidote_proto_msgTypes[150]
+	mi := &file_antidote_proto_msgTypes[142]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9490,7 +9040,7 @@ func (x *ApbMapExceptRead) String() string {
 func (*ApbMapExceptRead) ProtoMessage() {}
 
 func (x *ApbMapExceptRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[150]
+	mi := &file_antidote_proto_msgTypes[142]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9503,7 +9053,7 @@ func (x *ApbMapExceptRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapExceptRead.ProtoReflect.Descriptor instead.
 func (*ApbMapExceptRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{150}
+	return file_antidote_proto_rawDescGZIP(), []int{142}
 }
 
 func (x *ApbMapExceptRead) GetKeys() [][]byte {
@@ -9530,7 +9080,7 @@ type ApbMapExceptSingleRead struct {
 
 func (x *ApbMapExceptSingleRead) Reset() {
 	*x = ApbMapExceptSingleRead{}
-	mi := &file_antidote_proto_msgTypes[151]
+	mi := &file_antidote_proto_msgTypes[143]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9542,7 +9092,7 @@ func (x *ApbMapExceptSingleRead) String() string {
 func (*ApbMapExceptSingleRead) ProtoMessage() {}
 
 func (x *ApbMapExceptSingleRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[151]
+	mi := &file_antidote_proto_msgTypes[143]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9555,7 +9105,7 @@ func (x *ApbMapExceptSingleRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapExceptSingleRead.ProtoReflect.Descriptor instead.
 func (*ApbMapExceptSingleRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{151}
+	return file_antidote_proto_rawDescGZIP(), []int{143}
 }
 
 func (x *ApbMapExceptSingleRead) GetKey() []byte {
@@ -9582,7 +9132,7 @@ type ApbMapExceptCondSingleRead struct {
 
 func (x *ApbMapExceptCondSingleRead) Reset() {
 	*x = ApbMapExceptCondSingleRead{}
-	mi := &file_antidote_proto_msgTypes[152]
+	mi := &file_antidote_proto_msgTypes[144]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9594,7 +9144,7 @@ func (x *ApbMapExceptCondSingleRead) String() string {
 func (*ApbMapExceptCondSingleRead) ProtoMessage() {}
 
 func (x *ApbMapExceptCondSingleRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[152]
+	mi := &file_antidote_proto_msgTypes[144]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9607,7 +9157,7 @@ func (x *ApbMapExceptCondSingleRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapExceptCondSingleRead.ProtoReflect.Descriptor instead.
 func (*ApbMapExceptCondSingleRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{152}
+	return file_antidote_proto_rawDescGZIP(), []int{144}
 }
 
 func (x *ApbMapExceptCondSingleRead) GetKey() []byte {
@@ -9642,7 +9192,7 @@ type ApbMapCondArgs struct {
 
 func (x *ApbMapCondArgs) Reset() {
 	*x = ApbMapCondArgs{}
-	mi := &file_antidote_proto_msgTypes[153]
+	mi := &file_antidote_proto_msgTypes[145]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9654,7 +9204,7 @@ func (x *ApbMapCondArgs) String() string {
 func (*ApbMapCondArgs) ProtoMessage() {}
 
 func (x *ApbMapCondArgs) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[153]
+	mi := &file_antidote_proto_msgTypes[145]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9667,7 +9217,7 @@ func (x *ApbMapCondArgs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapCondArgs.ProtoReflect.Descriptor instead.
 func (*ApbMapCondArgs) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{153}
+	return file_antidote_proto_rawDescGZIP(), []int{145}
 }
 
 func (x *ApbMapCondArgs) GetKey() string {
@@ -9750,7 +9300,7 @@ type ApbCondIntCompare struct {
 
 func (x *ApbCondIntCompare) Reset() {
 	*x = ApbCondIntCompare{}
-	mi := &file_antidote_proto_msgTypes[154]
+	mi := &file_antidote_proto_msgTypes[146]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9762,7 +9312,7 @@ func (x *ApbCondIntCompare) String() string {
 func (*ApbCondIntCompare) ProtoMessage() {}
 
 func (x *ApbCondIntCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[154]
+	mi := &file_antidote_proto_msgTypes[146]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9775,7 +9325,7 @@ func (x *ApbCondIntCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondIntCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondIntCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{154}
+	return file_antidote_proto_rawDescGZIP(), []int{146}
 }
 
 func (x *ApbCondIntCompare) GetValue() int64 {
@@ -9802,7 +9352,7 @@ type ApbCondFloatCompare struct {
 
 func (x *ApbCondFloatCompare) Reset() {
 	*x = ApbCondFloatCompare{}
-	mi := &file_antidote_proto_msgTypes[155]
+	mi := &file_antidote_proto_msgTypes[147]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9814,7 +9364,7 @@ func (x *ApbCondFloatCompare) String() string {
 func (*ApbCondFloatCompare) ProtoMessage() {}
 
 func (x *ApbCondFloatCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[155]
+	mi := &file_antidote_proto_msgTypes[147]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9827,7 +9377,7 @@ func (x *ApbCondFloatCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondFloatCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondFloatCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{155}
+	return file_antidote_proto_rawDescGZIP(), []int{147}
 }
 
 func (x *ApbCondFloatCompare) GetValue() float64 {
@@ -9854,7 +9404,7 @@ type ApbCondBoolCompare struct {
 
 func (x *ApbCondBoolCompare) Reset() {
 	*x = ApbCondBoolCompare{}
-	mi := &file_antidote_proto_msgTypes[156]
+	mi := &file_antidote_proto_msgTypes[148]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9866,7 +9416,7 @@ func (x *ApbCondBoolCompare) String() string {
 func (*ApbCondBoolCompare) ProtoMessage() {}
 
 func (x *ApbCondBoolCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[156]
+	mi := &file_antidote_proto_msgTypes[148]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9879,7 +9429,7 @@ func (x *ApbCondBoolCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondBoolCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondBoolCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{156}
+	return file_antidote_proto_rawDescGZIP(), []int{148}
 }
 
 func (x *ApbCondBoolCompare) GetValue() bool {
@@ -9906,7 +9456,7 @@ type ApbCondStringCompare struct {
 
 func (x *ApbCondStringCompare) Reset() {
 	*x = ApbCondStringCompare{}
-	mi := &file_antidote_proto_msgTypes[157]
+	mi := &file_antidote_proto_msgTypes[149]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9918,7 +9468,7 @@ func (x *ApbCondStringCompare) String() string {
 func (*ApbCondStringCompare) ProtoMessage() {}
 
 func (x *ApbCondStringCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[157]
+	mi := &file_antidote_proto_msgTypes[149]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9931,7 +9481,7 @@ func (x *ApbCondStringCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondStringCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondStringCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{157}
+	return file_antidote_proto_rawDescGZIP(), []int{149}
 }
 
 func (x *ApbCondStringCompare) GetValue() string {
@@ -9958,7 +9508,7 @@ type ApbCondBytesCompare struct {
 
 func (x *ApbCondBytesCompare) Reset() {
 	*x = ApbCondBytesCompare{}
-	mi := &file_antidote_proto_msgTypes[158]
+	mi := &file_antidote_proto_msgTypes[150]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9970,7 +9520,7 @@ func (x *ApbCondBytesCompare) String() string {
 func (*ApbCondBytesCompare) ProtoMessage() {}
 
 func (x *ApbCondBytesCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[158]
+	mi := &file_antidote_proto_msgTypes[150]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9983,7 +9533,7 @@ func (x *ApbCondBytesCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondBytesCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondBytesCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{158}
+	return file_antidote_proto_rawDescGZIP(), []int{150}
 }
 
 func (x *ApbCondBytesCompare) GetValue() []byte {
@@ -10009,7 +9559,7 @@ type ApbCondMapCompare struct {
 
 func (x *ApbCondMapCompare) Reset() {
 	*x = ApbCondMapCompare{}
-	mi := &file_antidote_proto_msgTypes[159]
+	mi := &file_antidote_proto_msgTypes[151]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10021,7 +9571,7 @@ func (x *ApbCondMapCompare) String() string {
 func (*ApbCondMapCompare) ProtoMessage() {}
 
 func (x *ApbCondMapCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[159]
+	mi := &file_antidote_proto_msgTypes[151]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10034,7 +9584,7 @@ func (x *ApbCondMapCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondMapCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondMapCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{159}
+	return file_antidote_proto_rawDescGZIP(), []int{151}
 }
 
 func (x *ApbCondMapCompare) GetValue() []*ApbMapCondArgs {
@@ -10052,7 +9602,7 @@ type ApbCondGetNoCompare struct {
 
 func (x *ApbCondGetNoCompare) Reset() {
 	*x = ApbCondGetNoCompare{}
-	mi := &file_antidote_proto_msgTypes[160]
+	mi := &file_antidote_proto_msgTypes[152]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10064,7 +9614,7 @@ func (x *ApbCondGetNoCompare) String() string {
 func (*ApbCondGetNoCompare) ProtoMessage() {}
 
 func (x *ApbCondGetNoCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[160]
+	mi := &file_antidote_proto_msgTypes[152]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10077,7 +9627,7 @@ func (x *ApbCondGetNoCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondGetNoCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondGetNoCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{160}
+	return file_antidote_proto_rawDescGZIP(), []int{152}
 }
 
 type ApbCondIntVarCompare struct {
@@ -10089,7 +9639,7 @@ type ApbCondIntVarCompare struct {
 
 func (x *ApbCondIntVarCompare) Reset() {
 	*x = ApbCondIntVarCompare{}
-	mi := &file_antidote_proto_msgTypes[161]
+	mi := &file_antidote_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10101,7 +9651,7 @@ func (x *ApbCondIntVarCompare) String() string {
 func (*ApbCondIntVarCompare) ProtoMessage() {}
 
 func (x *ApbCondIntVarCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[161]
+	mi := &file_antidote_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10114,7 +9664,7 @@ func (x *ApbCondIntVarCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondIntVarCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondIntVarCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{161}
+	return file_antidote_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *ApbCondIntVarCompare) GetComp() COMPType {
@@ -10133,7 +9683,7 @@ type ApbCondFloatVarCompare struct {
 
 func (x *ApbCondFloatVarCompare) Reset() {
 	*x = ApbCondFloatVarCompare{}
-	mi := &file_antidote_proto_msgTypes[162]
+	mi := &file_antidote_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10145,7 +9695,7 @@ func (x *ApbCondFloatVarCompare) String() string {
 func (*ApbCondFloatVarCompare) ProtoMessage() {}
 
 func (x *ApbCondFloatVarCompare) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[162]
+	mi := &file_antidote_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10158,7 +9708,7 @@ func (x *ApbCondFloatVarCompare) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbCondFloatVarCompare.ProtoReflect.Descriptor instead.
 func (*ApbCondFloatVarCompare) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{162}
+	return file_antidote_proto_rawDescGZIP(), []int{154}
 }
 
 func (x *ApbCondFloatVarCompare) GetComp() COMPType {
@@ -10180,7 +9730,7 @@ type ApbMapEmbPartialArgs struct {
 
 func (x *ApbMapEmbPartialArgs) Reset() {
 	*x = ApbMapEmbPartialArgs{}
-	mi := &file_antidote_proto_msgTypes[163]
+	mi := &file_antidote_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10192,7 +9742,7 @@ func (x *ApbMapEmbPartialArgs) String() string {
 func (*ApbMapEmbPartialArgs) ProtoMessage() {}
 
 func (x *ApbMapEmbPartialArgs) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[163]
+	mi := &file_antidote_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10205,7 +9755,7 @@ func (x *ApbMapEmbPartialArgs) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapEmbPartialArgs.ProtoReflect.Descriptor instead.
 func (*ApbMapEmbPartialArgs) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{163}
+	return file_antidote_proto_rawDescGZIP(), []int{155}
 }
 
 func (x *ApbMapEmbPartialArgs) GetType() CRDTType {
@@ -10239,7 +9789,7 @@ type ApbTopkGetNRead struct {
 
 func (x *ApbTopkGetNRead) Reset() {
 	*x = ApbTopkGetNRead{}
-	mi := &file_antidote_proto_msgTypes[164]
+	mi := &file_antidote_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10251,7 +9801,7 @@ func (x *ApbTopkGetNRead) String() string {
 func (*ApbTopkGetNRead) ProtoMessage() {}
 
 func (x *ApbTopkGetNRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[164]
+	mi := &file_antidote_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10264,7 +9814,7 @@ func (x *ApbTopkGetNRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTopkGetNRead.ProtoReflect.Descriptor instead.
 func (*ApbTopkGetNRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{164}
+	return file_antidote_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *ApbTopkGetNRead) GetAmount() int32 {
@@ -10283,7 +9833,7 @@ type ApbTopkAboveValueRead struct {
 
 func (x *ApbTopkAboveValueRead) Reset() {
 	*x = ApbTopkAboveValueRead{}
-	mi := &file_antidote_proto_msgTypes[165]
+	mi := &file_antidote_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10295,7 +9845,7 @@ func (x *ApbTopkAboveValueRead) String() string {
 func (*ApbTopkAboveValueRead) ProtoMessage() {}
 
 func (x *ApbTopkAboveValueRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[165]
+	mi := &file_antidote_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10308,7 +9858,7 @@ func (x *ApbTopkAboveValueRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTopkAboveValueRead.ProtoReflect.Descriptor instead.
 func (*ApbTopkAboveValueRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{165}
+	return file_antidote_proto_rawDescGZIP(), []int{157}
 }
 
 func (x *ApbTopkAboveValueRead) GetMinValue() int32 {
@@ -10327,7 +9877,7 @@ type ApbAvgFullRead struct {
 
 func (x *ApbAvgFullRead) Reset() {
 	*x = ApbAvgFullRead{}
-	mi := &file_antidote_proto_msgTypes[166]
+	mi := &file_antidote_proto_msgTypes[158]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10339,7 +9889,7 @@ func (x *ApbAvgFullRead) String() string {
 func (*ApbAvgFullRead) ProtoMessage() {}
 
 func (x *ApbAvgFullRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[166]
+	mi := &file_antidote_proto_msgTypes[158]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10352,7 +9902,7 @@ func (x *ApbAvgFullRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbAvgFullRead.ProtoReflect.Descriptor instead.
 func (*ApbAvgFullRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{166}
+	return file_antidote_proto_rawDescGZIP(), []int{158}
 }
 
 // PAIRCOUNTER
@@ -10364,7 +9914,7 @@ type ApbPairCounterFirstRead struct {
 
 func (x *ApbPairCounterFirstRead) Reset() {
 	*x = ApbPairCounterFirstRead{}
-	mi := &file_antidote_proto_msgTypes[167]
+	mi := &file_antidote_proto_msgTypes[159]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10376,7 +9926,7 @@ func (x *ApbPairCounterFirstRead) String() string {
 func (*ApbPairCounterFirstRead) ProtoMessage() {}
 
 func (x *ApbPairCounterFirstRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[167]
+	mi := &file_antidote_proto_msgTypes[159]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10389,7 +9939,7 @@ func (x *ApbPairCounterFirstRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPairCounterFirstRead.ProtoReflect.Descriptor instead.
 func (*ApbPairCounterFirstRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{167}
+	return file_antidote_proto_rawDescGZIP(), []int{159}
 }
 
 type ApbPairCounterSecondRead struct {
@@ -10400,7 +9950,7 @@ type ApbPairCounterSecondRead struct {
 
 func (x *ApbPairCounterSecondRead) Reset() {
 	*x = ApbPairCounterSecondRead{}
-	mi := &file_antidote_proto_msgTypes[168]
+	mi := &file_antidote_proto_msgTypes[160]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10412,7 +9962,7 @@ func (x *ApbPairCounterSecondRead) String() string {
 func (*ApbPairCounterSecondRead) ProtoMessage() {}
 
 func (x *ApbPairCounterSecondRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[168]
+	mi := &file_antidote_proto_msgTypes[160]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10425,7 +9975,7 @@ func (x *ApbPairCounterSecondRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPairCounterSecondRead.ProtoReflect.Descriptor instead.
 func (*ApbPairCounterSecondRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{168}
+	return file_antidote_proto_rawDescGZIP(), []int{160}
 }
 
 // ARRAYCOUNTER
@@ -10438,7 +9988,7 @@ type ApbArrayCounterSingleRead struct {
 
 func (x *ApbArrayCounterSingleRead) Reset() {
 	*x = ApbArrayCounterSingleRead{}
-	mi := &file_antidote_proto_msgTypes[169]
+	mi := &file_antidote_proto_msgTypes[161]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10450,7 +10000,7 @@ func (x *ApbArrayCounterSingleRead) String() string {
 func (*ApbArrayCounterSingleRead) ProtoMessage() {}
 
 func (x *ApbArrayCounterSingleRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[169]
+	mi := &file_antidote_proto_msgTypes[161]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10463,7 +10013,7 @@ func (x *ApbArrayCounterSingleRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbArrayCounterSingleRead.ProtoReflect.Descriptor instead.
 func (*ApbArrayCounterSingleRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{169}
+	return file_antidote_proto_rawDescGZIP(), []int{161}
 }
 
 func (x *ApbArrayCounterSingleRead) GetIndex() int32 {
@@ -10482,7 +10032,7 @@ type ApbArrayCounterSubRead struct {
 
 func (x *ApbArrayCounterSubRead) Reset() {
 	*x = ApbArrayCounterSubRead{}
-	mi := &file_antidote_proto_msgTypes[170]
+	mi := &file_antidote_proto_msgTypes[162]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10494,7 +10044,7 @@ func (x *ApbArrayCounterSubRead) String() string {
 func (*ApbArrayCounterSubRead) ProtoMessage() {}
 
 func (x *ApbArrayCounterSubRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[170]
+	mi := &file_antidote_proto_msgTypes[162]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10507,7 +10057,7 @@ func (x *ApbArrayCounterSubRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbArrayCounterSubRead.ProtoReflect.Descriptor instead.
 func (*ApbArrayCounterSubRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{170}
+	return file_antidote_proto_rawDescGZIP(), []int{162}
 }
 
 func (x *ApbArrayCounterSubRead) GetIndexes() []int32 {
@@ -10526,7 +10076,7 @@ type ApbArrayCounterExceptRead struct {
 
 func (x *ApbArrayCounterExceptRead) Reset() {
 	*x = ApbArrayCounterExceptRead{}
-	mi := &file_antidote_proto_msgTypes[171]
+	mi := &file_antidote_proto_msgTypes[163]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10538,7 +10088,7 @@ func (x *ApbArrayCounterExceptRead) String() string {
 func (*ApbArrayCounterExceptRead) ProtoMessage() {}
 
 func (x *ApbArrayCounterExceptRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[171]
+	mi := &file_antidote_proto_msgTypes[163]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10551,7 +10101,7 @@ func (x *ApbArrayCounterExceptRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbArrayCounterExceptRead.ProtoReflect.Descriptor instead.
 func (*ApbArrayCounterExceptRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{171}
+	return file_antidote_proto_rawDescGZIP(), []int{163}
 }
 
 func (x *ApbArrayCounterExceptRead) GetIndex() int32 {
@@ -10571,7 +10121,7 @@ type ApbArrayCounterExceptRangeRead struct {
 
 func (x *ApbArrayCounterExceptRangeRead) Reset() {
 	*x = ApbArrayCounterExceptRangeRead{}
-	mi := &file_antidote_proto_msgTypes[172]
+	mi := &file_antidote_proto_msgTypes[164]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10583,7 +10133,7 @@ func (x *ApbArrayCounterExceptRangeRead) String() string {
 func (*ApbArrayCounterExceptRangeRead) ProtoMessage() {}
 
 func (x *ApbArrayCounterExceptRangeRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[172]
+	mi := &file_antidote_proto_msgTypes[164]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10596,7 +10146,7 @@ func (x *ApbArrayCounterExceptRangeRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbArrayCounterExceptRangeRead.ProtoReflect.Descriptor instead.
 func (*ApbArrayCounterExceptRangeRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{172}
+	return file_antidote_proto_rawDescGZIP(), []int{164}
 }
 
 func (x *ApbArrayCounterExceptRangeRead) GetIndexes() []int32 {
@@ -10622,7 +10172,7 @@ type ApbMultiArrayFullRead struct {
 
 func (x *ApbMultiArrayFullRead) Reset() {
 	*x = ApbMultiArrayFullRead{}
-	mi := &file_antidote_proto_msgTypes[173]
+	mi := &file_antidote_proto_msgTypes[165]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10634,7 +10184,7 @@ func (x *ApbMultiArrayFullRead) String() string {
 func (*ApbMultiArrayFullRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayFullRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[173]
+	mi := &file_antidote_proto_msgTypes[165]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10647,7 +10197,7 @@ func (x *ApbMultiArrayFullRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayFullRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayFullRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{173}
+	return file_antidote_proto_rawDescGZIP(), []int{165}
 }
 
 type ApbMultiArrayPosRead struct {
@@ -10659,7 +10209,7 @@ type ApbMultiArrayPosRead struct {
 
 func (x *ApbMultiArrayPosRead) Reset() {
 	*x = ApbMultiArrayPosRead{}
-	mi := &file_antidote_proto_msgTypes[174]
+	mi := &file_antidote_proto_msgTypes[166]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10671,7 +10221,7 @@ func (x *ApbMultiArrayPosRead) String() string {
 func (*ApbMultiArrayPosRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayPosRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[174]
+	mi := &file_antidote_proto_msgTypes[166]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10684,7 +10234,7 @@ func (x *ApbMultiArrayPosRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayPosRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayPosRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{174}
+	return file_antidote_proto_rawDescGZIP(), []int{166}
 }
 
 func (x *ApbMultiArrayPosRead) GetPos() []int32 {
@@ -10704,7 +10254,7 @@ type ApbMultiArrayRangeRead struct {
 
 func (x *ApbMultiArrayRangeRead) Reset() {
 	*x = ApbMultiArrayRangeRead{}
-	mi := &file_antidote_proto_msgTypes[175]
+	mi := &file_antidote_proto_msgTypes[167]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10716,7 +10266,7 @@ func (x *ApbMultiArrayRangeRead) String() string {
 func (*ApbMultiArrayRangeRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayRangeRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[175]
+	mi := &file_antidote_proto_msgTypes[167]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10729,7 +10279,7 @@ func (x *ApbMultiArrayRangeRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayRangeRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayRangeRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{175}
+	return file_antidote_proto_rawDescGZIP(), []int{167}
 }
 
 func (x *ApbMultiArrayRangeRead) GetStart() []int32 {
@@ -10755,7 +10305,7 @@ type ApbMultiArraySubRead struct {
 
 func (x *ApbMultiArraySubRead) Reset() {
 	*x = ApbMultiArraySubRead{}
-	mi := &file_antidote_proto_msgTypes[176]
+	mi := &file_antidote_proto_msgTypes[168]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10767,7 +10317,7 @@ func (x *ApbMultiArraySubRead) String() string {
 func (*ApbMultiArraySubRead) ProtoMessage() {}
 
 func (x *ApbMultiArraySubRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[176]
+	mi := &file_antidote_proto_msgTypes[168]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10780,7 +10330,7 @@ func (x *ApbMultiArraySubRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArraySubRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArraySubRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{176}
+	return file_antidote_proto_rawDescGZIP(), []int{168}
 }
 
 func (x *ApbMultiArraySubRead) GetIndexes() []*IntSlice {
@@ -10804,7 +10354,7 @@ type ApbMultiArrayCondRead struct {
 
 func (x *ApbMultiArrayCondRead) Reset() {
 	*x = ApbMultiArrayCondRead{}
-	mi := &file_antidote_proto_msgTypes[177]
+	mi := &file_antidote_proto_msgTypes[169]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10816,7 +10366,7 @@ func (x *ApbMultiArrayCondRead) String() string {
 func (*ApbMultiArrayCondRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayCondRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[177]
+	mi := &file_antidote_proto_msgTypes[169]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10829,7 +10379,7 @@ func (x *ApbMultiArrayCondRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayCondRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayCondRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{177}
+	return file_antidote_proto_rawDescGZIP(), []int{169}
 }
 
 func (x *ApbMultiArrayCondRead) GetComparePos() int32 {
@@ -10888,7 +10438,7 @@ type ApbMultiArrayDataCondRead struct {
 
 func (x *ApbMultiArrayDataCondRead) Reset() {
 	*x = ApbMultiArrayDataCondRead{}
-	mi := &file_antidote_proto_msgTypes[178]
+	mi := &file_antidote_proto_msgTypes[170]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10900,7 +10450,7 @@ func (x *ApbMultiArrayDataCondRead) String() string {
 func (*ApbMultiArrayDataCondRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayDataCondRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[178]
+	mi := &file_antidote_proto_msgTypes[170]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10913,7 +10463,7 @@ func (x *ApbMultiArrayDataCondRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayDataCondRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayDataCondRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{178}
+	return file_antidote_proto_rawDescGZIP(), []int{170}
 }
 
 func (x *ApbMultiArrayDataCondRead) GetComparePos() int32 {
@@ -10970,7 +10520,7 @@ type ApbMultiArrayCustomRead struct {
 
 func (x *ApbMultiArrayCustomRead) Reset() {
 	*x = ApbMultiArrayCustomRead{}
-	mi := &file_antidote_proto_msgTypes[179]
+	mi := &file_antidote_proto_msgTypes[171]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -10982,7 +10532,7 @@ func (x *ApbMultiArrayCustomRead) String() string {
 func (*ApbMultiArrayCustomRead) ProtoMessage() {}
 
 func (x *ApbMultiArrayCustomRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[179]
+	mi := &file_antidote_proto_msgTypes[171]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -10995,7 +10545,7 @@ func (x *ApbMultiArrayCustomRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayCustomRead.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayCustomRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{179}
+	return file_antidote_proto_rawDescGZIP(), []int{171}
 }
 
 func (x *ApbMultiArrayCustomRead) GetIntIndexes() []int32 {
@@ -11035,7 +10585,7 @@ type IntSlice struct {
 
 func (x *IntSlice) Reset() {
 	*x = IntSlice{}
-	mi := &file_antidote_proto_msgTypes[180]
+	mi := &file_antidote_proto_msgTypes[172]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11047,7 +10597,7 @@ func (x *IntSlice) String() string {
 func (*IntSlice) ProtoMessage() {}
 
 func (x *IntSlice) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[180]
+	mi := &file_antidote_proto_msgTypes[172]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11060,7 +10610,7 @@ func (x *IntSlice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use IntSlice.ProtoReflect.Descriptor instead.
 func (*IntSlice) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{180}
+	return file_antidote_proto_rawDescGZIP(), []int{172}
 }
 
 func (x *IntSlice) GetValues() []int32 {
@@ -11080,7 +10630,7 @@ type ApbMVRegPartialRead struct {
 
 func (x *ApbMVRegPartialRead) Reset() {
 	*x = ApbMVRegPartialRead{}
-	mi := &file_antidote_proto_msgTypes[181]
+	mi := &file_antidote_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11092,7 +10642,7 @@ func (x *ApbMVRegPartialRead) String() string {
 func (*ApbMVRegPartialRead) ProtoMessage() {}
 
 func (x *ApbMVRegPartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[181]
+	mi := &file_antidote_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11105,7 +10655,7 @@ func (x *ApbMVRegPartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMVRegPartialRead.ProtoReflect.Descriptor instead.
 func (*ApbMVRegPartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{181}
+	return file_antidote_proto_rawDescGZIP(), []int{173}
 }
 
 func (x *ApbMVRegPartialRead) GetSingle() *ApbMVRegSingleRead {
@@ -11123,7 +10673,7 @@ type ApbMVRegSingleRead struct {
 
 func (x *ApbMVRegSingleRead) Reset() {
 	*x = ApbMVRegSingleRead{}
-	mi := &file_antidote_proto_msgTypes[182]
+	mi := &file_antidote_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11135,7 +10685,7 @@ func (x *ApbMVRegSingleRead) String() string {
 func (*ApbMVRegSingleRead) ProtoMessage() {}
 
 func (x *ApbMVRegSingleRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[182]
+	mi := &file_antidote_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11148,7 +10698,7 @@ func (x *ApbMVRegSingleRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMVRegSingleRead.ProtoReflect.Descriptor instead.
 func (*ApbMVRegSingleRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{182}
+	return file_antidote_proto_rawDescGZIP(), []int{174}
 }
 
 // DATE
@@ -11161,7 +10711,7 @@ type ApbDatePartialRead struct {
 
 func (x *ApbDatePartialRead) Reset() {
 	*x = ApbDatePartialRead{}
-	mi := &file_antidote_proto_msgTypes[183]
+	mi := &file_antidote_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11173,7 +10723,7 @@ func (x *ApbDatePartialRead) String() string {
 func (*ApbDatePartialRead) ProtoMessage() {}
 
 func (x *ApbDatePartialRead) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[183]
+	mi := &file_antidote_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11186,7 +10736,7 @@ func (x *ApbDatePartialRead) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbDatePartialRead.ProtoReflect.Descriptor instead.
 func (*ApbDatePartialRead) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{183}
+	return file_antidote_proto_rawDescGZIP(), []int{175}
 }
 
 func (x *ApbDatePartialRead) GetDataReadType() READType {
@@ -11214,7 +10764,7 @@ type ApbPartialReadResp struct {
 
 func (x *ApbPartialReadResp) Reset() {
 	*x = ApbPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[184]
+	mi := &file_antidote_proto_msgTypes[176]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11226,7 +10776,7 @@ func (x *ApbPartialReadResp) String() string {
 func (*ApbPartialReadResp) ProtoMessage() {}
 
 func (x *ApbPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[184]
+	mi := &file_antidote_proto_msgTypes[176]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11239,7 +10789,7 @@ func (x *ApbPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{184}
+	return file_antidote_proto_rawDescGZIP(), []int{176}
 }
 
 func (x *ApbPartialReadResp) GetSet() *ApbSetPartialReadResp {
@@ -11315,7 +10865,7 @@ type ApbSetPartialReadResp struct {
 
 func (x *ApbSetPartialReadResp) Reset() {
 	*x = ApbSetPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[185]
+	mi := &file_antidote_proto_msgTypes[177]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11327,7 +10877,7 @@ func (x *ApbSetPartialReadResp) String() string {
 func (*ApbSetPartialReadResp) ProtoMessage() {}
 
 func (x *ApbSetPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[185]
+	mi := &file_antidote_proto_msgTypes[177]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11340,7 +10890,7 @@ func (x *ApbSetPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSetPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbSetPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{185}
+	return file_antidote_proto_rawDescGZIP(), []int{177}
 }
 
 func (x *ApbSetPartialReadResp) GetLookup() *ApbSetLookupReadResp {
@@ -11369,7 +10919,7 @@ type ApbMapPartialReadResp struct {
 
 func (x *ApbMapPartialReadResp) Reset() {
 	*x = ApbMapPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[186]
+	mi := &file_antidote_proto_msgTypes[178]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11381,7 +10931,7 @@ func (x *ApbMapPartialReadResp) String() string {
 func (*ApbMapPartialReadResp) ProtoMessage() {}
 
 func (x *ApbMapPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[186]
+	mi := &file_antidote_proto_msgTypes[178]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11394,7 +10944,7 @@ func (x *ApbMapPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbMapPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{186}
+	return file_antidote_proto_rawDescGZIP(), []int{178}
 }
 
 func (x *ApbMapPartialReadResp) GetGetvalue() *ApbMapGetValueResp {
@@ -11434,7 +10984,7 @@ type ApbAvgPartialReadResp struct {
 
 func (x *ApbAvgPartialReadResp) Reset() {
 	*x = ApbAvgPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[187]
+	mi := &file_antidote_proto_msgTypes[179]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11446,7 +10996,7 @@ func (x *ApbAvgPartialReadResp) String() string {
 func (*ApbAvgPartialReadResp) ProtoMessage() {}
 
 func (x *ApbAvgPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[187]
+	mi := &file_antidote_proto_msgTypes[179]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11459,7 +11009,7 @@ func (x *ApbAvgPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbAvgPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbAvgPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{187}
+	return file_antidote_proto_rawDescGZIP(), []int{179}
 }
 
 func (x *ApbAvgPartialReadResp) GetGetfull() *ApbAvgGetFullReadResp {
@@ -11478,7 +11028,7 @@ type ApbTopkPartialReadResp struct {
 
 func (x *ApbTopkPartialReadResp) Reset() {
 	*x = ApbTopkPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[188]
+	mi := &file_antidote_proto_msgTypes[180]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11490,7 +11040,7 @@ func (x *ApbTopkPartialReadResp) String() string {
 func (*ApbTopkPartialReadResp) ProtoMessage() {}
 
 func (x *ApbTopkPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[188]
+	mi := &file_antidote_proto_msgTypes[180]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11503,7 +11053,7 @@ func (x *ApbTopkPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTopkPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbTopkPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{188}
+	return file_antidote_proto_rawDescGZIP(), []int{180}
 }
 
 func (x *ApbTopkPartialReadResp) GetPairs() *ApbGetTopkResp {
@@ -11522,7 +11072,7 @@ type ApbSetLookupReadResp struct {
 
 func (x *ApbSetLookupReadResp) Reset() {
 	*x = ApbSetLookupReadResp{}
-	mi := &file_antidote_proto_msgTypes[189]
+	mi := &file_antidote_proto_msgTypes[181]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11534,7 +11084,7 @@ func (x *ApbSetLookupReadResp) String() string {
 func (*ApbSetLookupReadResp) ProtoMessage() {}
 
 func (x *ApbSetLookupReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[189]
+	mi := &file_antidote_proto_msgTypes[181]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11547,7 +11097,7 @@ func (x *ApbSetLookupReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSetLookupReadResp.ProtoReflect.Descriptor instead.
 func (*ApbSetLookupReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{189}
+	return file_antidote_proto_rawDescGZIP(), []int{181}
 }
 
 func (x *ApbSetLookupReadResp) GetHas() bool {
@@ -11566,7 +11116,7 @@ type ApbSetNElemsReadResp struct {
 
 func (x *ApbSetNElemsReadResp) Reset() {
 	*x = ApbSetNElemsReadResp{}
-	mi := &file_antidote_proto_msgTypes[190]
+	mi := &file_antidote_proto_msgTypes[182]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11578,7 +11128,7 @@ func (x *ApbSetNElemsReadResp) String() string {
 func (*ApbSetNElemsReadResp) ProtoMessage() {}
 
 func (x *ApbSetNElemsReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[190]
+	mi := &file_antidote_proto_msgTypes[182]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11591,7 +11141,7 @@ func (x *ApbSetNElemsReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbSetNElemsReadResp.ProtoReflect.Descriptor instead.
 func (*ApbSetNElemsReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{190}
+	return file_antidote_proto_rawDescGZIP(), []int{182}
 }
 
 func (x *ApbSetNElemsReadResp) GetCount() int32 {
@@ -11612,7 +11162,7 @@ type ApbMapGetValueResp struct {
 
 func (x *ApbMapGetValueResp) Reset() {
 	*x = ApbMapGetValueResp{}
-	mi := &file_antidote_proto_msgTypes[191]
+	mi := &file_antidote_proto_msgTypes[183]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11624,7 +11174,7 @@ func (x *ApbMapGetValueResp) String() string {
 func (*ApbMapGetValueResp) ProtoMessage() {}
 
 func (x *ApbMapGetValueResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[191]
+	mi := &file_antidote_proto_msgTypes[183]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11637,7 +11187,7 @@ func (x *ApbMapGetValueResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetValueResp.ProtoReflect.Descriptor instead.
 func (*ApbMapGetValueResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{191}
+	return file_antidote_proto_rawDescGZIP(), []int{183}
 }
 
 func (x *ApbMapGetValueResp) GetValue() *ApbReadObjectResp {
@@ -11670,7 +11220,7 @@ type ApbMapHasKeyReadResp struct {
 
 func (x *ApbMapHasKeyReadResp) Reset() {
 	*x = ApbMapHasKeyReadResp{}
-	mi := &file_antidote_proto_msgTypes[192]
+	mi := &file_antidote_proto_msgTypes[184]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11682,7 +11232,7 @@ func (x *ApbMapHasKeyReadResp) String() string {
 func (*ApbMapHasKeyReadResp) ProtoMessage() {}
 
 func (x *ApbMapHasKeyReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[192]
+	mi := &file_antidote_proto_msgTypes[184]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11695,7 +11245,7 @@ func (x *ApbMapHasKeyReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapHasKeyReadResp.ProtoReflect.Descriptor instead.
 func (*ApbMapHasKeyReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{192}
+	return file_antidote_proto_rawDescGZIP(), []int{184}
 }
 
 func (x *ApbMapHasKeyReadResp) GetHas() bool {
@@ -11714,7 +11264,7 @@ type ApbMapGetKeysReadResp struct {
 
 func (x *ApbMapGetKeysReadResp) Reset() {
 	*x = ApbMapGetKeysReadResp{}
-	mi := &file_antidote_proto_msgTypes[193]
+	mi := &file_antidote_proto_msgTypes[185]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11726,7 +11276,7 @@ func (x *ApbMapGetKeysReadResp) String() string {
 func (*ApbMapGetKeysReadResp) ProtoMessage() {}
 
 func (x *ApbMapGetKeysReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[193]
+	mi := &file_antidote_proto_msgTypes[185]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11739,7 +11289,7 @@ func (x *ApbMapGetKeysReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetKeysReadResp.ProtoReflect.Descriptor instead.
 func (*ApbMapGetKeysReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{193}
+	return file_antidote_proto_rawDescGZIP(), []int{185}
 }
 
 func (x *ApbMapGetKeysReadResp) GetKeys() []string {
@@ -11759,7 +11309,7 @@ type ApbMapGetValuesResp struct {
 
 func (x *ApbMapGetValuesResp) Reset() {
 	*x = ApbMapGetValuesResp{}
-	mi := &file_antidote_proto_msgTypes[194]
+	mi := &file_antidote_proto_msgTypes[186]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11771,7 +11321,7 @@ func (x *ApbMapGetValuesResp) String() string {
 func (*ApbMapGetValuesResp) ProtoMessage() {}
 
 func (x *ApbMapGetValuesResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[194]
+	mi := &file_antidote_proto_msgTypes[186]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11784,7 +11334,7 @@ func (x *ApbMapGetValuesResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMapGetValuesResp.ProtoReflect.Descriptor instead.
 func (*ApbMapGetValuesResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{194}
+	return file_antidote_proto_rawDescGZIP(), []int{186}
 }
 
 func (x *ApbMapGetValuesResp) GetKeys() [][]byte {
@@ -11811,7 +11361,7 @@ type ApbAvgGetFullReadResp struct {
 
 func (x *ApbAvgGetFullReadResp) Reset() {
 	*x = ApbAvgGetFullReadResp{}
-	mi := &file_antidote_proto_msgTypes[195]
+	mi := &file_antidote_proto_msgTypes[187]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11823,7 +11373,7 @@ func (x *ApbAvgGetFullReadResp) String() string {
 func (*ApbAvgGetFullReadResp) ProtoMessage() {}
 
 func (x *ApbAvgGetFullReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[195]
+	mi := &file_antidote_proto_msgTypes[187]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11836,7 +11386,7 @@ func (x *ApbAvgGetFullReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbAvgGetFullReadResp.ProtoReflect.Descriptor instead.
 func (*ApbAvgGetFullReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{195}
+	return file_antidote_proto_rawDescGZIP(), []int{187}
 }
 
 func (x *ApbAvgGetFullReadResp) GetSum() int64 {
@@ -11863,7 +11413,7 @@ type ApbPairCounterPartialReadResp struct {
 
 func (x *ApbPairCounterPartialReadResp) Reset() {
 	*x = ApbPairCounterPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[196]
+	mi := &file_antidote_proto_msgTypes[188]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11875,7 +11425,7 @@ func (x *ApbPairCounterPartialReadResp) String() string {
 func (*ApbPairCounterPartialReadResp) ProtoMessage() {}
 
 func (x *ApbPairCounterPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[196]
+	mi := &file_antidote_proto_msgTypes[188]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11888,7 +11438,7 @@ func (x *ApbPairCounterPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbPairCounterPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbPairCounterPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{196}
+	return file_antidote_proto_rawDescGZIP(), []int{188}
 }
 
 func (x *ApbPairCounterPartialReadResp) GetFirst() int32 {
@@ -11914,7 +11464,7 @@ type ApbArrayCounterPartialReadResp struct {
 
 func (x *ApbArrayCounterPartialReadResp) Reset() {
 	*x = ApbArrayCounterPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[197]
+	mi := &file_antidote_proto_msgTypes[189]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11926,7 +11476,7 @@ func (x *ApbArrayCounterPartialReadResp) String() string {
 func (*ApbArrayCounterPartialReadResp) ProtoMessage() {}
 
 func (x *ApbArrayCounterPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[197]
+	mi := &file_antidote_proto_msgTypes[189]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11939,7 +11489,7 @@ func (x *ApbArrayCounterPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbArrayCounterPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbArrayCounterPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{197}
+	return file_antidote_proto_rawDescGZIP(), []int{189}
 }
 
 func (x *ApbArrayCounterPartialReadResp) GetValue() int64 {
@@ -11964,7 +11514,7 @@ type ApbMultiArrayPartialReadResp struct {
 
 func (x *ApbMultiArrayPartialReadResp) Reset() {
 	*x = ApbMultiArrayPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[198]
+	mi := &file_antidote_proto_msgTypes[190]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -11976,7 +11526,7 @@ func (x *ApbMultiArrayPartialReadResp) String() string {
 func (*ApbMultiArrayPartialReadResp) ProtoMessage() {}
 
 func (x *ApbMultiArrayPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[198]
+	mi := &file_antidote_proto_msgTypes[190]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -11989,7 +11539,7 @@ func (x *ApbMultiArrayPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{198}
+	return file_antidote_proto_rawDescGZIP(), []int{190}
 }
 
 func (x *ApbMultiArrayPartialReadResp) GetType() MultiArrayType {
@@ -12050,7 +11600,7 @@ type ApbMultiArrayIntResp struct {
 
 func (x *ApbMultiArrayIntResp) Reset() {
 	*x = ApbMultiArrayIntResp{}
-	mi := &file_antidote_proto_msgTypes[199]
+	mi := &file_antidote_proto_msgTypes[191]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12062,7 +11612,7 @@ func (x *ApbMultiArrayIntResp) String() string {
 func (*ApbMultiArrayIntResp) ProtoMessage() {}
 
 func (x *ApbMultiArrayIntResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[199]
+	mi := &file_antidote_proto_msgTypes[191]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12075,7 +11625,7 @@ func (x *ApbMultiArrayIntResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayIntResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayIntResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{199}
+	return file_antidote_proto_rawDescGZIP(), []int{191}
 }
 
 func (x *ApbMultiArrayIntResp) GetIntValues() []int64 {
@@ -12094,7 +11644,7 @@ type ApbMultiArrayFloatResp struct {
 
 func (x *ApbMultiArrayFloatResp) Reset() {
 	*x = ApbMultiArrayFloatResp{}
-	mi := &file_antidote_proto_msgTypes[200]
+	mi := &file_antidote_proto_msgTypes[192]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12106,7 +11656,7 @@ func (x *ApbMultiArrayFloatResp) String() string {
 func (*ApbMultiArrayFloatResp) ProtoMessage() {}
 
 func (x *ApbMultiArrayFloatResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[200]
+	mi := &file_antidote_proto_msgTypes[192]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12119,7 +11669,7 @@ func (x *ApbMultiArrayFloatResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayFloatResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayFloatResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{200}
+	return file_antidote_proto_rawDescGZIP(), []int{192}
 }
 
 func (x *ApbMultiArrayFloatResp) GetFloatValues() []float64 {
@@ -12138,7 +11688,7 @@ type ApbMultiArrayDataResp struct {
 
 func (x *ApbMultiArrayDataResp) Reset() {
 	*x = ApbMultiArrayDataResp{}
-	mi := &file_antidote_proto_msgTypes[201]
+	mi := &file_antidote_proto_msgTypes[193]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12150,7 +11700,7 @@ func (x *ApbMultiArrayDataResp) String() string {
 func (*ApbMultiArrayDataResp) ProtoMessage() {}
 
 func (x *ApbMultiArrayDataResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[201]
+	mi := &file_antidote_proto_msgTypes[193]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12163,7 +11713,7 @@ func (x *ApbMultiArrayDataResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayDataResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayDataResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{201}
+	return file_antidote_proto_rawDescGZIP(), []int{193}
 }
 
 func (x *ApbMultiArrayDataResp) GetDataValues() [][]byte {
@@ -12183,7 +11733,7 @@ type ApbMultiArrayAvgResp struct {
 
 func (x *ApbMultiArrayAvgResp) Reset() {
 	*x = ApbMultiArrayAvgResp{}
-	mi := &file_antidote_proto_msgTypes[202]
+	mi := &file_antidote_proto_msgTypes[194]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12195,7 +11745,7 @@ func (x *ApbMultiArrayAvgResp) String() string {
 func (*ApbMultiArrayAvgResp) ProtoMessage() {}
 
 func (x *ApbMultiArrayAvgResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[202]
+	mi := &file_antidote_proto_msgTypes[194]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12208,7 +11758,7 @@ func (x *ApbMultiArrayAvgResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayAvgResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayAvgResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{202}
+	return file_antidote_proto_rawDescGZIP(), []int{194}
 }
 
 func (x *ApbMultiArrayAvgResp) GetSums() []int64 {
@@ -12238,7 +11788,7 @@ type ApbMultiArraySingleResp struct {
 
 func (x *ApbMultiArraySingleResp) Reset() {
 	*x = ApbMultiArraySingleResp{}
-	mi := &file_antidote_proto_msgTypes[203]
+	mi := &file_antidote_proto_msgTypes[195]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12250,7 +11800,7 @@ func (x *ApbMultiArraySingleResp) String() string {
 func (*ApbMultiArraySingleResp) ProtoMessage() {}
 
 func (x *ApbMultiArraySingleResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[203]
+	mi := &file_antidote_proto_msgTypes[195]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12263,7 +11813,7 @@ func (x *ApbMultiArraySingleResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArraySingleResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArraySingleResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{203}
+	return file_antidote_proto_rawDescGZIP(), []int{195}
 }
 
 func (x *ApbMultiArraySingleResp) GetIntValue() int64 {
@@ -12313,7 +11863,7 @@ type ApbMultiArrayDataAndSingleResp struct {
 
 func (x *ApbMultiArrayDataAndSingleResp) Reset() {
 	*x = ApbMultiArrayDataAndSingleResp{}
-	mi := &file_antidote_proto_msgTypes[204]
+	mi := &file_antidote_proto_msgTypes[196]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12325,7 +11875,7 @@ func (x *ApbMultiArrayDataAndSingleResp) String() string {
 func (*ApbMultiArrayDataAndSingleResp) ProtoMessage() {}
 
 func (x *ApbMultiArrayDataAndSingleResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[204]
+	mi := &file_antidote_proto_msgTypes[196]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12338,7 +11888,7 @@ func (x *ApbMultiArrayDataAndSingleResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMultiArrayDataAndSingleResp.ProtoReflect.Descriptor instead.
 func (*ApbMultiArrayDataAndSingleResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{204}
+	return file_antidote_proto_rawDescGZIP(), []int{196}
 }
 
 func (x *ApbMultiArrayDataAndSingleResp) GetDataValues() [][]byte {
@@ -12378,7 +11928,7 @@ type ApbMVRegPartialReadResp struct {
 
 func (x *ApbMVRegPartialReadResp) Reset() {
 	*x = ApbMVRegPartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[205]
+	mi := &file_antidote_proto_msgTypes[197]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12390,7 +11940,7 @@ func (x *ApbMVRegPartialReadResp) String() string {
 func (*ApbMVRegPartialReadResp) ProtoMessage() {}
 
 func (x *ApbMVRegPartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[205]
+	mi := &file_antidote_proto_msgTypes[197]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12403,7 +11953,7 @@ func (x *ApbMVRegPartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMVRegPartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbMVRegPartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{205}
+	return file_antidote_proto_rawDescGZIP(), []int{197}
 }
 
 func (x *ApbMVRegPartialReadResp) GetSingle() *ApbMVRegSingleResp {
@@ -12422,7 +11972,7 @@ type ApbMVRegSingleResp struct {
 
 func (x *ApbMVRegSingleResp) Reset() {
 	*x = ApbMVRegSingleResp{}
-	mi := &file_antidote_proto_msgTypes[206]
+	mi := &file_antidote_proto_msgTypes[198]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12434,7 +11984,7 @@ func (x *ApbMVRegSingleResp) String() string {
 func (*ApbMVRegSingleResp) ProtoMessage() {}
 
 func (x *ApbMVRegSingleResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[206]
+	mi := &file_antidote_proto_msgTypes[198]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12447,7 +11997,7 @@ func (x *ApbMVRegSingleResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbMVRegSingleResp.ProtoReflect.Descriptor instead.
 func (*ApbMVRegSingleResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{206}
+	return file_antidote_proto_rawDescGZIP(), []int{198}
 }
 
 func (x *ApbMVRegSingleResp) GetValue() []byte {
@@ -12469,7 +12019,7 @@ type ApbDatePartialReadResp struct {
 
 func (x *ApbDatePartialReadResp) Reset() {
 	*x = ApbDatePartialReadResp{}
-	mi := &file_antidote_proto_msgTypes[207]
+	mi := &file_antidote_proto_msgTypes[199]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12481,7 +12031,7 @@ func (x *ApbDatePartialReadResp) String() string {
 func (*ApbDatePartialReadResp) ProtoMessage() {}
 
 func (x *ApbDatePartialReadResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[207]
+	mi := &file_antidote_proto_msgTypes[199]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12494,7 +12044,7 @@ func (x *ApbDatePartialReadResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbDatePartialReadResp.ProtoReflect.Descriptor instead.
 func (*ApbDatePartialReadResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{207}
+	return file_antidote_proto_rawDescGZIP(), []int{199}
 }
 
 func (x *ApbDatePartialReadResp) GetFull() *ApbDateFullResp {
@@ -12540,7 +12090,7 @@ type ApbDateFullResp struct {
 
 func (x *ApbDateFullResp) Reset() {
 	*x = ApbDateFullResp{}
-	mi := &file_antidote_proto_msgTypes[208]
+	mi := &file_antidote_proto_msgTypes[200]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12552,7 +12102,7 @@ func (x *ApbDateFullResp) String() string {
 func (*ApbDateFullResp) ProtoMessage() {}
 
 func (x *ApbDateFullResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[208]
+	mi := &file_antidote_proto_msgTypes[200]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12565,7 +12115,7 @@ func (x *ApbDateFullResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbDateFullResp.ProtoReflect.Descriptor instead.
 func (*ApbDateFullResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{208}
+	return file_antidote_proto_rawDescGZIP(), []int{200}
 }
 
 func (x *ApbDateFullResp) GetYear() int32 {
@@ -12629,7 +12179,7 @@ type ApbTimeResp struct {
 
 func (x *ApbTimeResp) Reset() {
 	*x = ApbTimeResp{}
-	mi := &file_antidote_proto_msgTypes[209]
+	mi := &file_antidote_proto_msgTypes[201]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12641,7 +12191,7 @@ func (x *ApbTimeResp) String() string {
 func (*ApbTimeResp) ProtoMessage() {}
 
 func (x *ApbTimeResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[209]
+	mi := &file_antidote_proto_msgTypes[201]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12654,7 +12204,7 @@ func (x *ApbTimeResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTimeResp.ProtoReflect.Descriptor instead.
 func (*ApbTimeResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{209}
+	return file_antidote_proto_rawDescGZIP(), []int{201}
 }
 
 func (x *ApbTimeResp) GetHour() int32 {
@@ -12696,7 +12246,7 @@ type ApbDateOnlyResp struct {
 
 func (x *ApbDateOnlyResp) Reset() {
 	*x = ApbDateOnlyResp{}
-	mi := &file_antidote_proto_msgTypes[210]
+	mi := &file_antidote_proto_msgTypes[202]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12708,7 +12258,7 @@ func (x *ApbDateOnlyResp) String() string {
 func (*ApbDateOnlyResp) ProtoMessage() {}
 
 func (x *ApbDateOnlyResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[210]
+	mi := &file_antidote_proto_msgTypes[202]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12721,7 +12271,7 @@ func (x *ApbDateOnlyResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbDateOnlyResp.ProtoReflect.Descriptor instead.
 func (*ApbDateOnlyResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{210}
+	return file_antidote_proto_rawDescGZIP(), []int{202}
 }
 
 func (x *ApbDateOnlyResp) GetYear() int32 {
@@ -12754,7 +12304,7 @@ type ApbTimestampResp struct {
 
 func (x *ApbTimestampResp) Reset() {
 	*x = ApbTimestampResp{}
-	mi := &file_antidote_proto_msgTypes[211]
+	mi := &file_antidote_proto_msgTypes[203]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -12766,7 +12316,7 @@ func (x *ApbTimestampResp) String() string {
 func (*ApbTimestampResp) ProtoMessage() {}
 
 func (x *ApbTimestampResp) ProtoReflect() protoreflect.Message {
-	mi := &file_antidote_proto_msgTypes[211]
+	mi := &file_antidote_proto_msgTypes[203]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -12779,7 +12329,7 @@ func (x *ApbTimestampResp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ApbTimestampResp.ProtoReflect.Descriptor instead.
 func (*ApbTimestampResp) Descriptor() ([]byte, []int) {
-	return file_antidote_proto_rawDescGZIP(), []int{211}
+	return file_antidote_proto_rawDescGZIP(), []int{203}
 }
 
 func (x *ApbTimestampResp) GetTimestamp() int64 {
@@ -13074,51 +12624,14 @@ const file_antidote_proto_rawDesc = "" +
 	"\x03day\x18\x03 \x02(\x05R\x03day\x12\x12\n" +
 	"\x04hour\x18\x04 \x02(\x05R\x04hour\x12\x16\n" +
 	"\x06minute\x18\x05 \x02(\x05R\x06minute\x12\x16\n" +
-	"\x06second\x18\x06 \x02(\x05R\x06second\"\xa0\x01\n" +
-	"\rApbNoOpUpdate\x12\"\n" +
-	"\x04type\x18\x01 \x02(\x0e2\x0e.NoOpStateTypeR\x04type\x125\n" +
-	"\n" +
-	"genericUpd\x18\x02 \x01(\v2\x15.ApbNoOpGenericUpdateR\n" +
-	"genericUpd\x124\n" +
-	"\bmusicUpd\x18\x03 \x01(\v2\x18.ApbNoOpMusicStateUpdateR\bmusicUpd\"?\n" +
-	"\x14ApbNoOpGenericUpdate\x12'\n" +
-	"\x04NoOp\x18\x01 \x02(\v2\x13.ApbNoOpGenericNoOpR\x04NoOp\"\x14\n" +
-	"\x12ApbNoOpGenericNoOp\"\xce\x02\n" +
-	"\x17ApbNoOpMusicStateUpdate\x12=\n" +
-	"\vaddArtistOp\x18\x01 \x01(\v2\x1b.ApbNoOpMusicStateAddArtistR\vaddArtistOp\x12=\n" +
-	"\vrmvArtistOp\x18\x02 \x01(\v2\x1b.ApbNoOpMusicStateRmvArtistR\vrmvArtistOp\x12=\n" +
-	"\vupdArtistOp\x18\x03 \x01(\v2\x1b.ApbNoOpMusicStateUpdArtistR\vupdArtistOp\x12:\n" +
-	"\n" +
-	"addAlbumOp\x18\x04 \x01(\v2\x1a.ApbNoOpMusicStateAddAlbumR\n" +
-	"addAlbumOp\x12:\n" +
-	"\n" +
-	"rmvAlbumOp\x18\x05 \x01(\v2\x1a.ApbNoOpMusicStateRmvAlbumR\n" +
-	"rmvAlbumOp\"<\n" +
-	"\x1aApbNoOpMusicStateAddArtist\x12\x1e\n" +
-	"\n" +
-	"artistName\x18\x01 \x02(\tR\n" +
-	"artistName\"<\n" +
-	"\x1aApbNoOpMusicStateRmvArtist\x12\x1e\n" +
-	"\n" +
-	"artistName\x18\x01 \x02(\tR\n" +
-	"artistName\"<\n" +
-	"\x1aApbNoOpMusicStateUpdArtist\x12\x1e\n" +
-	"\n" +
-	"artistName\x18\x01 \x02(\tR\n" +
-	"artistName\"Y\n" +
-	"\x19ApbNoOpMusicStateAddAlbum\x12\x1e\n" +
-	"\n" +
-	"artistName\x18\x01 \x02(\tR\n" +
-	"artistName\x12\x1c\n" +
-	"\talbumName\x18\x02 \x02(\tR\talbumName\"Y\n" +
-	"\x19ApbNoOpMusicStateRmvAlbum\x12\x1e\n" +
-	"\n" +
-	"artistName\x18\x01 \x02(\tR\n" +
-	"artistName\x12\x1c\n" +
-	"\talbumName\x18\x02 \x02(\tR\talbumName\"J\n" +
-	"\x0eApbGetNoOpResp\x12\"\n" +
-	"\x04type\x18\x01 \x02(\x0e2\x0e.NoOpStateTypeR\x04type\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\fR\x05value\"L\n" +
+	"\x06second\x18\x06 \x02(\x05R\x06second\"]\n" +
+	"\rApbNoOpUpdate\x12\x1c\n" +
+	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x16\n" +
+	"\x06opCode\x18\x02 \x02(\x05R\x06opCode\x12\x16\n" +
+	"\x06params\x18\x03 \x03(\fR\x06params\"F\n" +
+	"\x0eApbGetNoOpResp\x12\x1c\n" +
+	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x16\n" +
+	"\x06params\x18\x02 \x03(\fR\x06params\"L\n" +
 	"\x10ApbTxnProperties\x12\x1d\n" +
 	"\n" +
 	"read_write\x18\x01 \x01(\rR\treadWrite\x12\x19\n" +
@@ -13676,10 +13189,7 @@ const file_antidote_proto_rawDesc = "" +
 	"\x04DATA\x10\x02\x12\f\n" +
 	"\bAVG_TYPE\x10\x03\x12\t\n" +
 	"\x05MULTI\x10\x04\x12\b\n" +
-	"\x04SIZE\x10d*-\n" +
-	"\rNoOpStateType\x12\v\n" +
-	"\aGENERIC\x10\x00\x12\x0f\n" +
-	"\vMUSIC_STATE\x10\x01*1\n" +
+	"\x04SIZE\x10d*1\n" +
 	"\n" +
 	"ROW_Policy\x12\x06\n" +
 	"\x02AW\x10\x01\x12\x06\n" +
@@ -13785,492 +13295,473 @@ func file_antidote_proto_rawDescGZIP() []byte {
 	return file_antidote_proto_rawDescData
 }
 
-var file_antidote_proto_enumTypes = make([]protoimpl.EnumInfo, 11)
-var file_antidote_proto_msgTypes = make([]protoimpl.MessageInfo, 212)
+var file_antidote_proto_enumTypes = make([]protoimpl.EnumInfo, 10)
+var file_antidote_proto_msgTypes = make([]protoimpl.MessageInfo, 204)
 var file_antidote_proto_goTypes = []any{
 	(CRDTType)(0),                          // 0: CRDT_type
 	(MultiArrayType)(0),                    // 1: MultiArrayType
-	(NoOpStateType)(0),                     // 2: NoOpStateType
-	(ROW_Policy)(0),                        // 3: ROW_Policy
-	(COL_Policy)(0),                        // 4: COL_Policy
-	(SQL_Datatype)(0),                      // 5: SQL_Datatype
-	(SQL_Type)(0),                          // 6: SQL_Type
-	(READType)(0),                          // 7: READ_type
-	(COMPType)(0),                          // 8: COMP_type
-	(AGGRType)(0),                          // 9: AGGR_type
-	(ApbSetUpdate_SetOpType)(0),            // 10: ApbSetUpdate.SetOpType
-	(*ApbErrorResp)(nil),                   // 11: ApbErrorResp
-	(*TmpProto)(nil),                       // 12: TmpProto
-	(*ApbCounterUpdate)(nil),               // 13: ApbCounterUpdate
-	(*ApbGetCounterResp)(nil),              // 14: ApbGetCounterResp
-	(*ApbCounterFloatUpdate)(nil),          // 15: ApbCounterFloatUpdate
-	(*ApbGetCounterFloatResp)(nil),         // 16: ApbGetCounterFloatResp
-	(*ApbSetUpdate)(nil),                   // 17: ApbSetUpdate
-	(*ApbGetSetResp)(nil),                  // 18: ApbGetSetResp
-	(*ApbRegUpdate)(nil),                   // 19: ApbRegUpdate
-	(*ApbGetRegResp)(nil),                  // 20: ApbGetRegResp
-	(*ApbGetMVRegResp)(nil),                // 21: ApbGetMVRegResp
-	(*ApbMapKey)(nil),                      // 22: ApbMapKey
-	(*ApbMapUpdate)(nil),                   // 23: ApbMapUpdate
-	(*ApbMapNestedUpdate)(nil),             // 24: ApbMapNestedUpdate
-	(*ApbGetMapResp)(nil),                  // 25: ApbGetMapResp
-	(*ApbMapEntry)(nil),                    // 26: ApbMapEntry
-	(*ApbFlagUpdate)(nil),                  // 27: ApbFlagUpdate
-	(*ApbGetFlagResp)(nil),                 // 28: ApbGetFlagResp
-	(*ApbCrdtReset)(nil),                   // 29: ApbCrdtReset
-	(*ApbOperationResp)(nil),               // 30: ApbOperationResp
-	(*ApbTopkRmvUpdate)(nil),               // 31: ApbTopkRmvUpdate
-	(*ApbTopkUpdate)(nil),                  // 32: ApbTopkUpdate
-	(*ApbTopKInit)(nil),                    // 33: ApbTopKInit
-	(*ApbGetTopkResp)(nil),                 // 34: ApbGetTopkResp
-	(*ApbIntPair)(nil),                     // 35: ApbIntPair
-	(*ApbLeaderboardUpdate)(nil),           // 36: ApbLeaderboardUpdate
-	(*ApbGetLeaderboardResp)(nil),          // 37: ApbGetLeaderboardResp
-	(*ApbAverageUpdate)(nil),               // 38: ApbAverageUpdate
-	(*ApbGetAverageResp)(nil),              // 39: ApbGetAverageResp
-	(*ApbMaxMinUpdate)(nil),                // 40: ApbMaxMinUpdate
-	(*ApbGetMaxMinResp)(nil),               // 41: ApbGetMaxMinResp
-	(*ApbBoundCounterUpdate)(nil),          // 42: ApbBoundCounterUpdate
-	(*ApbPairCounterUpdate)(nil),           // 43: ApbPairCounterUpdate
-	(*ApbGetPairCounterResp)(nil),          // 44: ApbGetPairCounterResp
-	(*ApbArrayCounterUpdate)(nil),          // 45: ApbArrayCounterUpdate
-	(*ApbArrayCounterIncrement)(nil),       // 46: ApbArrayCounterIncrement
-	(*ApbArrayCounterIncrementAll)(nil),    // 47: ApbArrayCounterIncrementAll
-	(*ApbArrayCounterIncrementMulti)(nil),  // 48: ApbArrayCounterIncrementMulti
-	(*ApbArrayCounterIncrementSub)(nil),    // 49: ApbArrayCounterIncrementSub
-	(*ApbArrayCounterSetSize)(nil),         // 50: ApbArrayCounterSetSize
-	(*ApbGetArrayCounterResp)(nil),         // 51: ApbGetArrayCounterResp
-	(*ApbMultiArrayUpdate)(nil),            // 52: ApbMultiArrayUpdate
-	(*ApbMultiArrayIntUpdate)(nil),         // 53: ApbMultiArrayIntUpdate
-	(*ApbMultiArrayFloatUpdate)(nil),       // 54: ApbMultiArrayFloatUpdate
-	(*ApbMultiArrayDataUpdate)(nil),        // 55: ApbMultiArrayDataUpdate
-	(*ApbMultiArrayAvgUpdate)(nil),         // 56: ApbMultiArrayAvgUpdate
-	(*ApbMultiArraySetSizeUpdate)(nil),     // 57: ApbMultiArraySetSizeUpdate
-	(*ApbMultiArrayIntInc)(nil),            // 58: ApbMultiArrayIntInc
-	(*ApbMultiArrayIntIncSingle)(nil),      // 59: ApbMultiArrayIntIncSingle
-	(*ApbMultiArrayIntIncPositions)(nil),   // 60: ApbMultiArrayIntIncPositions
-	(*ApbMultiArrayIntIncRange)(nil),       // 61: ApbMultiArrayIntIncRange
-	(*ApbMultiArrayFloatInc)(nil),          // 62: ApbMultiArrayFloatInc
-	(*ApbMultiArrayFloatIncSingle)(nil),    // 63: ApbMultiArrayFloatIncSingle
-	(*ApbMultiArrayFloatIncPositions)(nil), // 64: ApbMultiArrayFloatIncPositions
-	(*ApbMultiArrayFloatIncRange)(nil),     // 65: ApbMultiArrayFloatIncRange
-	(*ApbMultiArrayDataSet)(nil),           // 66: ApbMultiArrayDataSet
-	(*ApbMultiArrayDataSetSingle)(nil),     // 67: ApbMultiArrayDataSetSingle
-	(*ApbMultiArrayDataSetPositions)(nil),  // 68: ApbMultiArrayDataSetPositions
-	(*ApbMultiArrayDataSetRange)(nil),      // 69: ApbMultiArrayDataSetRange
-	(*ApbMultiArrayAvgInc)(nil),            // 70: ApbMultiArrayAvgInc
-	(*ApbMultiArrayAvgIncSingle)(nil),      // 71: ApbMultiArrayAvgIncSingle
-	(*ApbMultiArrayAvgIncPositions)(nil),   // 72: ApbMultiArrayAvgIncPositions
-	(*ApbMultiArrayAvgIncRange)(nil),       // 73: ApbMultiArrayAvgIncRange
-	(*ApbMultiArrayMultiUpdate)(nil),       // 74: ApbMultiArrayMultiUpdate
-	(*ApbGetMultiArrayResp)(nil),           // 75: ApbGetMultiArrayResp
-	(*ApbDateUpdate)(nil),                  // 76: ApbDateUpdate
-	(*ApbDateSet)(nil),                     // 77: ApbDateSet
-	(*ApbDateOnlySet)(nil),                 // 78: ApbDateOnlySet
-	(*ApbTimeOnlySet)(nil),                 // 79: ApbTimeOnlySet
-	(*ApbDateInc)(nil),                     // 80: ApbDateInc
-	(*ApbDateOnlyInc)(nil),                 // 81: ApbDateOnlyInc
-	(*ApbTimeOnlyInc)(nil),                 // 82: ApbTimeOnlyInc
-	(*ApbDateInitialize)(nil),              // 83: ApbDateInitialize
-	(*ApbSetMS)(nil),                       // 84: ApbSetMS
-	(*ApbIncMS)(nil),                       // 85: ApbIncMS
-	(*ApbGetDateResp)(nil),                 // 86: ApbGetDateResp
-	(*ApbNoOpUpdate)(nil),                  // 87: ApbNoOpUpdate
-	(*ApbNoOpGenericUpdate)(nil),           // 88: ApbNoOpGenericUpdate
-	(*ApbNoOpGenericNoOp)(nil),             // 89: ApbNoOpGenericNoOp
-	(*ApbNoOpMusicStateUpdate)(nil),        // 90: ApbNoOpMusicStateUpdate
-	(*ApbNoOpMusicStateAddArtist)(nil),     // 91: ApbNoOpMusicStateAddArtist
-	(*ApbNoOpMusicStateRmvArtist)(nil),     // 92: ApbNoOpMusicStateRmvArtist
-	(*ApbNoOpMusicStateUpdArtist)(nil),     // 93: ApbNoOpMusicStateUpdArtist
-	(*ApbNoOpMusicStateAddAlbum)(nil),      // 94: ApbNoOpMusicStateAddAlbum
-	(*ApbNoOpMusicStateRmvAlbum)(nil),      // 95: ApbNoOpMusicStateRmvAlbum
-	(*ApbGetNoOpResp)(nil),                 // 96: ApbGetNoOpResp
-	(*ApbTxnProperties)(nil),               // 97: ApbTxnProperties
-	(*ApbBoundObject)(nil),                 // 98: ApbBoundObject
-	(*ApbReadObjects)(nil),                 // 99: ApbReadObjects
-	(*ApbUpdateOp)(nil),                    // 100: ApbUpdateOp
-	(*ApbUpdateOperation)(nil),             // 101: ApbUpdateOperation
-	(*ApbUpdateObjects)(nil),               // 102: ApbUpdateObjects
-	(*ApbStartTransaction)(nil),            // 103: ApbStartTransaction
-	(*ApbAbortTransaction)(nil),            // 104: ApbAbortTransaction
-	(*ApbCommitTransaction)(nil),           // 105: ApbCommitTransaction
-	(*ApbStaticUpdateObjects)(nil),         // 106: ApbStaticUpdateObjects
-	(*ApbStaticReadObjects)(nil),           // 107: ApbStaticReadObjects
-	(*ApbStartTransactionResp)(nil),        // 108: ApbStartTransactionResp
-	(*ApbReadObjectResp)(nil),              // 109: ApbReadObjectResp
-	(*ApbReadObjectsResp)(nil),             // 110: ApbReadObjectsResp
-	(*ApbCommitResp)(nil),                  // 111: ApbCommitResp
-	(*ApbStaticReadObjectsResp)(nil),       // 112: ApbStaticReadObjectsResp
-	(*ApbMultiClientConnect)(nil),          // 113: ApbMultiClientConnect
-	(*ApbMultiClientConnectResp)(nil),      // 114: ApbMultiClientConnectResp
-	(*ApbConnectReplica)(nil),              // 115: ApbConnectReplica
-	(*ApbConnectReplicaResp)(nil),          // 116: ApbConnectReplicaResp
-	(*ApbResetServer)(nil),                 // 117: ApbResetServer
-	(*ApbResetServerResp)(nil),             // 118: ApbResetServerResp
-	(*ApbNewTrigger)(nil),                  // 119: ApbNewTrigger
-	(*ApbTriggerInfo)(nil),                 // 120: ApbTriggerInfo
-	(*ApbNewTriggerReply)(nil),             // 121: ApbNewTriggerReply
-	(*ApbGetTriggers)(nil),                 // 122: ApbGetTriggers
-	(*ApbGetTriggersReply)(nil),            // 123: ApbGetTriggersReply
-	(*ApbStringSQL)(nil),                   // 124: ApbStringSQL
-	(*ApbTypedSQL)(nil),                    // 125: ApbTypedSQL
-	(*ApbSQLCreateTable)(nil),              // 126: ApbSQLCreateTable
-	(*ApbSQLCreateIndex)(nil),              // 127: ApbSQLCreateIndex
-	(*ApbSQLCreateView)(nil),               // 128: ApbSQLCreateView
-	(*ApbSQLInsert)(nil),                   // 129: ApbSQLInsert
-	(*ApbSQLUpdate)(nil),                   // 130: ApbSQLUpdate
-	(*ApbSQLDelete)(nil),                   // 131: ApbSQLDelete
-	(*ApbSQLDrop)(nil),                     // 132: ApbSQLDrop
-	(*ApbSQLQuery)(nil),                    // 133: ApbSQLQuery
-	(*ApbSQLInvariant)(nil),                // 134: ApbSQLInvariant
-	(*ApbSQLPrimaryKey)(nil),               // 135: ApbSQLPrimaryKey
-	(*ApbSQLForeignKey)(nil),               // 136: ApbSQLForeignKey
-	(*ApbSQLCheck)(nil),                    // 137: ApbSQLCheck
-	(*ApbRead)(nil),                        // 138: ApbRead
-	(*ApbStaticRead)(nil),                  // 139: ApbStaticRead
-	(*ApbPartialRead)(nil),                 // 140: ApbPartialRead
-	(*ApbPartialReadArgs)(nil),             // 141: ApbPartialReadArgs
-	(*ApbProcessRead)(nil),                 // 142: ApbProcessRead
-	(*ApbSetPartialRead)(nil),              // 143: ApbSetPartialRead
-	(*ApbMapPartialRead)(nil),              // 144: ApbMapPartialRead
-	(*ApbTopkPartialRead)(nil),             // 145: ApbTopkPartialRead
-	(*ApbAvgPartialRead)(nil),              // 146: ApbAvgPartialRead
-	(*ApbPairCounterPartialRead)(nil),      // 147: ApbPairCounterPartialRead
-	(*ApbArrayCounterPartialRead)(nil),     // 148: ApbArrayCounterPartialRead
-	(*ApbMultiArrayPartialRead)(nil),       // 149: ApbMultiArrayPartialRead
-	(*ApbSetLookupRead)(nil),               // 150: ApbSetLookupRead
-	(*ApbSetNElemsRead)(nil),               // 151: ApbSetNElemsRead
-	(*ApbMapGetValueRead)(nil),             // 152: ApbMapGetValueRead
-	(*ApbMapHasKeyRead)(nil),               // 153: ApbMapHasKeyRead
-	(*ApbMapGetKeysRead)(nil),              // 154: ApbMapGetKeysRead
-	(*ApbMapGetValuesRead)(nil),            // 155: ApbMapGetValuesRead
-	(*ApbMapAggregateRead)(nil),            // 156: ApbMapAggregateRead
-	(*ApbMapGetAllValuesRead)(nil),         // 157: ApbMapGetAllValuesRead
-	(*ApbMapCondRead)(nil),                 // 158: ApbMapCondRead
-	(*ApbMapAllCondRead)(nil),              // 159: ApbMapAllCondRead
-	(*ApbMapExceptCondRead)(nil),           // 160: ApbMapExceptCondRead
-	(*ApbMapExceptRead)(nil),               // 161: ApbMapExceptRead
-	(*ApbMapExceptSingleRead)(nil),         // 162: ApbMapExceptSingleRead
-	(*ApbMapExceptCondSingleRead)(nil),     // 163: ApbMapExceptCondSingleRead
-	(*ApbMapCondArgs)(nil),                 // 164: ApbMapCondArgs
-	(*ApbCondIntCompare)(nil),              // 165: ApbCondIntCompare
-	(*ApbCondFloatCompare)(nil),            // 166: ApbCondFloatCompare
-	(*ApbCondBoolCompare)(nil),             // 167: ApbCondBoolCompare
-	(*ApbCondStringCompare)(nil),           // 168: ApbCondStringCompare
-	(*ApbCondBytesCompare)(nil),            // 169: ApbCondBytesCompare
-	(*ApbCondMapCompare)(nil),              // 170: ApbCondMapCompare
-	(*ApbCondGetNoCompare)(nil),            // 171: ApbCondGetNoCompare
-	(*ApbCondIntVarCompare)(nil),           // 172: ApbCondIntVarCompare
-	(*ApbCondFloatVarCompare)(nil),         // 173: ApbCondFloatVarCompare
-	(*ApbMapEmbPartialArgs)(nil),           // 174: ApbMapEmbPartialArgs
-	(*ApbTopkGetNRead)(nil),                // 175: ApbTopkGetNRead
-	(*ApbTopkAboveValueRead)(nil),          // 176: ApbTopkAboveValueRead
-	(*ApbAvgFullRead)(nil),                 // 177: ApbAvgFullRead
-	(*ApbPairCounterFirstRead)(nil),        // 178: ApbPairCounterFirstRead
-	(*ApbPairCounterSecondRead)(nil),       // 179: ApbPairCounterSecondRead
-	(*ApbArrayCounterSingleRead)(nil),      // 180: ApbArrayCounterSingleRead
-	(*ApbArrayCounterSubRead)(nil),         // 181: ApbArrayCounterSubRead
-	(*ApbArrayCounterExceptRead)(nil),      // 182: ApbArrayCounterExceptRead
-	(*ApbArrayCounterExceptRangeRead)(nil), // 183: ApbArrayCounterExceptRangeRead
-	(*ApbMultiArrayFullRead)(nil),          // 184: ApbMultiArrayFullRead
-	(*ApbMultiArrayPosRead)(nil),           // 185: ApbMultiArrayPosRead
-	(*ApbMultiArrayRangeRead)(nil),         // 186: ApbMultiArrayRangeRead
-	(*ApbMultiArraySubRead)(nil),           // 187: ApbMultiArraySubRead
-	(*ApbMultiArrayCondRead)(nil),          // 188: ApbMultiArrayCondRead
-	(*ApbMultiArrayDataCondRead)(nil),      // 189: ApbMultiArrayDataCondRead
-	(*ApbMultiArrayCustomRead)(nil),        // 190: ApbMultiArrayCustomRead
-	(*IntSlice)(nil),                       // 191: IntSlice
-	(*ApbMVRegPartialRead)(nil),            // 192: ApbMVRegPartialRead
-	(*ApbMVRegSingleRead)(nil),             // 193: ApbMVRegSingleRead
-	(*ApbDatePartialRead)(nil),             // 194: ApbDatePartialRead
-	(*ApbPartialReadResp)(nil),             // 195: ApbPartialReadResp
-	(*ApbSetPartialReadResp)(nil),          // 196: ApbSetPartialReadResp
-	(*ApbMapPartialReadResp)(nil),          // 197: ApbMapPartialReadResp
-	(*ApbAvgPartialReadResp)(nil),          // 198: ApbAvgPartialReadResp
-	(*ApbTopkPartialReadResp)(nil),         // 199: ApbTopkPartialReadResp
-	(*ApbSetLookupReadResp)(nil),           // 200: ApbSetLookupReadResp
-	(*ApbSetNElemsReadResp)(nil),           // 201: ApbSetNElemsReadResp
-	(*ApbMapGetValueResp)(nil),             // 202: ApbMapGetValueResp
-	(*ApbMapHasKeyReadResp)(nil),           // 203: ApbMapHasKeyReadResp
-	(*ApbMapGetKeysReadResp)(nil),          // 204: ApbMapGetKeysReadResp
-	(*ApbMapGetValuesResp)(nil),            // 205: ApbMapGetValuesResp
-	(*ApbAvgGetFullReadResp)(nil),          // 206: ApbAvgGetFullReadResp
-	(*ApbPairCounterPartialReadResp)(nil),  // 207: ApbPairCounterPartialReadResp
-	(*ApbArrayCounterPartialReadResp)(nil), // 208: ApbArrayCounterPartialReadResp
-	(*ApbMultiArrayPartialReadResp)(nil),   // 209: ApbMultiArrayPartialReadResp
-	(*ApbMultiArrayIntResp)(nil),           // 210: ApbMultiArrayIntResp
-	(*ApbMultiArrayFloatResp)(nil),         // 211: ApbMultiArrayFloatResp
-	(*ApbMultiArrayDataResp)(nil),          // 212: ApbMultiArrayDataResp
-	(*ApbMultiArrayAvgResp)(nil),           // 213: ApbMultiArrayAvgResp
-	(*ApbMultiArraySingleResp)(nil),        // 214: ApbMultiArraySingleResp
-	(*ApbMultiArrayDataAndSingleResp)(nil), // 215: ApbMultiArrayDataAndSingleResp
-	(*ApbMVRegPartialReadResp)(nil),        // 216: ApbMVRegPartialReadResp
-	(*ApbMVRegSingleResp)(nil),             // 217: ApbMVRegSingleResp
-	(*ApbDatePartialReadResp)(nil),         // 218: ApbDatePartialReadResp
-	(*ApbDateFullResp)(nil),                // 219: ApbDateFullResp
-	(*ApbTimeResp)(nil),                    // 220: ApbTimeResp
-	(*ApbDateOnlyResp)(nil),                // 221: ApbDateOnlyResp
-	(*ApbTimestampResp)(nil),               // 222: ApbTimestampResp
+	(ROW_Policy)(0),                        // 2: ROW_Policy
+	(COL_Policy)(0),                        // 3: COL_Policy
+	(SQL_Datatype)(0),                      // 4: SQL_Datatype
+	(SQL_Type)(0),                          // 5: SQL_Type
+	(READType)(0),                          // 6: READ_type
+	(COMPType)(0),                          // 7: COMP_type
+	(AGGRType)(0),                          // 8: AGGR_type
+	(ApbSetUpdate_SetOpType)(0),            // 9: ApbSetUpdate.SetOpType
+	(*ApbErrorResp)(nil),                   // 10: ApbErrorResp
+	(*TmpProto)(nil),                       // 11: TmpProto
+	(*ApbCounterUpdate)(nil),               // 12: ApbCounterUpdate
+	(*ApbGetCounterResp)(nil),              // 13: ApbGetCounterResp
+	(*ApbCounterFloatUpdate)(nil),          // 14: ApbCounterFloatUpdate
+	(*ApbGetCounterFloatResp)(nil),         // 15: ApbGetCounterFloatResp
+	(*ApbSetUpdate)(nil),                   // 16: ApbSetUpdate
+	(*ApbGetSetResp)(nil),                  // 17: ApbGetSetResp
+	(*ApbRegUpdate)(nil),                   // 18: ApbRegUpdate
+	(*ApbGetRegResp)(nil),                  // 19: ApbGetRegResp
+	(*ApbGetMVRegResp)(nil),                // 20: ApbGetMVRegResp
+	(*ApbMapKey)(nil),                      // 21: ApbMapKey
+	(*ApbMapUpdate)(nil),                   // 22: ApbMapUpdate
+	(*ApbMapNestedUpdate)(nil),             // 23: ApbMapNestedUpdate
+	(*ApbGetMapResp)(nil),                  // 24: ApbGetMapResp
+	(*ApbMapEntry)(nil),                    // 25: ApbMapEntry
+	(*ApbFlagUpdate)(nil),                  // 26: ApbFlagUpdate
+	(*ApbGetFlagResp)(nil),                 // 27: ApbGetFlagResp
+	(*ApbCrdtReset)(nil),                   // 28: ApbCrdtReset
+	(*ApbOperationResp)(nil),               // 29: ApbOperationResp
+	(*ApbTopkRmvUpdate)(nil),               // 30: ApbTopkRmvUpdate
+	(*ApbTopkUpdate)(nil),                  // 31: ApbTopkUpdate
+	(*ApbTopKInit)(nil),                    // 32: ApbTopKInit
+	(*ApbGetTopkResp)(nil),                 // 33: ApbGetTopkResp
+	(*ApbIntPair)(nil),                     // 34: ApbIntPair
+	(*ApbLeaderboardUpdate)(nil),           // 35: ApbLeaderboardUpdate
+	(*ApbGetLeaderboardResp)(nil),          // 36: ApbGetLeaderboardResp
+	(*ApbAverageUpdate)(nil),               // 37: ApbAverageUpdate
+	(*ApbGetAverageResp)(nil),              // 38: ApbGetAverageResp
+	(*ApbMaxMinUpdate)(nil),                // 39: ApbMaxMinUpdate
+	(*ApbGetMaxMinResp)(nil),               // 40: ApbGetMaxMinResp
+	(*ApbBoundCounterUpdate)(nil),          // 41: ApbBoundCounterUpdate
+	(*ApbPairCounterUpdate)(nil),           // 42: ApbPairCounterUpdate
+	(*ApbGetPairCounterResp)(nil),          // 43: ApbGetPairCounterResp
+	(*ApbArrayCounterUpdate)(nil),          // 44: ApbArrayCounterUpdate
+	(*ApbArrayCounterIncrement)(nil),       // 45: ApbArrayCounterIncrement
+	(*ApbArrayCounterIncrementAll)(nil),    // 46: ApbArrayCounterIncrementAll
+	(*ApbArrayCounterIncrementMulti)(nil),  // 47: ApbArrayCounterIncrementMulti
+	(*ApbArrayCounterIncrementSub)(nil),    // 48: ApbArrayCounterIncrementSub
+	(*ApbArrayCounterSetSize)(nil),         // 49: ApbArrayCounterSetSize
+	(*ApbGetArrayCounterResp)(nil),         // 50: ApbGetArrayCounterResp
+	(*ApbMultiArrayUpdate)(nil),            // 51: ApbMultiArrayUpdate
+	(*ApbMultiArrayIntUpdate)(nil),         // 52: ApbMultiArrayIntUpdate
+	(*ApbMultiArrayFloatUpdate)(nil),       // 53: ApbMultiArrayFloatUpdate
+	(*ApbMultiArrayDataUpdate)(nil),        // 54: ApbMultiArrayDataUpdate
+	(*ApbMultiArrayAvgUpdate)(nil),         // 55: ApbMultiArrayAvgUpdate
+	(*ApbMultiArraySetSizeUpdate)(nil),     // 56: ApbMultiArraySetSizeUpdate
+	(*ApbMultiArrayIntInc)(nil),            // 57: ApbMultiArrayIntInc
+	(*ApbMultiArrayIntIncSingle)(nil),      // 58: ApbMultiArrayIntIncSingle
+	(*ApbMultiArrayIntIncPositions)(nil),   // 59: ApbMultiArrayIntIncPositions
+	(*ApbMultiArrayIntIncRange)(nil),       // 60: ApbMultiArrayIntIncRange
+	(*ApbMultiArrayFloatInc)(nil),          // 61: ApbMultiArrayFloatInc
+	(*ApbMultiArrayFloatIncSingle)(nil),    // 62: ApbMultiArrayFloatIncSingle
+	(*ApbMultiArrayFloatIncPositions)(nil), // 63: ApbMultiArrayFloatIncPositions
+	(*ApbMultiArrayFloatIncRange)(nil),     // 64: ApbMultiArrayFloatIncRange
+	(*ApbMultiArrayDataSet)(nil),           // 65: ApbMultiArrayDataSet
+	(*ApbMultiArrayDataSetSingle)(nil),     // 66: ApbMultiArrayDataSetSingle
+	(*ApbMultiArrayDataSetPositions)(nil),  // 67: ApbMultiArrayDataSetPositions
+	(*ApbMultiArrayDataSetRange)(nil),      // 68: ApbMultiArrayDataSetRange
+	(*ApbMultiArrayAvgInc)(nil),            // 69: ApbMultiArrayAvgInc
+	(*ApbMultiArrayAvgIncSingle)(nil),      // 70: ApbMultiArrayAvgIncSingle
+	(*ApbMultiArrayAvgIncPositions)(nil),   // 71: ApbMultiArrayAvgIncPositions
+	(*ApbMultiArrayAvgIncRange)(nil),       // 72: ApbMultiArrayAvgIncRange
+	(*ApbMultiArrayMultiUpdate)(nil),       // 73: ApbMultiArrayMultiUpdate
+	(*ApbGetMultiArrayResp)(nil),           // 74: ApbGetMultiArrayResp
+	(*ApbDateUpdate)(nil),                  // 75: ApbDateUpdate
+	(*ApbDateSet)(nil),                     // 76: ApbDateSet
+	(*ApbDateOnlySet)(nil),                 // 77: ApbDateOnlySet
+	(*ApbTimeOnlySet)(nil),                 // 78: ApbTimeOnlySet
+	(*ApbDateInc)(nil),                     // 79: ApbDateInc
+	(*ApbDateOnlyInc)(nil),                 // 80: ApbDateOnlyInc
+	(*ApbTimeOnlyInc)(nil),                 // 81: ApbTimeOnlyInc
+	(*ApbDateInitialize)(nil),              // 82: ApbDateInitialize
+	(*ApbSetMS)(nil),                       // 83: ApbSetMS
+	(*ApbIncMS)(nil),                       // 84: ApbIncMS
+	(*ApbGetDateResp)(nil),                 // 85: ApbGetDateResp
+	(*ApbNoOpUpdate)(nil),                  // 86: ApbNoOpUpdate
+	(*ApbGetNoOpResp)(nil),                 // 87: ApbGetNoOpResp
+	(*ApbTxnProperties)(nil),               // 88: ApbTxnProperties
+	(*ApbBoundObject)(nil),                 // 89: ApbBoundObject
+	(*ApbReadObjects)(nil),                 // 90: ApbReadObjects
+	(*ApbUpdateOp)(nil),                    // 91: ApbUpdateOp
+	(*ApbUpdateOperation)(nil),             // 92: ApbUpdateOperation
+	(*ApbUpdateObjects)(nil),               // 93: ApbUpdateObjects
+	(*ApbStartTransaction)(nil),            // 94: ApbStartTransaction
+	(*ApbAbortTransaction)(nil),            // 95: ApbAbortTransaction
+	(*ApbCommitTransaction)(nil),           // 96: ApbCommitTransaction
+	(*ApbStaticUpdateObjects)(nil),         // 97: ApbStaticUpdateObjects
+	(*ApbStaticReadObjects)(nil),           // 98: ApbStaticReadObjects
+	(*ApbStartTransactionResp)(nil),        // 99: ApbStartTransactionResp
+	(*ApbReadObjectResp)(nil),              // 100: ApbReadObjectResp
+	(*ApbReadObjectsResp)(nil),             // 101: ApbReadObjectsResp
+	(*ApbCommitResp)(nil),                  // 102: ApbCommitResp
+	(*ApbStaticReadObjectsResp)(nil),       // 103: ApbStaticReadObjectsResp
+	(*ApbMultiClientConnect)(nil),          // 104: ApbMultiClientConnect
+	(*ApbMultiClientConnectResp)(nil),      // 105: ApbMultiClientConnectResp
+	(*ApbConnectReplica)(nil),              // 106: ApbConnectReplica
+	(*ApbConnectReplicaResp)(nil),          // 107: ApbConnectReplicaResp
+	(*ApbResetServer)(nil),                 // 108: ApbResetServer
+	(*ApbResetServerResp)(nil),             // 109: ApbResetServerResp
+	(*ApbNewTrigger)(nil),                  // 110: ApbNewTrigger
+	(*ApbTriggerInfo)(nil),                 // 111: ApbTriggerInfo
+	(*ApbNewTriggerReply)(nil),             // 112: ApbNewTriggerReply
+	(*ApbGetTriggers)(nil),                 // 113: ApbGetTriggers
+	(*ApbGetTriggersReply)(nil),            // 114: ApbGetTriggersReply
+	(*ApbStringSQL)(nil),                   // 115: ApbStringSQL
+	(*ApbTypedSQL)(nil),                    // 116: ApbTypedSQL
+	(*ApbSQLCreateTable)(nil),              // 117: ApbSQLCreateTable
+	(*ApbSQLCreateIndex)(nil),              // 118: ApbSQLCreateIndex
+	(*ApbSQLCreateView)(nil),               // 119: ApbSQLCreateView
+	(*ApbSQLInsert)(nil),                   // 120: ApbSQLInsert
+	(*ApbSQLUpdate)(nil),                   // 121: ApbSQLUpdate
+	(*ApbSQLDelete)(nil),                   // 122: ApbSQLDelete
+	(*ApbSQLDrop)(nil),                     // 123: ApbSQLDrop
+	(*ApbSQLQuery)(nil),                    // 124: ApbSQLQuery
+	(*ApbSQLInvariant)(nil),                // 125: ApbSQLInvariant
+	(*ApbSQLPrimaryKey)(nil),               // 126: ApbSQLPrimaryKey
+	(*ApbSQLForeignKey)(nil),               // 127: ApbSQLForeignKey
+	(*ApbSQLCheck)(nil),                    // 128: ApbSQLCheck
+	(*ApbRead)(nil),                        // 129: ApbRead
+	(*ApbStaticRead)(nil),                  // 130: ApbStaticRead
+	(*ApbPartialRead)(nil),                 // 131: ApbPartialRead
+	(*ApbPartialReadArgs)(nil),             // 132: ApbPartialReadArgs
+	(*ApbProcessRead)(nil),                 // 133: ApbProcessRead
+	(*ApbSetPartialRead)(nil),              // 134: ApbSetPartialRead
+	(*ApbMapPartialRead)(nil),              // 135: ApbMapPartialRead
+	(*ApbTopkPartialRead)(nil),             // 136: ApbTopkPartialRead
+	(*ApbAvgPartialRead)(nil),              // 137: ApbAvgPartialRead
+	(*ApbPairCounterPartialRead)(nil),      // 138: ApbPairCounterPartialRead
+	(*ApbArrayCounterPartialRead)(nil),     // 139: ApbArrayCounterPartialRead
+	(*ApbMultiArrayPartialRead)(nil),       // 140: ApbMultiArrayPartialRead
+	(*ApbSetLookupRead)(nil),               // 141: ApbSetLookupRead
+	(*ApbSetNElemsRead)(nil),               // 142: ApbSetNElemsRead
+	(*ApbMapGetValueRead)(nil),             // 143: ApbMapGetValueRead
+	(*ApbMapHasKeyRead)(nil),               // 144: ApbMapHasKeyRead
+	(*ApbMapGetKeysRead)(nil),              // 145: ApbMapGetKeysRead
+	(*ApbMapGetValuesRead)(nil),            // 146: ApbMapGetValuesRead
+	(*ApbMapAggregateRead)(nil),            // 147: ApbMapAggregateRead
+	(*ApbMapGetAllValuesRead)(nil),         // 148: ApbMapGetAllValuesRead
+	(*ApbMapCondRead)(nil),                 // 149: ApbMapCondRead
+	(*ApbMapAllCondRead)(nil),              // 150: ApbMapAllCondRead
+	(*ApbMapExceptCondRead)(nil),           // 151: ApbMapExceptCondRead
+	(*ApbMapExceptRead)(nil),               // 152: ApbMapExceptRead
+	(*ApbMapExceptSingleRead)(nil),         // 153: ApbMapExceptSingleRead
+	(*ApbMapExceptCondSingleRead)(nil),     // 154: ApbMapExceptCondSingleRead
+	(*ApbMapCondArgs)(nil),                 // 155: ApbMapCondArgs
+	(*ApbCondIntCompare)(nil),              // 156: ApbCondIntCompare
+	(*ApbCondFloatCompare)(nil),            // 157: ApbCondFloatCompare
+	(*ApbCondBoolCompare)(nil),             // 158: ApbCondBoolCompare
+	(*ApbCondStringCompare)(nil),           // 159: ApbCondStringCompare
+	(*ApbCondBytesCompare)(nil),            // 160: ApbCondBytesCompare
+	(*ApbCondMapCompare)(nil),              // 161: ApbCondMapCompare
+	(*ApbCondGetNoCompare)(nil),            // 162: ApbCondGetNoCompare
+	(*ApbCondIntVarCompare)(nil),           // 163: ApbCondIntVarCompare
+	(*ApbCondFloatVarCompare)(nil),         // 164: ApbCondFloatVarCompare
+	(*ApbMapEmbPartialArgs)(nil),           // 165: ApbMapEmbPartialArgs
+	(*ApbTopkGetNRead)(nil),                // 166: ApbTopkGetNRead
+	(*ApbTopkAboveValueRead)(nil),          // 167: ApbTopkAboveValueRead
+	(*ApbAvgFullRead)(nil),                 // 168: ApbAvgFullRead
+	(*ApbPairCounterFirstRead)(nil),        // 169: ApbPairCounterFirstRead
+	(*ApbPairCounterSecondRead)(nil),       // 170: ApbPairCounterSecondRead
+	(*ApbArrayCounterSingleRead)(nil),      // 171: ApbArrayCounterSingleRead
+	(*ApbArrayCounterSubRead)(nil),         // 172: ApbArrayCounterSubRead
+	(*ApbArrayCounterExceptRead)(nil),      // 173: ApbArrayCounterExceptRead
+	(*ApbArrayCounterExceptRangeRead)(nil), // 174: ApbArrayCounterExceptRangeRead
+	(*ApbMultiArrayFullRead)(nil),          // 175: ApbMultiArrayFullRead
+	(*ApbMultiArrayPosRead)(nil),           // 176: ApbMultiArrayPosRead
+	(*ApbMultiArrayRangeRead)(nil),         // 177: ApbMultiArrayRangeRead
+	(*ApbMultiArraySubRead)(nil),           // 178: ApbMultiArraySubRead
+	(*ApbMultiArrayCondRead)(nil),          // 179: ApbMultiArrayCondRead
+	(*ApbMultiArrayDataCondRead)(nil),      // 180: ApbMultiArrayDataCondRead
+	(*ApbMultiArrayCustomRead)(nil),        // 181: ApbMultiArrayCustomRead
+	(*IntSlice)(nil),                       // 182: IntSlice
+	(*ApbMVRegPartialRead)(nil),            // 183: ApbMVRegPartialRead
+	(*ApbMVRegSingleRead)(nil),             // 184: ApbMVRegSingleRead
+	(*ApbDatePartialRead)(nil),             // 185: ApbDatePartialRead
+	(*ApbPartialReadResp)(nil),             // 186: ApbPartialReadResp
+	(*ApbSetPartialReadResp)(nil),          // 187: ApbSetPartialReadResp
+	(*ApbMapPartialReadResp)(nil),          // 188: ApbMapPartialReadResp
+	(*ApbAvgPartialReadResp)(nil),          // 189: ApbAvgPartialReadResp
+	(*ApbTopkPartialReadResp)(nil),         // 190: ApbTopkPartialReadResp
+	(*ApbSetLookupReadResp)(nil),           // 191: ApbSetLookupReadResp
+	(*ApbSetNElemsReadResp)(nil),           // 192: ApbSetNElemsReadResp
+	(*ApbMapGetValueResp)(nil),             // 193: ApbMapGetValueResp
+	(*ApbMapHasKeyReadResp)(nil),           // 194: ApbMapHasKeyReadResp
+	(*ApbMapGetKeysReadResp)(nil),          // 195: ApbMapGetKeysReadResp
+	(*ApbMapGetValuesResp)(nil),            // 196: ApbMapGetValuesResp
+	(*ApbAvgGetFullReadResp)(nil),          // 197: ApbAvgGetFullReadResp
+	(*ApbPairCounterPartialReadResp)(nil),  // 198: ApbPairCounterPartialReadResp
+	(*ApbArrayCounterPartialReadResp)(nil), // 199: ApbArrayCounterPartialReadResp
+	(*ApbMultiArrayPartialReadResp)(nil),   // 200: ApbMultiArrayPartialReadResp
+	(*ApbMultiArrayIntResp)(nil),           // 201: ApbMultiArrayIntResp
+	(*ApbMultiArrayFloatResp)(nil),         // 202: ApbMultiArrayFloatResp
+	(*ApbMultiArrayDataResp)(nil),          // 203: ApbMultiArrayDataResp
+	(*ApbMultiArrayAvgResp)(nil),           // 204: ApbMultiArrayAvgResp
+	(*ApbMultiArraySingleResp)(nil),        // 205: ApbMultiArraySingleResp
+	(*ApbMultiArrayDataAndSingleResp)(nil), // 206: ApbMultiArrayDataAndSingleResp
+	(*ApbMVRegPartialReadResp)(nil),        // 207: ApbMVRegPartialReadResp
+	(*ApbMVRegSingleResp)(nil),             // 208: ApbMVRegSingleResp
+	(*ApbDatePartialReadResp)(nil),         // 209: ApbDatePartialReadResp
+	(*ApbDateFullResp)(nil),                // 210: ApbDateFullResp
+	(*ApbTimeResp)(nil),                    // 211: ApbTimeResp
+	(*ApbDateOnlyResp)(nil),                // 212: ApbDateOnlyResp
+	(*ApbTimestampResp)(nil),               // 213: ApbTimestampResp
 }
 var file_antidote_proto_depIdxs = []int32{
-	10,  // 0: ApbSetUpdate.optype:type_name -> ApbSetUpdate.SetOpType
+	9,   // 0: ApbSetUpdate.optype:type_name -> ApbSetUpdate.SetOpType
 	0,   // 1: ApbMapKey.type:type_name -> CRDT_type
-	24,  // 2: ApbMapUpdate.updates:type_name -> ApbMapNestedUpdate
-	22,  // 3: ApbMapUpdate.removedKeys:type_name -> ApbMapKey
-	22,  // 4: ApbMapNestedUpdate.key:type_name -> ApbMapKey
-	101, // 5: ApbMapNestedUpdate.update:type_name -> ApbUpdateOperation
-	26,  // 6: ApbGetMapResp.entries:type_name -> ApbMapEntry
-	22,  // 7: ApbMapEntry.key:type_name -> ApbMapKey
-	109, // 8: ApbMapEntry.value:type_name -> ApbReadObjectResp
-	35,  // 9: ApbTopkRmvUpdate.adds:type_name -> ApbIntPair
-	35,  // 10: ApbGetTopkResp.values:type_name -> ApbIntPair
-	35,  // 11: ApbLeaderboardUpdate.adds:type_name -> ApbIntPair
-	46,  // 12: ApbArrayCounterUpdate.inc:type_name -> ApbArrayCounterIncrement
-	47,  // 13: ApbArrayCounterUpdate.incAll:type_name -> ApbArrayCounterIncrementAll
-	48,  // 14: ApbArrayCounterUpdate.incMulti:type_name -> ApbArrayCounterIncrementMulti
-	49,  // 15: ApbArrayCounterUpdate.incSub:type_name -> ApbArrayCounterIncrementSub
-	50,  // 16: ApbArrayCounterUpdate.size:type_name -> ApbArrayCounterSetSize
+	23,  // 2: ApbMapUpdate.updates:type_name -> ApbMapNestedUpdate
+	21,  // 3: ApbMapUpdate.removedKeys:type_name -> ApbMapKey
+	21,  // 4: ApbMapNestedUpdate.key:type_name -> ApbMapKey
+	92,  // 5: ApbMapNestedUpdate.update:type_name -> ApbUpdateOperation
+	25,  // 6: ApbGetMapResp.entries:type_name -> ApbMapEntry
+	21,  // 7: ApbMapEntry.key:type_name -> ApbMapKey
+	100, // 8: ApbMapEntry.value:type_name -> ApbReadObjectResp
+	34,  // 9: ApbTopkRmvUpdate.adds:type_name -> ApbIntPair
+	34,  // 10: ApbGetTopkResp.values:type_name -> ApbIntPair
+	34,  // 11: ApbLeaderboardUpdate.adds:type_name -> ApbIntPair
+	45,  // 12: ApbArrayCounterUpdate.inc:type_name -> ApbArrayCounterIncrement
+	46,  // 13: ApbArrayCounterUpdate.incAll:type_name -> ApbArrayCounterIncrementAll
+	47,  // 14: ApbArrayCounterUpdate.incMulti:type_name -> ApbArrayCounterIncrementMulti
+	48,  // 15: ApbArrayCounterUpdate.incSub:type_name -> ApbArrayCounterIncrementSub
+	49,  // 16: ApbArrayCounterUpdate.size:type_name -> ApbArrayCounterSetSize
 	1,   // 17: ApbMultiArrayUpdate.type:type_name -> MultiArrayType
-	53,  // 18: ApbMultiArrayUpdate.intUpd:type_name -> ApbMultiArrayIntUpdate
-	54,  // 19: ApbMultiArrayUpdate.floatUpd:type_name -> ApbMultiArrayFloatUpdate
-	55,  // 20: ApbMultiArrayUpdate.dataUpd:type_name -> ApbMultiArrayDataUpdate
-	56,  // 21: ApbMultiArrayUpdate.avgUpd:type_name -> ApbMultiArrayAvgUpdate
-	74,  // 22: ApbMultiArrayUpdate.multiUpd:type_name -> ApbMultiArrayMultiUpdate
-	57,  // 23: ApbMultiArrayUpdate.sizeUpd:type_name -> ApbMultiArraySetSizeUpdate
-	58,  // 24: ApbMultiArrayIntUpdate.inc:type_name -> ApbMultiArrayIntInc
-	59,  // 25: ApbMultiArrayIntUpdate.incSingle:type_name -> ApbMultiArrayIntIncSingle
-	60,  // 26: ApbMultiArrayIntUpdate.incPos:type_name -> ApbMultiArrayIntIncPositions
-	61,  // 27: ApbMultiArrayIntUpdate.incRange:type_name -> ApbMultiArrayIntIncRange
-	62,  // 28: ApbMultiArrayFloatUpdate.inc:type_name -> ApbMultiArrayFloatInc
-	63,  // 29: ApbMultiArrayFloatUpdate.incSingle:type_name -> ApbMultiArrayFloatIncSingle
-	64,  // 30: ApbMultiArrayFloatUpdate.incPos:type_name -> ApbMultiArrayFloatIncPositions
-	65,  // 31: ApbMultiArrayFloatUpdate.incRange:type_name -> ApbMultiArrayFloatIncRange
-	66,  // 32: ApbMultiArrayDataUpdate.set:type_name -> ApbMultiArrayDataSet
-	67,  // 33: ApbMultiArrayDataUpdate.setSingle:type_name -> ApbMultiArrayDataSetSingle
-	68,  // 34: ApbMultiArrayDataUpdate.setPos:type_name -> ApbMultiArrayDataSetPositions
-	69,  // 35: ApbMultiArrayDataUpdate.setRange:type_name -> ApbMultiArrayDataSetRange
-	70,  // 36: ApbMultiArrayAvgUpdate.inc:type_name -> ApbMultiArrayAvgInc
-	71,  // 37: ApbMultiArrayAvgUpdate.incSingle:type_name -> ApbMultiArrayAvgIncSingle
-	72,  // 38: ApbMultiArrayAvgUpdate.incPos:type_name -> ApbMultiArrayAvgIncPositions
-	73,  // 39: ApbMultiArrayAvgUpdate.incRange:type_name -> ApbMultiArrayAvgIncRange
-	77,  // 40: ApbDateUpdate.set:type_name -> ApbDateSet
-	78,  // 41: ApbDateUpdate.dateSet:type_name -> ApbDateOnlySet
-	79,  // 42: ApbDateUpdate.timeSet:type_name -> ApbTimeOnlySet
-	84,  // 43: ApbDateUpdate.setMS:type_name -> ApbSetMS
-	80,  // 44: ApbDateUpdate.inc:type_name -> ApbDateInc
-	81,  // 45: ApbDateUpdate.dateInc:type_name -> ApbDateOnlyInc
-	82,  // 46: ApbDateUpdate.timeInc:type_name -> ApbTimeOnlyInc
-	85,  // 47: ApbDateUpdate.incMS:type_name -> ApbIncMS
-	83,  // 48: ApbDateUpdate.initialize:type_name -> ApbDateInitialize
-	2,   // 49: ApbNoOpUpdate.type:type_name -> NoOpStateType
-	88,  // 50: ApbNoOpUpdate.genericUpd:type_name -> ApbNoOpGenericUpdate
-	90,  // 51: ApbNoOpUpdate.musicUpd:type_name -> ApbNoOpMusicStateUpdate
-	89,  // 52: ApbNoOpGenericUpdate.NoOp:type_name -> ApbNoOpGenericNoOp
-	91,  // 53: ApbNoOpMusicStateUpdate.addArtistOp:type_name -> ApbNoOpMusicStateAddArtist
-	92,  // 54: ApbNoOpMusicStateUpdate.rmvArtistOp:type_name -> ApbNoOpMusicStateRmvArtist
-	93,  // 55: ApbNoOpMusicStateUpdate.updArtistOp:type_name -> ApbNoOpMusicStateUpdArtist
-	94,  // 56: ApbNoOpMusicStateUpdate.addAlbumOp:type_name -> ApbNoOpMusicStateAddAlbum
-	95,  // 57: ApbNoOpMusicStateUpdate.rmvAlbumOp:type_name -> ApbNoOpMusicStateRmvAlbum
-	2,   // 58: ApbGetNoOpResp.type:type_name -> NoOpStateType
-	0,   // 59: ApbBoundObject.type:type_name -> CRDT_type
-	98,  // 60: ApbReadObjects.boundobjects:type_name -> ApbBoundObject
-	98,  // 61: ApbUpdateOp.boundobject:type_name -> ApbBoundObject
-	101, // 62: ApbUpdateOp.operation:type_name -> ApbUpdateOperation
-	13,  // 63: ApbUpdateOperation.counterop:type_name -> ApbCounterUpdate
-	17,  // 64: ApbUpdateOperation.setop:type_name -> ApbSetUpdate
-	19,  // 65: ApbUpdateOperation.regop:type_name -> ApbRegUpdate
-	42,  // 66: ApbUpdateOperation.bcounterop:type_name -> ApbBoundCounterUpdate
-	23,  // 67: ApbUpdateOperation.mapop:type_name -> ApbMapUpdate
-	29,  // 68: ApbUpdateOperation.resetop:type_name -> ApbCrdtReset
-	27,  // 69: ApbUpdateOperation.flagop:type_name -> ApbFlagUpdate
-	33,  // 70: ApbUpdateOperation.topkinitop:type_name -> ApbTopKInit
-	40,  // 71: ApbUpdateOperation.maxminop:type_name -> ApbMaxMinUpdate
-	31,  // 72: ApbUpdateOperation.topkrmvop:type_name -> ApbTopkRmvUpdate
-	32,  // 73: ApbUpdateOperation.topkop:type_name -> ApbTopkUpdate
-	36,  // 74: ApbUpdateOperation.leaderboardop:type_name -> ApbLeaderboardUpdate
-	38,  // 75: ApbUpdateOperation.avgop:type_name -> ApbAverageUpdate
-	15,  // 76: ApbUpdateOperation.counterfloatop:type_name -> ApbCounterFloatUpdate
-	43,  // 77: ApbUpdateOperation.paircounterop:type_name -> ApbPairCounterUpdate
-	45,  // 78: ApbUpdateOperation.arraycounterop:type_name -> ApbArrayCounterUpdate
-	52,  // 79: ApbUpdateOperation.multiarrayop:type_name -> ApbMultiArrayUpdate
-	76,  // 80: ApbUpdateOperation.dateop:type_name -> ApbDateUpdate
-	87,  // 81: ApbUpdateOperation.noop:type_name -> ApbNoOpUpdate
-	100, // 82: ApbUpdateObjects.updates:type_name -> ApbUpdateOp
-	97,  // 83: ApbStartTransaction.properties:type_name -> ApbTxnProperties
-	103, // 84: ApbStaticUpdateObjects.transaction:type_name -> ApbStartTransaction
-	100, // 85: ApbStaticUpdateObjects.updates:type_name -> ApbUpdateOp
-	103, // 86: ApbStaticReadObjects.transaction:type_name -> ApbStartTransaction
-	98,  // 87: ApbStaticReadObjects.objects:type_name -> ApbBoundObject
-	14,  // 88: ApbReadObjectResp.counter:type_name -> ApbGetCounterResp
-	18,  // 89: ApbReadObjectResp.set:type_name -> ApbGetSetResp
-	20,  // 90: ApbReadObjectResp.reg:type_name -> ApbGetRegResp
-	21,  // 91: ApbReadObjectResp.mvreg:type_name -> ApbGetMVRegResp
-	25,  // 92: ApbReadObjectResp.map:type_name -> ApbGetMapResp
-	28,  // 93: ApbReadObjectResp.flag:type_name -> ApbGetFlagResp
-	41,  // 94: ApbReadObjectResp.maxmin:type_name -> ApbGetMaxMinResp
-	34,  // 95: ApbReadObjectResp.topk:type_name -> ApbGetTopkResp
-	37,  // 96: ApbReadObjectResp.leadb:type_name -> ApbGetLeaderboardResp
-	39,  // 97: ApbReadObjectResp.avg:type_name -> ApbGetAverageResp
-	16,  // 98: ApbReadObjectResp.counterfloat:type_name -> ApbGetCounterFloatResp
-	44,  // 99: ApbReadObjectResp.paircounter:type_name -> ApbGetPairCounterResp
-	51,  // 100: ApbReadObjectResp.arraycounter:type_name -> ApbGetArrayCounterResp
-	75,  // 101: ApbReadObjectResp.multiarray:type_name -> ApbGetMultiArrayResp
-	86,  // 102: ApbReadObjectResp.date:type_name -> ApbGetDateResp
-	195, // 103: ApbReadObjectResp.partread:type_name -> ApbPartialReadResp
-	96,  // 104: ApbReadObjectResp.noop:type_name -> ApbGetNoOpResp
-	109, // 105: ApbReadObjectsResp.objects:type_name -> ApbReadObjectResp
-	110, // 106: ApbStaticReadObjectsResp.objects:type_name -> ApbReadObjectsResp
-	111, // 107: ApbStaticReadObjectsResp.committime:type_name -> ApbCommitResp
-	120, // 108: ApbNewTrigger.source:type_name -> ApbTriggerInfo
-	120, // 109: ApbNewTrigger.target:type_name -> ApbTriggerInfo
-	98,  // 110: ApbTriggerInfo.obj:type_name -> ApbBoundObject
-	119, // 111: ApbGetTriggersReply.mapping:type_name -> ApbNewTrigger
-	119, // 112: ApbGetTriggersReply.genericMapping:type_name -> ApbNewTrigger
-	6,   // 113: ApbTypedSQL.type:type_name -> SQL_Type
-	126, // 114: ApbTypedSQL.createTable:type_name -> ApbSQLCreateTable
-	127, // 115: ApbTypedSQL.createIndex:type_name -> ApbSQLCreateIndex
-	128, // 116: ApbTypedSQL.createView:type_name -> ApbSQLCreateView
-	129, // 117: ApbTypedSQL.insert:type_name -> ApbSQLInsert
-	130, // 118: ApbTypedSQL.update:type_name -> ApbSQLUpdate
-	131, // 119: ApbTypedSQL.delete:type_name -> ApbSQLDelete
-	132, // 120: ApbTypedSQL.drop:type_name -> ApbSQLDrop
-	133, // 121: ApbTypedSQL.query:type_name -> ApbSQLQuery
-	3,   // 122: ApbSQLCreateTable.rowPolicy:type_name -> ROW_Policy
-	5,   // 123: ApbSQLCreateTable.datatypes:type_name -> SQL_Datatype
-	4,   // 124: ApbSQLCreateTable.colPolicies:type_name -> COL_Policy
-	134, // 125: ApbSQLCreateTable.invariants:type_name -> ApbSQLInvariant
-	135, // 126: ApbSQLInvariant.primaryKey:type_name -> ApbSQLPrimaryKey
-	136, // 127: ApbSQLInvariant.foreignKey:type_name -> ApbSQLForeignKey
-	135, // 128: ApbSQLInvariant.unique:type_name -> ApbSQLPrimaryKey
-	137, // 129: ApbSQLInvariant.check:type_name -> ApbSQLCheck
-	8,   // 130: ApbSQLCheck.conditionType:type_name -> COMP_type
-	98,  // 131: ApbRead.fullreads:type_name -> ApbBoundObject
-	140, // 132: ApbRead.partialreads:type_name -> ApbPartialRead
-	98,  // 133: ApbStaticRead.fullreads:type_name -> ApbBoundObject
-	140, // 134: ApbStaticRead.partialreads:type_name -> ApbPartialRead
-	103, // 135: ApbStaticRead.transaction:type_name -> ApbStartTransaction
-	98,  // 136: ApbPartialRead.object:type_name -> ApbBoundObject
-	7,   // 137: ApbPartialRead.readtype:type_name -> READ_type
-	141, // 138: ApbPartialRead.args:type_name -> ApbPartialReadArgs
-	143, // 139: ApbPartialReadArgs.set:type_name -> ApbSetPartialRead
-	144, // 140: ApbPartialReadArgs.map:type_name -> ApbMapPartialRead
-	145, // 141: ApbPartialReadArgs.topk:type_name -> ApbTopkPartialRead
-	146, // 142: ApbPartialReadArgs.avg:type_name -> ApbAvgPartialRead
-	142, // 143: ApbPartialReadArgs.process:type_name -> ApbProcessRead
-	147, // 144: ApbPartialReadArgs.paircounter:type_name -> ApbPairCounterPartialRead
-	148, // 145: ApbPartialReadArgs.arraycounter:type_name -> ApbArrayCounterPartialRead
-	149, // 146: ApbPartialReadArgs.multiarray:type_name -> ApbMultiArrayPartialRead
-	192, // 147: ApbPartialReadArgs.mvreg:type_name -> ApbMVRegPartialRead
-	194, // 148: ApbPartialReadArgs.date:type_name -> ApbDatePartialRead
-	140, // 149: ApbProcessRead.prereads:type_name -> ApbPartialRead
-	9,   // 150: ApbProcessRead.aggregationtype:type_name -> AGGR_type
-	140, // 151: ApbProcessRead.postreads:type_name -> ApbPartialRead
-	150, // 152: ApbSetPartialRead.lookup:type_name -> ApbSetLookupRead
-	151, // 153: ApbSetPartialRead.nelems:type_name -> ApbSetNElemsRead
-	152, // 154: ApbMapPartialRead.getvalue:type_name -> ApbMapGetValueRead
-	153, // 155: ApbMapPartialRead.haskey:type_name -> ApbMapHasKeyRead
-	154, // 156: ApbMapPartialRead.getkeys:type_name -> ApbMapGetKeysRead
-	155, // 157: ApbMapPartialRead.getvalues:type_name -> ApbMapGetValuesRead
-	157, // 158: ApbMapPartialRead.getallvalues:type_name -> ApbMapGetAllValuesRead
-	158, // 159: ApbMapPartialRead.condread:type_name -> ApbMapCondRead
-	159, // 160: ApbMapPartialRead.condallread:type_name -> ApbMapAllCondRead
-	161, // 161: ApbMapPartialRead.exceptread:type_name -> ApbMapExceptRead
-	160, // 162: ApbMapPartialRead.exceptcondread:type_name -> ApbMapExceptCondRead
-	156, // 163: ApbMapPartialRead.aggregateread:type_name -> ApbMapAggregateRead
-	162, // 164: ApbMapPartialRead.exceptsingleread:type_name -> ApbMapExceptSingleRead
-	163, // 165: ApbMapPartialRead.exceptcondsingleread:type_name -> ApbMapExceptCondSingleRead
-	175, // 166: ApbTopkPartialRead.getn:type_name -> ApbTopkGetNRead
-	176, // 167: ApbTopkPartialRead.getabovevalue:type_name -> ApbTopkAboveValueRead
-	177, // 168: ApbAvgPartialRead.getfull:type_name -> ApbAvgFullRead
-	178, // 169: ApbPairCounterPartialRead.first:type_name -> ApbPairCounterFirstRead
-	179, // 170: ApbPairCounterPartialRead.second:type_name -> ApbPairCounterSecondRead
-	180, // 171: ApbArrayCounterPartialRead.single:type_name -> ApbArrayCounterSingleRead
-	181, // 172: ApbArrayCounterPartialRead.sub:type_name -> ApbArrayCounterSubRead
-	182, // 173: ApbArrayCounterPartialRead.except:type_name -> ApbArrayCounterExceptRead
-	183, // 174: ApbArrayCounterPartialRead.exceptRange:type_name -> ApbArrayCounterExceptRangeRead
-	1,   // 175: ApbMultiArrayPartialRead.types:type_name -> MultiArrayType
-	184, // 176: ApbMultiArrayPartialRead.full:type_name -> ApbMultiArrayFullRead
-	185, // 177: ApbMultiArrayPartialRead.pos:type_name -> ApbMultiArrayPosRead
-	186, // 178: ApbMultiArrayPartialRead.range:type_name -> ApbMultiArrayRangeRead
-	187, // 179: ApbMultiArrayPartialRead.sub:type_name -> ApbMultiArraySubRead
-	188, // 180: ApbMultiArrayPartialRead.cond:type_name -> ApbMultiArrayCondRead
-	189, // 181: ApbMultiArrayPartialRead.datacond:type_name -> ApbMultiArrayDataCondRead
-	190, // 182: ApbMultiArrayPartialRead.custom:type_name -> ApbMultiArrayCustomRead
-	174, // 183: ApbMapGetValueRead.args:type_name -> ApbMapEmbPartialArgs
-	174, // 184: ApbMapGetValuesRead.args:type_name -> ApbMapEmbPartialArgs
-	9,   // 185: ApbMapAggregateRead.aggregationtype:type_name -> AGGR_type
-	164, // 186: ApbMapAggregateRead.condarg:type_name -> ApbMapCondArgs
-	174, // 187: ApbMapAggregateRead.args:type_name -> ApbMapEmbPartialArgs
-	174, // 188: ApbMapGetAllValuesRead.args:type_name -> ApbMapEmbPartialArgs
-	164, // 189: ApbMapCondRead.condargs:type_name -> ApbMapCondArgs
-	164, // 190: ApbMapAllCondRead.condarg:type_name -> ApbMapCondArgs
-	174, // 191: ApbMapAllCondRead.args:type_name -> ApbMapEmbPartialArgs
-	164, // 192: ApbMapExceptCondRead.condarg:type_name -> ApbMapCondArgs
-	174, // 193: ApbMapExceptRead.args:type_name -> ApbMapEmbPartialArgs
-	174, // 194: ApbMapExceptSingleRead.args:type_name -> ApbMapEmbPartialArgs
-	164, // 195: ApbMapExceptCondSingleRead.condarg:type_name -> ApbMapCondArgs
-	165, // 196: ApbMapCondArgs.intcomp:type_name -> ApbCondIntCompare
-	166, // 197: ApbMapCondArgs.floatcomp:type_name -> ApbCondFloatCompare
-	167, // 198: ApbMapCondArgs.boolcomp:type_name -> ApbCondBoolCompare
-	168, // 199: ApbMapCondArgs.stringcomp:type_name -> ApbCondStringCompare
-	169, // 200: ApbMapCondArgs.bytescomp:type_name -> ApbCondBytesCompare
-	170, // 201: ApbMapCondArgs.mapcomp:type_name -> ApbCondMapCompare
-	171, // 202: ApbMapCondArgs.nocomp:type_name -> ApbCondGetNoCompare
-	172, // 203: ApbMapCondArgs.intvarcomp:type_name -> ApbCondIntVarCompare
-	173, // 204: ApbMapCondArgs.floatvarcomp:type_name -> ApbCondFloatVarCompare
-	8,   // 205: ApbCondIntCompare.comp:type_name -> COMP_type
-	8,   // 206: ApbCondFloatCompare.comp:type_name -> COMP_type
-	164, // 207: ApbCondMapCompare.value:type_name -> ApbMapCondArgs
-	8,   // 208: ApbCondIntVarCompare.comp:type_name -> COMP_type
-	8,   // 209: ApbCondFloatVarCompare.comp:type_name -> COMP_type
-	0,   // 210: ApbMapEmbPartialArgs.type:type_name -> CRDT_type
-	7,   // 211: ApbMapEmbPartialArgs.readtype:type_name -> READ_type
-	141, // 212: ApbMapEmbPartialArgs.args:type_name -> ApbPartialReadArgs
-	191, // 213: ApbMultiArraySubRead.indexes:type_name -> IntSlice
-	8,   // 214: ApbMultiArrayCondRead.comp:type_name -> COMP_type
-	1,   // 215: ApbMultiArrayCondRead.compareType:type_name -> MultiArrayType
-	8,   // 216: ApbMultiArrayDataCondRead.comp:type_name -> COMP_type
-	1,   // 217: ApbMultiArrayDataCondRead.compareType:type_name -> MultiArrayType
-	193, // 218: ApbMVRegPartialRead.single:type_name -> ApbMVRegSingleRead
-	7,   // 219: ApbDatePartialRead.dataReadType:type_name -> READ_type
-	196, // 220: ApbPartialReadResp.set:type_name -> ApbSetPartialReadResp
-	197, // 221: ApbPartialReadResp.map:type_name -> ApbMapPartialReadResp
-	199, // 222: ApbPartialReadResp.topk:type_name -> ApbTopkPartialReadResp
-	198, // 223: ApbPartialReadResp.avg:type_name -> ApbAvgPartialReadResp
-	207, // 224: ApbPartialReadResp.paircounter:type_name -> ApbPairCounterPartialReadResp
-	208, // 225: ApbPartialReadResp.arraycounter:type_name -> ApbArrayCounterPartialReadResp
-	209, // 226: ApbPartialReadResp.multiarray:type_name -> ApbMultiArrayPartialReadResp
-	216, // 227: ApbPartialReadResp.mvreg:type_name -> ApbMVRegPartialReadResp
-	218, // 228: ApbPartialReadResp.date:type_name -> ApbDatePartialReadResp
-	200, // 229: ApbSetPartialReadResp.lookup:type_name -> ApbSetLookupReadResp
-	201, // 230: ApbSetPartialReadResp.nelems:type_name -> ApbSetNElemsReadResp
-	202, // 231: ApbMapPartialReadResp.getvalue:type_name -> ApbMapGetValueResp
-	203, // 232: ApbMapPartialReadResp.haskey:type_name -> ApbMapHasKeyReadResp
-	204, // 233: ApbMapPartialReadResp.getkeys:type_name -> ApbMapGetKeysReadResp
-	205, // 234: ApbMapPartialReadResp.getvalues:type_name -> ApbMapGetValuesResp
-	206, // 235: ApbAvgPartialReadResp.getfull:type_name -> ApbAvgGetFullReadResp
-	34,  // 236: ApbTopkPartialReadResp.pairs:type_name -> ApbGetTopkResp
-	109, // 237: ApbMapGetValueResp.value:type_name -> ApbReadObjectResp
-	0,   // 238: ApbMapGetValueResp.crdttype:type_name -> CRDT_type
-	7,   // 239: ApbMapGetValueResp.parttype:type_name -> READ_type
-	202, // 240: ApbMapGetValuesResp.values:type_name -> ApbMapGetValueResp
-	1,   // 241: ApbMultiArrayPartialReadResp.type:type_name -> MultiArrayType
-	210, // 242: ApbMultiArrayPartialReadResp.ints:type_name -> ApbMultiArrayIntResp
-	211, // 243: ApbMultiArrayPartialReadResp.floats:type_name -> ApbMultiArrayFloatResp
-	212, // 244: ApbMultiArrayPartialReadResp.data:type_name -> ApbMultiArrayDataResp
-	213, // 245: ApbMultiArrayPartialReadResp.avgs:type_name -> ApbMultiArrayAvgResp
-	214, // 246: ApbMultiArrayPartialReadResp.single:type_name -> ApbMultiArraySingleResp
-	215, // 247: ApbMultiArrayPartialReadResp.dataAndSingle:type_name -> ApbMultiArrayDataAndSingleResp
-	217, // 248: ApbMVRegPartialReadResp.single:type_name -> ApbMVRegSingleResp
-	219, // 249: ApbDatePartialReadResp.full:type_name -> ApbDateFullResp
-	220, // 250: ApbDatePartialReadResp.time:type_name -> ApbTimeResp
-	221, // 251: ApbDatePartialReadResp.dateOnly:type_name -> ApbDateOnlyResp
-	222, // 252: ApbDatePartialReadResp.timestamp:type_name -> ApbTimestampResp
-	253, // [253:253] is the sub-list for method output_type
-	253, // [253:253] is the sub-list for method input_type
-	253, // [253:253] is the sub-list for extension type_name
-	253, // [253:253] is the sub-list for extension extendee
-	0,   // [0:253] is the sub-list for field type_name
+	52,  // 18: ApbMultiArrayUpdate.intUpd:type_name -> ApbMultiArrayIntUpdate
+	53,  // 19: ApbMultiArrayUpdate.floatUpd:type_name -> ApbMultiArrayFloatUpdate
+	54,  // 20: ApbMultiArrayUpdate.dataUpd:type_name -> ApbMultiArrayDataUpdate
+	55,  // 21: ApbMultiArrayUpdate.avgUpd:type_name -> ApbMultiArrayAvgUpdate
+	73,  // 22: ApbMultiArrayUpdate.multiUpd:type_name -> ApbMultiArrayMultiUpdate
+	56,  // 23: ApbMultiArrayUpdate.sizeUpd:type_name -> ApbMultiArraySetSizeUpdate
+	57,  // 24: ApbMultiArrayIntUpdate.inc:type_name -> ApbMultiArrayIntInc
+	58,  // 25: ApbMultiArrayIntUpdate.incSingle:type_name -> ApbMultiArrayIntIncSingle
+	59,  // 26: ApbMultiArrayIntUpdate.incPos:type_name -> ApbMultiArrayIntIncPositions
+	60,  // 27: ApbMultiArrayIntUpdate.incRange:type_name -> ApbMultiArrayIntIncRange
+	61,  // 28: ApbMultiArrayFloatUpdate.inc:type_name -> ApbMultiArrayFloatInc
+	62,  // 29: ApbMultiArrayFloatUpdate.incSingle:type_name -> ApbMultiArrayFloatIncSingle
+	63,  // 30: ApbMultiArrayFloatUpdate.incPos:type_name -> ApbMultiArrayFloatIncPositions
+	64,  // 31: ApbMultiArrayFloatUpdate.incRange:type_name -> ApbMultiArrayFloatIncRange
+	65,  // 32: ApbMultiArrayDataUpdate.set:type_name -> ApbMultiArrayDataSet
+	66,  // 33: ApbMultiArrayDataUpdate.setSingle:type_name -> ApbMultiArrayDataSetSingle
+	67,  // 34: ApbMultiArrayDataUpdate.setPos:type_name -> ApbMultiArrayDataSetPositions
+	68,  // 35: ApbMultiArrayDataUpdate.setRange:type_name -> ApbMultiArrayDataSetRange
+	69,  // 36: ApbMultiArrayAvgUpdate.inc:type_name -> ApbMultiArrayAvgInc
+	70,  // 37: ApbMultiArrayAvgUpdate.incSingle:type_name -> ApbMultiArrayAvgIncSingle
+	71,  // 38: ApbMultiArrayAvgUpdate.incPos:type_name -> ApbMultiArrayAvgIncPositions
+	72,  // 39: ApbMultiArrayAvgUpdate.incRange:type_name -> ApbMultiArrayAvgIncRange
+	76,  // 40: ApbDateUpdate.set:type_name -> ApbDateSet
+	77,  // 41: ApbDateUpdate.dateSet:type_name -> ApbDateOnlySet
+	78,  // 42: ApbDateUpdate.timeSet:type_name -> ApbTimeOnlySet
+	83,  // 43: ApbDateUpdate.setMS:type_name -> ApbSetMS
+	79,  // 44: ApbDateUpdate.inc:type_name -> ApbDateInc
+	80,  // 45: ApbDateUpdate.dateInc:type_name -> ApbDateOnlyInc
+	81,  // 46: ApbDateUpdate.timeInc:type_name -> ApbTimeOnlyInc
+	84,  // 47: ApbDateUpdate.incMS:type_name -> ApbIncMS
+	82,  // 48: ApbDateUpdate.initialize:type_name -> ApbDateInitialize
+	0,   // 49: ApbBoundObject.type:type_name -> CRDT_type
+	89,  // 50: ApbReadObjects.boundobjects:type_name -> ApbBoundObject
+	89,  // 51: ApbUpdateOp.boundobject:type_name -> ApbBoundObject
+	92,  // 52: ApbUpdateOp.operation:type_name -> ApbUpdateOperation
+	12,  // 53: ApbUpdateOperation.counterop:type_name -> ApbCounterUpdate
+	16,  // 54: ApbUpdateOperation.setop:type_name -> ApbSetUpdate
+	18,  // 55: ApbUpdateOperation.regop:type_name -> ApbRegUpdate
+	41,  // 56: ApbUpdateOperation.bcounterop:type_name -> ApbBoundCounterUpdate
+	22,  // 57: ApbUpdateOperation.mapop:type_name -> ApbMapUpdate
+	28,  // 58: ApbUpdateOperation.resetop:type_name -> ApbCrdtReset
+	26,  // 59: ApbUpdateOperation.flagop:type_name -> ApbFlagUpdate
+	32,  // 60: ApbUpdateOperation.topkinitop:type_name -> ApbTopKInit
+	39,  // 61: ApbUpdateOperation.maxminop:type_name -> ApbMaxMinUpdate
+	30,  // 62: ApbUpdateOperation.topkrmvop:type_name -> ApbTopkRmvUpdate
+	31,  // 63: ApbUpdateOperation.topkop:type_name -> ApbTopkUpdate
+	35,  // 64: ApbUpdateOperation.leaderboardop:type_name -> ApbLeaderboardUpdate
+	37,  // 65: ApbUpdateOperation.avgop:type_name -> ApbAverageUpdate
+	14,  // 66: ApbUpdateOperation.counterfloatop:type_name -> ApbCounterFloatUpdate
+	42,  // 67: ApbUpdateOperation.paircounterop:type_name -> ApbPairCounterUpdate
+	44,  // 68: ApbUpdateOperation.arraycounterop:type_name -> ApbArrayCounterUpdate
+	51,  // 69: ApbUpdateOperation.multiarrayop:type_name -> ApbMultiArrayUpdate
+	75,  // 70: ApbUpdateOperation.dateop:type_name -> ApbDateUpdate
+	86,  // 71: ApbUpdateOperation.noop:type_name -> ApbNoOpUpdate
+	91,  // 72: ApbUpdateObjects.updates:type_name -> ApbUpdateOp
+	88,  // 73: ApbStartTransaction.properties:type_name -> ApbTxnProperties
+	94,  // 74: ApbStaticUpdateObjects.transaction:type_name -> ApbStartTransaction
+	91,  // 75: ApbStaticUpdateObjects.updates:type_name -> ApbUpdateOp
+	94,  // 76: ApbStaticReadObjects.transaction:type_name -> ApbStartTransaction
+	89,  // 77: ApbStaticReadObjects.objects:type_name -> ApbBoundObject
+	13,  // 78: ApbReadObjectResp.counter:type_name -> ApbGetCounterResp
+	17,  // 79: ApbReadObjectResp.set:type_name -> ApbGetSetResp
+	19,  // 80: ApbReadObjectResp.reg:type_name -> ApbGetRegResp
+	20,  // 81: ApbReadObjectResp.mvreg:type_name -> ApbGetMVRegResp
+	24,  // 82: ApbReadObjectResp.map:type_name -> ApbGetMapResp
+	27,  // 83: ApbReadObjectResp.flag:type_name -> ApbGetFlagResp
+	40,  // 84: ApbReadObjectResp.maxmin:type_name -> ApbGetMaxMinResp
+	33,  // 85: ApbReadObjectResp.topk:type_name -> ApbGetTopkResp
+	36,  // 86: ApbReadObjectResp.leadb:type_name -> ApbGetLeaderboardResp
+	38,  // 87: ApbReadObjectResp.avg:type_name -> ApbGetAverageResp
+	15,  // 88: ApbReadObjectResp.counterfloat:type_name -> ApbGetCounterFloatResp
+	43,  // 89: ApbReadObjectResp.paircounter:type_name -> ApbGetPairCounterResp
+	50,  // 90: ApbReadObjectResp.arraycounter:type_name -> ApbGetArrayCounterResp
+	74,  // 91: ApbReadObjectResp.multiarray:type_name -> ApbGetMultiArrayResp
+	85,  // 92: ApbReadObjectResp.date:type_name -> ApbGetDateResp
+	186, // 93: ApbReadObjectResp.partread:type_name -> ApbPartialReadResp
+	87,  // 94: ApbReadObjectResp.noop:type_name -> ApbGetNoOpResp
+	100, // 95: ApbReadObjectsResp.objects:type_name -> ApbReadObjectResp
+	101, // 96: ApbStaticReadObjectsResp.objects:type_name -> ApbReadObjectsResp
+	102, // 97: ApbStaticReadObjectsResp.committime:type_name -> ApbCommitResp
+	111, // 98: ApbNewTrigger.source:type_name -> ApbTriggerInfo
+	111, // 99: ApbNewTrigger.target:type_name -> ApbTriggerInfo
+	89,  // 100: ApbTriggerInfo.obj:type_name -> ApbBoundObject
+	110, // 101: ApbGetTriggersReply.mapping:type_name -> ApbNewTrigger
+	110, // 102: ApbGetTriggersReply.genericMapping:type_name -> ApbNewTrigger
+	5,   // 103: ApbTypedSQL.type:type_name -> SQL_Type
+	117, // 104: ApbTypedSQL.createTable:type_name -> ApbSQLCreateTable
+	118, // 105: ApbTypedSQL.createIndex:type_name -> ApbSQLCreateIndex
+	119, // 106: ApbTypedSQL.createView:type_name -> ApbSQLCreateView
+	120, // 107: ApbTypedSQL.insert:type_name -> ApbSQLInsert
+	121, // 108: ApbTypedSQL.update:type_name -> ApbSQLUpdate
+	122, // 109: ApbTypedSQL.delete:type_name -> ApbSQLDelete
+	123, // 110: ApbTypedSQL.drop:type_name -> ApbSQLDrop
+	124, // 111: ApbTypedSQL.query:type_name -> ApbSQLQuery
+	2,   // 112: ApbSQLCreateTable.rowPolicy:type_name -> ROW_Policy
+	4,   // 113: ApbSQLCreateTable.datatypes:type_name -> SQL_Datatype
+	3,   // 114: ApbSQLCreateTable.colPolicies:type_name -> COL_Policy
+	125, // 115: ApbSQLCreateTable.invariants:type_name -> ApbSQLInvariant
+	126, // 116: ApbSQLInvariant.primaryKey:type_name -> ApbSQLPrimaryKey
+	127, // 117: ApbSQLInvariant.foreignKey:type_name -> ApbSQLForeignKey
+	126, // 118: ApbSQLInvariant.unique:type_name -> ApbSQLPrimaryKey
+	128, // 119: ApbSQLInvariant.check:type_name -> ApbSQLCheck
+	7,   // 120: ApbSQLCheck.conditionType:type_name -> COMP_type
+	89,  // 121: ApbRead.fullreads:type_name -> ApbBoundObject
+	131, // 122: ApbRead.partialreads:type_name -> ApbPartialRead
+	89,  // 123: ApbStaticRead.fullreads:type_name -> ApbBoundObject
+	131, // 124: ApbStaticRead.partialreads:type_name -> ApbPartialRead
+	94,  // 125: ApbStaticRead.transaction:type_name -> ApbStartTransaction
+	89,  // 126: ApbPartialRead.object:type_name -> ApbBoundObject
+	6,   // 127: ApbPartialRead.readtype:type_name -> READ_type
+	132, // 128: ApbPartialRead.args:type_name -> ApbPartialReadArgs
+	134, // 129: ApbPartialReadArgs.set:type_name -> ApbSetPartialRead
+	135, // 130: ApbPartialReadArgs.map:type_name -> ApbMapPartialRead
+	136, // 131: ApbPartialReadArgs.topk:type_name -> ApbTopkPartialRead
+	137, // 132: ApbPartialReadArgs.avg:type_name -> ApbAvgPartialRead
+	133, // 133: ApbPartialReadArgs.process:type_name -> ApbProcessRead
+	138, // 134: ApbPartialReadArgs.paircounter:type_name -> ApbPairCounterPartialRead
+	139, // 135: ApbPartialReadArgs.arraycounter:type_name -> ApbArrayCounterPartialRead
+	140, // 136: ApbPartialReadArgs.multiarray:type_name -> ApbMultiArrayPartialRead
+	183, // 137: ApbPartialReadArgs.mvreg:type_name -> ApbMVRegPartialRead
+	185, // 138: ApbPartialReadArgs.date:type_name -> ApbDatePartialRead
+	131, // 139: ApbProcessRead.prereads:type_name -> ApbPartialRead
+	8,   // 140: ApbProcessRead.aggregationtype:type_name -> AGGR_type
+	131, // 141: ApbProcessRead.postreads:type_name -> ApbPartialRead
+	141, // 142: ApbSetPartialRead.lookup:type_name -> ApbSetLookupRead
+	142, // 143: ApbSetPartialRead.nelems:type_name -> ApbSetNElemsRead
+	143, // 144: ApbMapPartialRead.getvalue:type_name -> ApbMapGetValueRead
+	144, // 145: ApbMapPartialRead.haskey:type_name -> ApbMapHasKeyRead
+	145, // 146: ApbMapPartialRead.getkeys:type_name -> ApbMapGetKeysRead
+	146, // 147: ApbMapPartialRead.getvalues:type_name -> ApbMapGetValuesRead
+	148, // 148: ApbMapPartialRead.getallvalues:type_name -> ApbMapGetAllValuesRead
+	149, // 149: ApbMapPartialRead.condread:type_name -> ApbMapCondRead
+	150, // 150: ApbMapPartialRead.condallread:type_name -> ApbMapAllCondRead
+	152, // 151: ApbMapPartialRead.exceptread:type_name -> ApbMapExceptRead
+	151, // 152: ApbMapPartialRead.exceptcondread:type_name -> ApbMapExceptCondRead
+	147, // 153: ApbMapPartialRead.aggregateread:type_name -> ApbMapAggregateRead
+	153, // 154: ApbMapPartialRead.exceptsingleread:type_name -> ApbMapExceptSingleRead
+	154, // 155: ApbMapPartialRead.exceptcondsingleread:type_name -> ApbMapExceptCondSingleRead
+	166, // 156: ApbTopkPartialRead.getn:type_name -> ApbTopkGetNRead
+	167, // 157: ApbTopkPartialRead.getabovevalue:type_name -> ApbTopkAboveValueRead
+	168, // 158: ApbAvgPartialRead.getfull:type_name -> ApbAvgFullRead
+	169, // 159: ApbPairCounterPartialRead.first:type_name -> ApbPairCounterFirstRead
+	170, // 160: ApbPairCounterPartialRead.second:type_name -> ApbPairCounterSecondRead
+	171, // 161: ApbArrayCounterPartialRead.single:type_name -> ApbArrayCounterSingleRead
+	172, // 162: ApbArrayCounterPartialRead.sub:type_name -> ApbArrayCounterSubRead
+	173, // 163: ApbArrayCounterPartialRead.except:type_name -> ApbArrayCounterExceptRead
+	174, // 164: ApbArrayCounterPartialRead.exceptRange:type_name -> ApbArrayCounterExceptRangeRead
+	1,   // 165: ApbMultiArrayPartialRead.types:type_name -> MultiArrayType
+	175, // 166: ApbMultiArrayPartialRead.full:type_name -> ApbMultiArrayFullRead
+	176, // 167: ApbMultiArrayPartialRead.pos:type_name -> ApbMultiArrayPosRead
+	177, // 168: ApbMultiArrayPartialRead.range:type_name -> ApbMultiArrayRangeRead
+	178, // 169: ApbMultiArrayPartialRead.sub:type_name -> ApbMultiArraySubRead
+	179, // 170: ApbMultiArrayPartialRead.cond:type_name -> ApbMultiArrayCondRead
+	180, // 171: ApbMultiArrayPartialRead.datacond:type_name -> ApbMultiArrayDataCondRead
+	181, // 172: ApbMultiArrayPartialRead.custom:type_name -> ApbMultiArrayCustomRead
+	165, // 173: ApbMapGetValueRead.args:type_name -> ApbMapEmbPartialArgs
+	165, // 174: ApbMapGetValuesRead.args:type_name -> ApbMapEmbPartialArgs
+	8,   // 175: ApbMapAggregateRead.aggregationtype:type_name -> AGGR_type
+	155, // 176: ApbMapAggregateRead.condarg:type_name -> ApbMapCondArgs
+	165, // 177: ApbMapAggregateRead.args:type_name -> ApbMapEmbPartialArgs
+	165, // 178: ApbMapGetAllValuesRead.args:type_name -> ApbMapEmbPartialArgs
+	155, // 179: ApbMapCondRead.condargs:type_name -> ApbMapCondArgs
+	155, // 180: ApbMapAllCondRead.condarg:type_name -> ApbMapCondArgs
+	165, // 181: ApbMapAllCondRead.args:type_name -> ApbMapEmbPartialArgs
+	155, // 182: ApbMapExceptCondRead.condarg:type_name -> ApbMapCondArgs
+	165, // 183: ApbMapExceptRead.args:type_name -> ApbMapEmbPartialArgs
+	165, // 184: ApbMapExceptSingleRead.args:type_name -> ApbMapEmbPartialArgs
+	155, // 185: ApbMapExceptCondSingleRead.condarg:type_name -> ApbMapCondArgs
+	156, // 186: ApbMapCondArgs.intcomp:type_name -> ApbCondIntCompare
+	157, // 187: ApbMapCondArgs.floatcomp:type_name -> ApbCondFloatCompare
+	158, // 188: ApbMapCondArgs.boolcomp:type_name -> ApbCondBoolCompare
+	159, // 189: ApbMapCondArgs.stringcomp:type_name -> ApbCondStringCompare
+	160, // 190: ApbMapCondArgs.bytescomp:type_name -> ApbCondBytesCompare
+	161, // 191: ApbMapCondArgs.mapcomp:type_name -> ApbCondMapCompare
+	162, // 192: ApbMapCondArgs.nocomp:type_name -> ApbCondGetNoCompare
+	163, // 193: ApbMapCondArgs.intvarcomp:type_name -> ApbCondIntVarCompare
+	164, // 194: ApbMapCondArgs.floatvarcomp:type_name -> ApbCondFloatVarCompare
+	7,   // 195: ApbCondIntCompare.comp:type_name -> COMP_type
+	7,   // 196: ApbCondFloatCompare.comp:type_name -> COMP_type
+	155, // 197: ApbCondMapCompare.value:type_name -> ApbMapCondArgs
+	7,   // 198: ApbCondIntVarCompare.comp:type_name -> COMP_type
+	7,   // 199: ApbCondFloatVarCompare.comp:type_name -> COMP_type
+	0,   // 200: ApbMapEmbPartialArgs.type:type_name -> CRDT_type
+	6,   // 201: ApbMapEmbPartialArgs.readtype:type_name -> READ_type
+	132, // 202: ApbMapEmbPartialArgs.args:type_name -> ApbPartialReadArgs
+	182, // 203: ApbMultiArraySubRead.indexes:type_name -> IntSlice
+	7,   // 204: ApbMultiArrayCondRead.comp:type_name -> COMP_type
+	1,   // 205: ApbMultiArrayCondRead.compareType:type_name -> MultiArrayType
+	7,   // 206: ApbMultiArrayDataCondRead.comp:type_name -> COMP_type
+	1,   // 207: ApbMultiArrayDataCondRead.compareType:type_name -> MultiArrayType
+	184, // 208: ApbMVRegPartialRead.single:type_name -> ApbMVRegSingleRead
+	6,   // 209: ApbDatePartialRead.dataReadType:type_name -> READ_type
+	187, // 210: ApbPartialReadResp.set:type_name -> ApbSetPartialReadResp
+	188, // 211: ApbPartialReadResp.map:type_name -> ApbMapPartialReadResp
+	190, // 212: ApbPartialReadResp.topk:type_name -> ApbTopkPartialReadResp
+	189, // 213: ApbPartialReadResp.avg:type_name -> ApbAvgPartialReadResp
+	198, // 214: ApbPartialReadResp.paircounter:type_name -> ApbPairCounterPartialReadResp
+	199, // 215: ApbPartialReadResp.arraycounter:type_name -> ApbArrayCounterPartialReadResp
+	200, // 216: ApbPartialReadResp.multiarray:type_name -> ApbMultiArrayPartialReadResp
+	207, // 217: ApbPartialReadResp.mvreg:type_name -> ApbMVRegPartialReadResp
+	209, // 218: ApbPartialReadResp.date:type_name -> ApbDatePartialReadResp
+	191, // 219: ApbSetPartialReadResp.lookup:type_name -> ApbSetLookupReadResp
+	192, // 220: ApbSetPartialReadResp.nelems:type_name -> ApbSetNElemsReadResp
+	193, // 221: ApbMapPartialReadResp.getvalue:type_name -> ApbMapGetValueResp
+	194, // 222: ApbMapPartialReadResp.haskey:type_name -> ApbMapHasKeyReadResp
+	195, // 223: ApbMapPartialReadResp.getkeys:type_name -> ApbMapGetKeysReadResp
+	196, // 224: ApbMapPartialReadResp.getvalues:type_name -> ApbMapGetValuesResp
+	197, // 225: ApbAvgPartialReadResp.getfull:type_name -> ApbAvgGetFullReadResp
+	33,  // 226: ApbTopkPartialReadResp.pairs:type_name -> ApbGetTopkResp
+	100, // 227: ApbMapGetValueResp.value:type_name -> ApbReadObjectResp
+	0,   // 228: ApbMapGetValueResp.crdttype:type_name -> CRDT_type
+	6,   // 229: ApbMapGetValueResp.parttype:type_name -> READ_type
+	193, // 230: ApbMapGetValuesResp.values:type_name -> ApbMapGetValueResp
+	1,   // 231: ApbMultiArrayPartialReadResp.type:type_name -> MultiArrayType
+	201, // 232: ApbMultiArrayPartialReadResp.ints:type_name -> ApbMultiArrayIntResp
+	202, // 233: ApbMultiArrayPartialReadResp.floats:type_name -> ApbMultiArrayFloatResp
+	203, // 234: ApbMultiArrayPartialReadResp.data:type_name -> ApbMultiArrayDataResp
+	204, // 235: ApbMultiArrayPartialReadResp.avgs:type_name -> ApbMultiArrayAvgResp
+	205, // 236: ApbMultiArrayPartialReadResp.single:type_name -> ApbMultiArraySingleResp
+	206, // 237: ApbMultiArrayPartialReadResp.dataAndSingle:type_name -> ApbMultiArrayDataAndSingleResp
+	208, // 238: ApbMVRegPartialReadResp.single:type_name -> ApbMVRegSingleResp
+	210, // 239: ApbDatePartialReadResp.full:type_name -> ApbDateFullResp
+	211, // 240: ApbDatePartialReadResp.time:type_name -> ApbTimeResp
+	212, // 241: ApbDatePartialReadResp.dateOnly:type_name -> ApbDateOnlyResp
+	213, // 242: ApbDatePartialReadResp.timestamp:type_name -> ApbTimestampResp
+	243, // [243:243] is the sub-list for method output_type
+	243, // [243:243] is the sub-list for method input_type
+	243, // [243:243] is the sub-list for extension type_name
+	243, // [243:243] is the sub-list for extension extendee
+	0,   // [0:243] is the sub-list for field type_name
 }
 
 func init() { file_antidote_proto_init() }
@@ -14283,8 +13774,8 @@ func file_antidote_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_antidote_proto_rawDesc), len(file_antidote_proto_rawDesc)),
-			NumEnums:      11,
-			NumMessages:   212,
+			NumEnums:      10,
+			NumMessages:   204,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

@@ -5,41 +5,6 @@ import (
 	"potionDB/crdt/proto"
 )
 
-// Methods for NoOp, the rest of the operations are in noOpMusicApp.go
-func (a *NoOp) OpEqual(o Operation) bool {
-	_, ok := o.(*NoOp)
-	return ok
-}
-
-func (a *NoOp) Copy() Operation {
-	return &NoOp{}
-}
-
-func (a *NoOp) Precondition(state State) bool {
-	return true
-}
-
-func (a *NoOp) BlockGenerator() []Operation {
-	return nil
-}
-
-func (a *NoOp) Process(state State) {
-}
-
-func (a *NoOp) String() string {
-	return "Operation: NoOp"
-}
-
-func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
-	updType := proto.NoOpStateType_GENERIC
-	noOpUpd := proto.ApbNoOpGenericUpdate{NoOp: &proto.ApbNoOpGenericNoOp{}}
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{Type: &updType, GenericUpd: &noOpUpd}}
-}
-
-func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	return a
-}
-
 // Node struct for graph
 type Node struct {
 	Value  Call
