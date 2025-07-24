@@ -90,7 +90,7 @@ func (d *MusicState) serialize() (bytes [][]byte) {
 		for _, album := range artistAlbums.Keys() {
 			bytes = append(bytes, []byte(album))
 		}
-		bytes = append(bytes, []byte("<>"))
+		bytes = append(bytes, []byte(endtag))
 	}
 	return bytes
 }
