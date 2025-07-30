@@ -1,5 +1,5 @@
 # Debian image with go installed and configured at /go
-FROM golang:1.20.4 as base
+FROM golang:1.22.4 as base
 
 # Adding src and building
 COPY potionDB/potionDB/go.mod potionDB/potionDB/go.sum /go/potionDB/potionDB/

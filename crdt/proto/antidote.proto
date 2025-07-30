@@ -556,7 +556,7 @@ message ApbNoOpUpdate {
 
 message ApbGetNoOpResp {
     required int32 stateType = 1;
-    repeated bytes params = 2; //the generic type data stored for the state
+    repeated bytes stateData = 2; //the generic type data stored for the state
 }
 
 //--------------------------------------------------------------

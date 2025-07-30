@@ -185,3 +185,8 @@ func PrintMusicState(d *MusicState) {
 		}
 	}
 }
+
+//Assumes the format is correct, only for checking test output and debugging
+func PrintMusicStateFromBytes(stateByte [][]byte) {
+	PrintMusicState((&MusicState{}).Deserialize(stateByte).(*MusicState))
+}

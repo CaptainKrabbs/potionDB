@@ -109,7 +109,7 @@ func (crdt *NoOpCrdt) applyDownstream(downstreamArgs DownstreamArguments) (effec
 	isNoOp := false
 	// for v ∈ V
 	for i := range crdt.NodeArr {
-		compVal := crdt.NodeArr[i].Value.Time.Compare(newCall.Time)
+		compVal := crdt.NodeArr[i].Value.Clock.Compare(newCall.Clock)
 		// if v ≺ c then
 		//fmt.Println("Checking:", crdt.NodeArr[i].Value.Op, newCall.Op, compVal)			//DEBUG PRINT
 		if compVal < 0 {
@@ -165,5 +165,32 @@ func (crdt *NoOpCrdt) undoEffect(effect *Effect) {
 }
 
 func (crdt *NoOpCrdt) notifyRebuiltComplete(currTs *clocksi.Timestamp) {}
+
+func (crdt *NoOpCrdt) ToProtoState() (protobuf *proto.ProtoState) {
+	stateType := crdt.StateContent.GetStateType()
+	nodeArr := make([]*proto.ProtoNoOpNode, len(crdt.NodeArr))
+	//Convert the nodeArray that represents the graph
+	for i, node := range crdt.NodeArr {
+		edges := make([]int32, len(node.Edges))
+		for j, num := range node.Edges {
+			edges[j] = int32(num)
+		}
+		nodeArr[i] = &proto.ProtoNoOpNode{Value: node.Value.ToReplicatorObj().GetNoOpOp(), Edges: edges, IsNoOp: &node.IsNoOp}
+	}
+	return &proto.ProtoState{NoOp: &proto.ProtoNoOpState{StateType: &stateType, StateData: crdt.StateContent.Serialize(), NodeArr: nodeArr}}
+}
+
+func (crdt *NoOpCrdt) FromProtoState(protobuf *proto.ProtoState, ts *clocksi.Timestamp, replicaID int16) (newCRDT CRDT) {
+	nodeArr := make([]Node, len(protobuf.GetNoOp().GetNodeArr()))
+	//Build the nodeArray that represents the graph
+	for i, protoNode := range protobuf.GetNoOp().GetNodeArr() {
+		edges := make([]int, len(protoNode.GetEdges()))
+		for j, num := range protoNode.GetEdges() {
+			edges[j] = int(num)
+		}
+		nodeArr[i] = Node{Value: (&Call{}).protoToCall(&proto.ProtoOpDownstream{NoOpOp: protoNode.GetValue()}), Edges: edges, IsNoOp: protoNode.GetIsNoOp()}
+	}
+	return (&NoOpCrdt{StateContent: GetNoOpStateFromProto(protobuf.GetNoOp()), NodeArr: nodeArr}).initializeFromSnapshot(ts, replicaID)
+}
 
 func (crdt *NoOpCrdt) GetCRDT() CRDT { return crdt }

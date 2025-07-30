@@ -5199,7 +5199,7 @@ func (x *ApbNoOpUpdate) GetParams() [][]byte {
 type ApbGetNoOpResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	StateType     *int32                 `protobuf:"varint,1,req,name=stateType" json:"stateType,omitempty"`
-	Params        [][]byte               `protobuf:"bytes,2,rep,name=params" json:"params,omitempty"` //the generic type data stored for the state
+	StateData     [][]byte               `protobuf:"bytes,2,rep,name=stateData" json:"stateData,omitempty"` //the generic type data stored for the state
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5241,9 +5241,9 @@ func (x *ApbGetNoOpResp) GetStateType() int32 {
 	return 0
 }
 
-func (x *ApbGetNoOpResp) GetParams() [][]byte {
+func (x *ApbGetNoOpResp) GetStateData() [][]byte {
 	if x != nil {
-		return x.Params
+		return x.StateData
 	}
 	return nil
 }
@@ -12628,10 +12628,10 @@ const file_antidote_proto_rawDesc = "" +
 	"\rApbNoOpUpdate\x12\x1c\n" +
 	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x16\n" +
 	"\x06opCode\x18\x02 \x02(\x05R\x06opCode\x12\x16\n" +
-	"\x06params\x18\x03 \x03(\fR\x06params\"F\n" +
+	"\x06params\x18\x03 \x03(\fR\x06params\"L\n" +
 	"\x0eApbGetNoOpResp\x12\x1c\n" +
-	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x16\n" +
-	"\x06params\x18\x02 \x03(\fR\x06params\"L\n" +
+	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x1c\n" +
+	"\tstateData\x18\x02 \x03(\fR\tstateData\"L\n" +
 	"\x10ApbTxnProperties\x12\x1d\n" +
 	"\n" +
 	"read_write\x18\x01 \x01(\rR\treadWrite\x12\x19\n" +

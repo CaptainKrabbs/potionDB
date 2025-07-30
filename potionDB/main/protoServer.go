@@ -258,8 +258,6 @@ func main() {
 	//select {}
 	readyChan <- true //No longer need the other goroutine to look into cancelChan.
 
-	crdt.TestNoOpCrdt4()
-
 	fmt.Printf("[PS]Listening for shutdown signal at %s...\n", time.Now().String())
 	sig := <-cancelChan
 	fmt.Printf("[PS]Caught signal %v at %s: sending shut down signal to TM.\n", sig, time.Now().String())

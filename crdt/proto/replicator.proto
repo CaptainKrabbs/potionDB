@@ -68,6 +68,7 @@ message ProtoOpDownstream {
     optional ProtoSetWDateDownstream setWDateOp = 21;
     optional ProtoIncWDateDownstream incWDateOp = 22;
     optional ProtoSetOnlyDateDownstream dateOnlyDateOp = 23;
+    optional ProtoNoOpDownstream noOpOp = 24;
 }
 
 message ProtoCounterDownstream {
@@ -507,6 +508,12 @@ message ProtoSetOnlyDateDownstream {
     required int32 replicaID = 3;
 }
 
+message ProtoNoOpDownstream { //represents contents of a call
+    required ApbNoOpUpdate op = 1;
+    repeated ApbNoOpUpdate blocks = 2;
+    required ProtoClock clock = 3;
+}
+
 /*****REPLICA MANAGEMENT*****/
 
 message ProtoRemoteID {
@@ -531,10 +538,9 @@ message ProtoReplyJoin {
     required string replicaIP = 4;  //Used to know which connection to request the buckets from.
 }
 
-/*
 message ProtoClock {
     repeated ProtoStableClock entries = 1;
-}*/
+}
 
 message ProtoRequestBucket {
     repeated string buckets = 1;
@@ -584,6 +590,7 @@ message ProtoState {
     optional ProtoSetWDateState setWDate = 19;
     optional ProtoIncWDateState incWDate = 20;
     optional ProtoSetOnlyDateState setOnlyDate = 21;
+    optional ProtoNoOpState noOp = 22;
 }
 
 message ProtoReplyEmpty {
@@ -724,4 +731,16 @@ message ProtoSetOnlyDateState {
     required int64 dateTs = 1;
     required int64 writeTs = 2;
     required int32 replicaID = 3;
+}
+
+message ProtoNoOpState {
+    required int32 stateType = 1;
+    repeated bytes stateData = 2; //the generic type data stored for the state
+    repeated ProtoNoOpNode nodeArr= 3;
+}
+
+message ProtoNoOpNode {
+    required ProtoNoOpDownstream value = 1;
+    repeated int32 edges= 2;
+    required bool isNoOp = 3;
 }
