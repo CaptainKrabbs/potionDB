@@ -97,7 +97,7 @@ func (a *AddArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *AddArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return AddArtist{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx])}
+	return &AddArtist{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx])}
 }
 
 // --------------------RmvArtist
@@ -164,7 +164,7 @@ func (a *RmvArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *RmvArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return RmvArtist{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx])}
+	return &RmvArtist{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx])}
 }
 
 // --------------------UpdArtist
@@ -230,7 +230,7 @@ func (a *UpdArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *UpdArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return UpdArtist{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx])}
+	return &UpdArtist{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx])}
 }
 
 // --------------------AddAlbum
@@ -306,7 +306,7 @@ func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *AddAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return AddAlbum{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(*&protobuf.Noop.Params[AlbumNameParamIdx])}
+	return &AddAlbum{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(protobuf.Noop.Params[AlbumNameParamIdx])}
 }
 
 // --------------------RmvAlbum
@@ -375,12 +375,12 @@ func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *RmvAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return RmvAlbum{ArtistName: Artist(*&protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(*&protobuf.Noop.Params[AlbumNameParamIdx])}
+	return &RmvAlbum{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(protobuf.Noop.Params[AlbumNameParamIdx])}
 }
 
 // operations
-func (args AddArtist) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
-func (args RmvArtist) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
-func (args UpdArtist) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
-func (args AddAlbum) GetCRDTType() proto.CRDTType  { return proto.CRDTType_NOOP }
-func (args RmvAlbum) GetCRDTType() proto.CRDTType  { return proto.CRDTType_NOOP }
+func (args *AddArtist) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+func (args *RmvArtist) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+func (args *UpdArtist) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+func (args *AddAlbum) GetCRDTType() proto.CRDTType  { return proto.CRDTType_NOOP }
+func (args *RmvAlbum) GetCRDTType() proto.CRDTType  { return proto.CRDTType_NOOP }

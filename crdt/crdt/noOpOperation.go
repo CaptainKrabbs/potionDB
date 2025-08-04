@@ -9,12 +9,13 @@ import (
 
 // Operations
 type Operation interface {
+	UpdateArguments
+	ProtoUpd
 	OpEqual(Operation)bool
 	Copy()Operation
 	Precondition(state State) bool
 	BlockGenerator() []Operation
 	Process(state State)
-	GetCRDTType() proto.CRDTType
 	String() string    //Returns formatted string of name and parameters
 	GetOpName() string //Returns formatted string of name
 
@@ -23,8 +24,6 @@ type Operation interface {
 	GetOpCode() int32
 	GetNumParams() int
 	GetSerializedParams() [][]byte
-	FromUpdateObject(*proto.ApbUpdateOperation) UpdateArguments
-	ToUpdateObject() *proto.ApbUpdateOperation
 }
 
 type OperationAbstract struct {
@@ -219,7 +218,6 @@ func (a *NoOp) GetNumParams() (num int) {
 func (a *NoOp) GetSerializedParams() ([][]byte) {
 	return [][]byte{}
 }
-
 
 func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 	return ToUpdateObjectFrame(a)

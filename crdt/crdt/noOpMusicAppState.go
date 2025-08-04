@@ -13,12 +13,10 @@ type Artist string
 type Album string
 
 type NoOpState interface {
+	State
+	ProtoState
 	Copy() NoOpState
 	GetStateType() int32
-	GetCRDTType() proto.CRDTType
-	GetREADType() proto.READType
-	ToReadResp() *proto.ApbReadObjectResp
-	FromReadResp(*proto.ApbReadObjectResp) State
 
 	Serialize() [][]byte
 	Deserialize([][]byte) NoOpState

@@ -55,7 +55,6 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//O state deves ser tu proprio a definir, apenas precisa de implementar dois métodos:
 	//GetCRDTType() proto.CRDTType:		{return proto.CRDTType_NOOP}
 	//GetREADType() proto.READType: 	{return proto.READType_FULL}
-
 	crdtCpy := crdt.Copy().(*NoOpCrdt)
 	stateCpy := crdtCpy.StateContent
 	//perform operations on app db

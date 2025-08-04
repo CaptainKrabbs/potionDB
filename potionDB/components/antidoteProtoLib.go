@@ -179,7 +179,7 @@ func ReceiveProto(in io.Reader) (msgType byte, protobuf pb.Message, err error) {
 	msgType, msgBuf, err := readProtoFromNetwork(in)
 
 	if err != nil {
-		//fmt.Printf("[WARNING]Returning error on ReceiveProto. MsgType: %v, msgBuf: %v, err: %s\n", msgType, msgBuf, err)
+		fmt.Printf("[WARNING]Returning error on ReceiveProto. MsgType: %v, msgBuf: %v, err: %s\n", msgType, msgBuf, err)
 		if err != io.EOF {
 			fmt.Printf("[WARNING]Returning error on ReceiveProto. MsgType: %v, msgBuf: %v, err: %s\n", msgType, msgBuf, err)
 		}
