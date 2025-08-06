@@ -1,9 +1,11 @@
 package crdt
 
 import (
+	"encoding/binary"
 	"fmt"
 	"potionDB/crdt/clocksi"
 	"potionDB/crdt/proto"
+
 	pb "google.golang.org/protobuf/proto"
 )
 
@@ -11,16 +13,16 @@ import (
 type Operation interface {
 	UpdateArguments
 	ProtoUpd
-	OpEqual(Operation)bool
-	Copy()Operation
+	OpEqual(Operation) bool
+	Copy() Operation
 	Precondition(state State) bool
 	BlockGenerator() []Operation
-	Process(state State)
+	Process(state NoOpState) NoOpState
 	String() string    //Returns formatted string of name and parameters
 	GetOpName() string //Returns formatted string of name
 
 	//for protobuf
-	GetStateType() int32
+	GetStateCode() int32
 	GetOpCode() int32
 	GetNumParams() int
 	GetSerializedParams() [][]byte
@@ -29,19 +31,19 @@ type Operation interface {
 type OperationAbstract struct {
 }
 
-//Auxiliary method for ToUpdateObject that does the entire logic since method logic is always the same
+// Auxiliary method for ToUpdateObject that does the entire logic since method logic is always the same
 func ToUpdateObjectFrame(a Operation) (protobuf *proto.ApbUpdateOperation) {
-	stateType := a.GetStateType()
+	stateCode := a.GetStateCode()
 	opCode := a.GetOpCode()
 	params := a.GetSerializedParams()
-	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{StateType: &stateType, OpCode: &opCode, Params: params}}
+	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{StateCode: &stateCode, OpCode: &opCode, Params: params}}
 }
 
-//Auxiliary method for FromUpdateObject
+// Auxiliary method for FromUpdateObject
 func ValidateOpProtobuf(a Operation, protobuf *proto.ApbUpdateOperation) (ok bool) {
 	//Fail conditions: wrong
-	if a.GetStateType() != *protobuf.GetNoop().StateType {
-		fmt.Printf("Error occurred: Invalid State type for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetStateType(), protobuf.GetNoop().StateType)
+	if a.GetStateCode() != *protobuf.GetNoop().StateCode {
+		fmt.Printf("Error occurred: Invalid State type for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetStateCode(), protobuf.GetNoop().StateCode)
 	} else if a.GetOpCode() != *protobuf.GetNoop().OpCode {
 		fmt.Printf("Error occurred: Invalid Operation code for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetOpCode(), protobuf.GetNoop().OpCode)
 	} else if a.GetNumParams() != len(protobuf.GetNoop().GetParams()) {
@@ -54,30 +56,30 @@ func ValidateOpProtobuf(a Operation, protobuf *proto.ApbUpdateOperation) (ok boo
 
 // Message struct that stores an operation and those it blocks
 type Message struct {
-	Op Operation
+	Op         Operation
 	BlockedOps []Operation
 }
 
-func (msg Message) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP}
-func (msg Message) MustReplicate() bool { return false}
+func (msg Message) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+func (msg Message) MustReplicate() bool         { return false }
 
-//Converts a message to a call struct given a vector Timestamp
+// Converts a message to a call struct given a vector Timestamp
 func (m Message) ToCall(clock clocksi.Timestamp) Call {
 	return Call{Op: m.Op, BlockedOps: m.BlockedOps, Clock: clock}
 }
 
-//struct that stores an operation, those it blocks and a vector clock Timestamp
+// struct that stores an operation, those it blocks and a vector clock Timestamp
 type Call struct {
-	Op Operation
+	Op         Operation
 	BlockedOps []Operation
-	Clock clocksi.Timestamp
+	Clock      clocksi.Timestamp
 }
 
-func (call *Call) Copy()Call {
+func (call *Call) Copy() Call {
 	newCall := Call{
-		Op: call.Op.Copy(),
+		Op:         call.Op.Copy(),
 		BlockedOps: make([]Operation, len(call.BlockedOps)),
-		Clock : call.Clock.Copy(),
+		Clock:      call.Clock.Copy(),
 	}
 	for i, blockOp := range call.BlockedOps {
 		newCall.BlockedOps[i] = blockOp.Copy()
@@ -85,12 +87,12 @@ func (call *Call) Copy()Call {
 	return newCall
 }
 
-//check if any blocking operation matches the one in the call.
+// check if any blocking operation matches the one in the call.
 //
-//if so early return true.
-//otherwise false.
+// if so early return true.
+// otherwise false.
 func (actualCall *Call) Blocks(otherCall *Call) bool {
-	for i := range(actualCall.BlockedOps) {
+	for i := range actualCall.BlockedOps {
 		if (actualCall.BlockedOps[i]).OpEqual(otherCall.Op) {
 			return true
 		}
@@ -98,7 +100,7 @@ func (actualCall *Call) Blocks(otherCall *Call) bool {
 	return false
 }
 
-//Aux functions to convert clocks
+// Aux functions to convert clocks
 func clocksiToProtoClock(ts *clocksi.ClockSiTimestamp) (protoClock *proto.ProtoClock) {
 	entries := make([]*proto.ProtoStableClock, len(ts.VectorClock))
 	i := 0
@@ -116,21 +118,24 @@ func clocksiFromProtoClock(protoClock *proto.ProtoClock) (ts *clocksi.ClockSiTim
 	}
 	return &clocksi.ClockSiTimestamp{VectorClock: vectorClock}
 }
+
 //end of aux functions to convert clocks
 
 func (call *Call) ToReplicatorObj() (protobuf *proto.ProtoOpDownstream) {
 	convClock, ok := call.Clock.(clocksi.ClockSiTimestamp)
-	if !ok {return nil}
+	if !ok {
+		return nil
+	}
 
 	clock := clocksiToProtoClock(&convClock)
 	blocks := make([]*proto.ApbNoOpUpdate, len(call.BlockedOps))
 	for i, op := range call.BlockedOps {
 		blocks[i] = op.ToUpdateObject().Noop
 	}
-	return &proto.ProtoOpDownstream{NoOpOp: &proto.ProtoNoOpDownstream{Op : call.Op.ToUpdateObject().Noop, Blocks: blocks, Clock: clock}}
+	return &proto.ProtoOpDownstream{NoOpOp: &proto.ProtoNoOpDownstream{Op: call.Op.ToUpdateObject().Noop, Blocks: blocks, Clock: clock}}
 }
 
-//Aux function to get individual op
+// Aux function to get individual op
 func opFromProtoOpDownstream(protobuf *proto.ApbNoOpUpdate) (op Operation) {
 	op, ok := updateNoOpProtoToAntidoteUpdate(&proto.ApbUpdateOperation{Noop: protobuf}).(Operation)
 	if !ok {
@@ -162,15 +167,14 @@ func (call *Call) FromReplicatorObj(protobuf *proto.ProtoOpDownstream) Downstrea
 	return call.protoToCall(protobuf)
 }
 
-func (call Call) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP}
-func (call Call) MustReplicate() bool {return false}
+func (call Call) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+func (call Call) MustReplicate() bool         { return true }
 
 //----------NoOp
 
 var (
-	GenericStateType int32 = 0
-	NoOpCode int32 = 0
-	NoOpNumParams = 0
+	NoOpCode      int32 = 0
+	NoOpNumParams       = 0
 )
 
 // Methods for NoOp, the rest of the operations are in noOpMusicApp.go
@@ -191,20 +195,20 @@ func (a *NoOp) BlockGenerator() []Operation {
 	return nil
 }
 
-func (a *NoOp) Process(state State) {
+func (a *NoOp) Process(state NoOpState) NoOpState {
+	return state
 }
 
 func (a *NoOp) String() string {
 	return "Operation: NoOp"
 }
 
-
 func (a *NoOp) GetOpName() string {
 	return "NoOp"
 }
 
-func (a *NoOp) GetStateType() (num int32) {
-	return GenericStateType
+func (a *NoOp) GetStateCode() (num int32) {
+	return DecisionStateCode
 }
 
 func (a *NoOp) GetOpCode() (num int32) {
@@ -215,7 +219,7 @@ func (a *NoOp) GetNumParams() (num int) {
 	return NoOpNumParams
 }
 
-func (a *NoOp) GetSerializedParams() ([][]byte) {
+func (a *NoOp) GetSerializedParams() [][]byte {
 	return [][]byte{}
 }
 
@@ -224,6 +228,90 @@ func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
+	if !ValidateOpProtobuf(a, protobuf) {
+		return NoOp{}
+	}
 	return NoOp{}
+}
+
+//----------DetermineState
+
+var (
+	DetermineStateOpCode    int32 = 1
+	DetermineStateNumParams       = 1
+	NewStateCodeParamIdx          = 0
+)
+
+type DetermineStateOp struct {
+	NewStateCode int32
+}
+
+func (args *DetermineStateOp) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
+
+// Methods for NoOp, the rest of the operations are in noOpMusicApp.go
+func (a *DetermineStateOp) OpEqual(o Operation) bool {
+	oConv, ok := o.(*DetermineStateOp)
+	return ok && a.NewStateCode == oConv.NewStateCode
+}
+
+func (a *DetermineStateOp) Copy() Operation {
+	return &DetermineStateOp{NewStateCode: a.NewStateCode}
+}
+
+func (a *DetermineStateOp) Precondition(state State) bool {
+	return true
+}
+
+func (a *DetermineStateOp) BlockGenerator() []Operation {
+	return nil
+}
+
+func (a *DetermineStateOp) Process(state NoOpState) NoOpState {
+	switch a.NewStateCode {
+	case (&MusicState{}).GetStateCode():
+		newState := &MusicState{}
+		newState.Initialize()
+		return newState
+	}
+	return state
+}
+
+func (a *DetermineStateOp) String() string {
+	return "Operation: DetermineState"
+}
+
+func (a *DetermineStateOp) GetOpName() string {
+	return "DetermineState"
+}
+
+func (a *DetermineStateOp) GetStateCode() (num int32) {
+	return DecisionStateCode
+}
+
+func (a *DetermineStateOp) GetOpCode() (num int32) {
+	return DetermineStateOpCode
+}
+
+func (a *DetermineStateOp) GetNumParams() (num int) {
+	return DetermineStateNumParams
+}
+
+func (a *DetermineStateOp) GetSerializedParams() [][]byte {
+	var buf = make([]byte, 4)
+	binary.BigEndian.PutUint32(buf[0:4], uint32(a.NewStateCode))
+
+	var bytes = make([][]byte, DetermineStateNumParams)
+	bytes[NewStateCodeParamIdx] = buf
+	return bytes
+}
+
+func (a *DetermineStateOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
+	return ToUpdateObjectFrame(a)
+}
+
+func (a *DetermineStateOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
+	if !ValidateOpProtobuf(a, protobuf) {
+		return NoOp{}
+	}
+	return &DetermineStateOp{NewStateCode: int32(binary.BigEndian.Uint32(protobuf.GetNoop().GetParams()[NewStateCodeParamIdx]))}
 }

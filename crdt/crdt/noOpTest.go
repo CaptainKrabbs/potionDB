@@ -27,7 +27,8 @@ func TestNoOpCrdt1() {
 	fmt.Println("\n Test start TestNoOpCrdt1")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = InitMusicState()
+	crdt.StateContent = &MusicState{}
+	crdt.StateContent.Initialize()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {updArtistSamRep1, rmvArtistSamRep2}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -47,7 +48,8 @@ func TestNoOpCrdt2() {
 	fmt.Println("\n Test start TestNoOpCrdt2")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = InitMusicState()
+	crdt.StateContent = &MusicState{}
+	crdt.StateContent.Initialize()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -67,7 +69,8 @@ func TestNoOpCrdt3() {
 	fmt.Println("\n Test start TestNoOpCrdt3")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = InitMusicState()
+	crdt.StateContent = &MusicState{}
+	crdt.StateContent.Initialize()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}, {addArtistFredRep2}, {addAlbumFredRep2}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{
@@ -89,7 +92,8 @@ func TestNoOpCrdt4() {
 	fmt.Println("\n Test start TestNoOpCrdt4")
 
 	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = InitMusicState()
+	crdt.StateContent = &MusicState{}
+	crdt.StateContent.Initialize()
 	var opOrderR1 = [][]ReplicaOp{{addArtistSamRep1, addArtistFredRep2}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}, {addAlbumFredRep2}}
 	//create specific timestamps
 	var timestamps = []clocksi.ClockSiTimestamp{

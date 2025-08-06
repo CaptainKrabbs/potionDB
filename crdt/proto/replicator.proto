@@ -734,7 +734,7 @@ message ProtoSetOnlyDateState {
 }
 
 message ProtoNoOpState {
-    required int32 stateType = 1;
+    required int32 stateCode = 1;
     repeated bytes stateData = 2; //the generic type data stored for the state
     repeated ProtoNoOpNode nodeArr= 3;
 }

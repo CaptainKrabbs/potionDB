@@ -249,8 +249,10 @@ func ReadRespProtoToAntidoteState(protobuf *proto.ApbReadObjectResp, crdtType pr
 	case proto.CRDTType_MVREG:
 		state = MVRegisterState{}.FromReadResp(protobuf)
 	case proto.CRDTType_NOOP:
-		switch *protobuf.Noop.StateType {
-		case MusicStateType:
+		switch *protobuf.Noop.StateCode {
+		case DecisionStateCode:
+			state = (&DecisionState{}).FromReadResp(protobuf)
+		case MusicStateCode:
 			state = (&MusicState{}).FromReadResp(protobuf)
 		}
 	}
@@ -416,6 +418,8 @@ func StateProtoToCrdt(protobuf *proto.ProtoState, crdtType proto.CRDTType, ts *c
 		crdt = (&MultiArrayCrdt{}).FromProtoState(protobuf, ts, replicaID)
 	case proto.CRDTType_MVREG:
 		crdt = (&MVRegisterCrdt{}).FromProtoState(protobuf, ts, replicaID)
+	case proto.CRDTType_NOOP:
+		crdt = (&NoOpCrdt{}).FromProtoState(protobuf, ts, replicaID)
 	}
 	return
 }
@@ -649,9 +653,11 @@ func updateMultiArrayProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation) (
 
 func updateNoOpProtoToAntidoteUpdate(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	noOp := protobuf.GetNoop()
-	noOpType := noOp.GetStateType()
+	noOpType := noOp.GetStateCode()
 	switch noOpType {
-	case MusicStateType:
+	case (&DecisionState{}).GetStateCode():
+		return (&DecisionState{}).FromUpdateObject(protobuf)
+	case (&MusicState{}).GetStateCode():
 		return (&MusicState{}).FromUpdateObject(protobuf)
 	default:
 		fmt.Printf("[CRDTProtoLib][ERROR]Unknown type of no op update. NoOpType: %+v.\n", noOpType)

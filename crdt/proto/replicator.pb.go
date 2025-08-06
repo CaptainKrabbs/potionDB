@@ -7401,7 +7401,7 @@ func (x *ProtoSetOnlyDateState) GetReplicaID() int32 {
 
 type ProtoNoOpState struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StateType     *int32                 `protobuf:"varint,1,req,name=stateType" json:"stateType,omitempty"`
+	StateCode     *int32                 `protobuf:"varint,1,req,name=stateCode" json:"stateCode,omitempty"`
 	StateData     [][]byte               `protobuf:"bytes,2,rep,name=stateData" json:"stateData,omitempty"` //the generic type data stored for the state
 	NodeArr       []*ProtoNoOpNode       `protobuf:"bytes,3,rep,name=nodeArr" json:"nodeArr,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -7438,9 +7438,9 @@ func (*ProtoNoOpState) Descriptor() ([]byte, []int) {
 	return file_replicator_proto_rawDescGZIP(), []int{123}
 }
 
-func (x *ProtoNoOpState) GetStateType() int32 {
-	if x != nil && x.StateType != nil {
-		return *x.StateType
+func (x *ProtoNoOpState) GetStateCode() int32 {
+	if x != nil && x.StateCode != nil {
+		return *x.StateCode
 	}
 	return 0
 }
@@ -8062,7 +8062,7 @@ const file_replicator_proto_rawDesc = "" +
 	"\awriteTs\x18\x02 \x02(\x03R\awriteTs\x12\x1c\n" +
 	"\treplicaID\x18\x03 \x02(\x05R\treplicaID\"v\n" +
 	"\x0eProtoNoOpState\x12\x1c\n" +
-	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x1c\n" +
+	"\tstateCode\x18\x01 \x02(\x05R\tstateCode\x12\x1c\n" +
 	"\tstateData\x18\x02 \x03(\fR\tstateData\x12(\n" +
 	"\anodeArr\x18\x03 \x03(\v2\x0e.ProtoNoOpNodeR\anodeArr\"i\n" +
 	"\rProtoNoOpNode\x12*\n" +

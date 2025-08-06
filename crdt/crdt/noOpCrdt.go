@@ -1,6 +1,7 @@
 package crdt
 
 import (
+	"fmt"
 	"potionDB/crdt/clocksi"
 	"potionDB/crdt/proto"
 )
@@ -37,7 +38,7 @@ func (crdt *NoOpCrdt) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP 
 func (crdt *NoOpCrdt) Initialize(startTs *clocksi.Timestamp, replicaID int16) (newCrdt CRDT) {
 	return &NoOpCrdt{
 		CRDTVM:       (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
-		StateContent: nil,
+		StateContent: &DecisionState{},
 		NodeArr:      []Node{},
 	}
 }
@@ -60,7 +61,7 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//perform operations on app db
 	for _, node := range crdt.NodeArr {
 		if !node.IsNoOp {
-			node.Value.Op.Process(stateCpy)
+			stateCpy = node.Value.Op.Process(stateCpy)
 		}
 	}
 	return stateCpy
@@ -70,7 +71,10 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 func (crdt *NoOpCrdt) Update(args UpdateArguments) (downstreamArgs DownstreamArguments) {
 	//TODO: Este e o prepare. Faz aqui o codigo necessario para gerar os blocks e afins.
 	//No final, deves retornar a operacao a ser executada na fase do effect.
-	op := args.(Operation)
+	op, ok := args.(Operation)
+	if !ok {
+		fmt.Println("[NoOpCrdt][ERROR]UpdateArguments not of type Operation. args:", args)
+	}
 	//Check precondition for a copy of the crdt.
 	if op.Precondition(crdt.Read(nil, nil)) { //TODO: potentially modify this if ReadArguments become relevant
 		downstreamArgs = Message{Op: op, BlockedOps: op.BlockGenerator()}
@@ -93,8 +97,14 @@ func (crdt *NoOpCrdt) Downstream(updTs clocksi.Timestamp, downstreamArgs Downstr
 	//Expected that the argument here is a Message struct, which needs to be converted into a call
 	msg := downstreamArgs.(Message)
 	//Check that operation isn't NoOp (precondition was validated)
-	if _, ok := msg.Op.(*NoOp); !ok {
-		crdt.applyDownstream(msg.ToCall(updTs)) //Podes alterar esta se precisares
+	if _, ok := msg.Op.(*NoOp); ok {
+		return nil //evitar nesting
+	}
+	_, stateOk := crdt.StateContent.(*DecisionState)
+	if op, opOk := msg.Op.(*DetermineStateOp); stateOk && opOk {
+		crdt.StateContent = op.Process(crdt.StateContent) //StateContent is implemented by struct pointers so the state will be modified.
+	} else {
+		crdt.applyDownstream(msg.ToCall(updTs))
 	}
 	return nil
 }
@@ -138,9 +148,15 @@ func (crdt *NoOpCrdt) IsOperationWellTyped(args UpdateArguments) (ok bool, err e
 }
 
 func (crdt *NoOpCrdt) Copy() (copyCRDT InversibleCRDT) {
+	var stateCopy NoOpState
+	if crdt.StateContent == nil {
+		stateCopy = nil
+	} else {
+		stateCopy = crdt.StateContent.Copy()
+	}
 	newCRDT := NoOpCrdt{
 		CRDTVM:       crdt.CRDTVM.copy(),
-		StateContent: crdt.StateContent.Copy(),
+		StateContent: stateCopy,
 		NodeArr:      make([]Node, len(crdt.NodeArr)),
 		//Adicionar outros campos que pertençam ao NoOpCrdt
 	}
@@ -166,7 +182,7 @@ func (crdt *NoOpCrdt) undoEffect(effect *Effect) {
 func (crdt *NoOpCrdt) notifyRebuiltComplete(currTs *clocksi.Timestamp) {}
 
 func (crdt *NoOpCrdt) ToProtoState() (protobuf *proto.ProtoState) {
-	stateType := crdt.StateContent.GetStateType()
+	stateType := crdt.StateContent.GetStateCode()
 	nodeArr := make([]*proto.ProtoNoOpNode, len(crdt.NodeArr))
 	//Convert the nodeArray that represents the graph
 	for i, node := range crdt.NodeArr {
@@ -176,7 +192,7 @@ func (crdt *NoOpCrdt) ToProtoState() (protobuf *proto.ProtoState) {
 		}
 		nodeArr[i] = &proto.ProtoNoOpNode{Value: node.Value.ToReplicatorObj().GetNoOpOp(), Edges: edges, IsNoOp: &node.IsNoOp}
 	}
-	return &proto.ProtoState{NoOp: &proto.ProtoNoOpState{StateType: &stateType, StateData: crdt.StateContent.Serialize(), NodeArr: nodeArr}}
+	return &proto.ProtoState{NoOp: &proto.ProtoNoOpState{StateCode: &stateType, StateData: crdt.StateContent.Serialize(), NodeArr: nodeArr}}
 }
 
 func (crdt *NoOpCrdt) FromProtoState(protobuf *proto.ProtoState, ts *clocksi.Timestamp, replicaID int16) (newCRDT CRDT) {

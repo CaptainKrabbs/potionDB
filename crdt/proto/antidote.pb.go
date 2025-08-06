@@ -5138,7 +5138,7 @@ func (x *ApbGetDateResp) GetSecond() int32 {
 
 type ApbNoOpUpdate struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StateType     *int32                 `protobuf:"varint,1,req,name=stateType" json:"stateType,omitempty"`
+	StateCode     *int32                 `protobuf:"varint,1,req,name=stateCode" json:"stateCode,omitempty"`
 	OpCode        *int32                 `protobuf:"varint,2,req,name=opCode" json:"opCode,omitempty"`
 	Params        [][]byte               `protobuf:"bytes,3,rep,name=params" json:"params,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -5175,9 +5175,9 @@ func (*ApbNoOpUpdate) Descriptor() ([]byte, []int) {
 	return file_antidote_proto_rawDescGZIP(), []int{76}
 }
 
-func (x *ApbNoOpUpdate) GetStateType() int32 {
-	if x != nil && x.StateType != nil {
-		return *x.StateType
+func (x *ApbNoOpUpdate) GetStateCode() int32 {
+	if x != nil && x.StateCode != nil {
+		return *x.StateCode
 	}
 	return 0
 }
@@ -5198,7 +5198,7 @@ func (x *ApbNoOpUpdate) GetParams() [][]byte {
 
 type ApbGetNoOpResp struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	StateType     *int32                 `protobuf:"varint,1,req,name=stateType" json:"stateType,omitempty"`
+	StateCode     *int32                 `protobuf:"varint,1,req,name=stateCode" json:"stateCode,omitempty"`
 	StateData     [][]byte               `protobuf:"bytes,2,rep,name=stateData" json:"stateData,omitempty"` //the generic type data stored for the state
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -5234,9 +5234,9 @@ func (*ApbGetNoOpResp) Descriptor() ([]byte, []int) {
 	return file_antidote_proto_rawDescGZIP(), []int{77}
 }
 
-func (x *ApbGetNoOpResp) GetStateType() int32 {
-	if x != nil && x.StateType != nil {
-		return *x.StateType
+func (x *ApbGetNoOpResp) GetStateCode() int32 {
+	if x != nil && x.StateCode != nil {
+		return *x.StateCode
 	}
 	return 0
 }
@@ -12626,11 +12626,11 @@ const file_antidote_proto_rawDesc = "" +
 	"\x06minute\x18\x05 \x02(\x05R\x06minute\x12\x16\n" +
 	"\x06second\x18\x06 \x02(\x05R\x06second\"]\n" +
 	"\rApbNoOpUpdate\x12\x1c\n" +
-	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x16\n" +
+	"\tstateCode\x18\x01 \x02(\x05R\tstateCode\x12\x16\n" +
 	"\x06opCode\x18\x02 \x02(\x05R\x06opCode\x12\x16\n" +
 	"\x06params\x18\x03 \x03(\fR\x06params\"L\n" +
 	"\x0eApbGetNoOpResp\x12\x1c\n" +
-	"\tstateType\x18\x01 \x02(\x05R\tstateType\x12\x1c\n" +
+	"\tstateCode\x18\x01 \x02(\x05R\tstateCode\x12\x1c\n" +
 	"\tstateData\x18\x02 \x03(\fR\tstateData\"L\n" +
 	"\x10ApbTxnProperties\x12\x1d\n" +
 	"\n" +

@@ -126,6 +126,8 @@ func InitializeCrdt(crdtType proto.CRDTType, replicaID int16) (newCrdt CRDT) {
 		newCrdt = (&MultiArrayCrdt{}).Initialize(nil, replicaID)
 	case proto.CRDTType_MVREG:
 		newCrdt = (&MVRegisterCrdt{}).Initialize(nil, replicaID)
+	case proto.CRDTType_NOOP:
+		newCrdt = (&NoOpCrdt{}).Initialize(nil, replicaID)
 	default:
 		newCrdt = nil
 	}

@@ -7,7 +7,6 @@ import (
 )
 
 var (
-	MusicStateType int32 = 1
 	//Operation codes for App using MusicState as NoOpState
 	AddArtistOpCode int32 = 1
 	RmvArtistOpCode int32 = 2
@@ -60,10 +59,11 @@ func (a *AddArtist) BlockGenerator() []Operation {
 	return nil
 }
 
-func (a *AddArtist) Process(state State) {
+func (a *AddArtist) Process(state NoOpState) NoOpState {
 	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
 		artistAlbums.State[a.ArtistName] = hashset.New[Album]()
 	}
+	return state
 }
 
 func (a *AddArtist) String() string {
@@ -74,8 +74,8 @@ func (a *AddArtist) GetOpName() string {
 	return "AddArtist"
 }
 
-func (a *AddArtist) GetStateType() (num int32) {
-	return MusicStateType
+func (a *AddArtist) GetStateCode() (num int32) {
+	return MusicStateCode
 }
 
 func (a *AddArtist) GetOpCode() (num int32) {
@@ -87,7 +87,9 @@ func (a *AddArtist) GetNumParams() (num int) {
 }
 
 func (a *AddArtist) GetSerializedParams() ([][]byte) {
-	return [][]byte{[]byte(a.ArtistName)}
+	var bytes = make([][]byte, a.GetNumParams())
+	bytes[ArtistNameParamIdx] = []byte(a.ArtistName)
+	return bytes
 }
 
 
@@ -97,7 +99,7 @@ func (a *AddArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *AddArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return &AddArtist{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx])}
+	return &AddArtist{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx])}
 }
 
 // --------------------RmvArtist
@@ -127,10 +129,11 @@ func (a *RmvArtist) BlockGenerator() []Operation {
 	return nil
 }
 
-func (a *RmvArtist) Process(state State) {
+func (a *RmvArtist) Process(state NoOpState) NoOpState {
 	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
 		delete(artistAlbums.State, a.ArtistName)
 	}
+	return state
 }
 
 func (a *RmvArtist) String() string {
@@ -141,8 +144,8 @@ func (a *RmvArtist) GetOpName() string {
 	return "RmvArtist"
 }
 
-func (a *RmvArtist) GetStateType() (num int32) {
-	return MusicStateType
+func (a *RmvArtist) GetStateCode() (num int32) {
+	return MusicStateCode
 }
 
 func (a *RmvArtist) GetOpCode() (num int32) {
@@ -154,7 +157,9 @@ func (a *RmvArtist) GetNumParams() (num int) {
 }
 
 func (a *RmvArtist) GetSerializedParams() ([][]byte) {
-	return [][]byte{[]byte(a.ArtistName)}
+	var bytes = make([][]byte, a.GetNumParams())
+	bytes[ArtistNameParamIdx] = []byte(a.ArtistName)
+	return bytes
 }
 
 
@@ -164,7 +169,7 @@ func (a *RmvArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *RmvArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return &RmvArtist{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx])}
+	return &RmvArtist{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx])}
 }
 
 // --------------------UpdArtist
@@ -196,7 +201,8 @@ func (a *UpdArtist) BlockGenerator() []Operation {
 	}
 }
 
-func (a *UpdArtist) Process(state State) {
+func (a *UpdArtist) Process(state NoOpState) NoOpState {
+	return state
 }
 
 func (a *UpdArtist) String() string {
@@ -207,8 +213,8 @@ func (a *UpdArtist) GetOpName() string {
 	return "UpdArtist"
 }
 
-func (a *UpdArtist) GetStateType() (num int32) {
-	return MusicStateType
+func (a *UpdArtist) GetStateCode() (num int32) {
+	return MusicStateCode
 }
 
 func (a *UpdArtist) GetOpCode() (num int32) {
@@ -220,7 +226,9 @@ func (a *UpdArtist) GetNumParams() (num int) {
 }
 
 func (a *UpdArtist) GetSerializedParams() ([][]byte) {
-	return [][]byte{[]byte(a.ArtistName)}
+	var bytes = make([][]byte, a.GetNumParams())
+	bytes[ArtistNameParamIdx] = []byte(a.ArtistName)
+	return bytes
 }
 
 
@@ -230,7 +238,7 @@ func (a *UpdArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *UpdArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return &UpdArtist{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx])}
+	return &UpdArtist{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx])}
 }
 
 // --------------------AddAlbum
@@ -270,10 +278,11 @@ func (a *AddAlbum) BlockGenerator() []Operation {
 	}
 }
 
-func (a *AddAlbum) Process(state State) {
+func (a *AddAlbum) Process(state NoOpState) NoOpState {
 	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
 		artistAlbums.State[a.ArtistName].Add(a.AlbumName)
 	}
+	return state
 }
 
 func (a *AddAlbum) String() string {
@@ -284,8 +293,8 @@ func (a *AddAlbum) GetOpName() string {
 	return "AddAlbum"
 }
 
-func (a *AddAlbum) GetStateType() (num int32) {
-	return MusicStateType
+func (a *AddAlbum) GetStateCode() (num int32) {
+	return MusicStateCode
 }
 
 func (a *AddAlbum) GetOpCode() (num int32) {
@@ -297,7 +306,10 @@ func (a *AddAlbum) GetNumParams() (num int) {
 }
 
 func (a *AddAlbum) GetSerializedParams() ([][]byte) {
-	return [][]byte{[]byte(a.ArtistName), []byte(a.AlbumName)}
+	var bytes = make([][]byte, a.GetNumParams())
+	bytes[ArtistNameParamIdx] = []byte(a.ArtistName)
+	bytes[AlbumNameParamIdx] = []byte(a.AlbumName)
+	return bytes
 }
 
 func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
@@ -306,7 +318,7 @@ func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *AddAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return &AddAlbum{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(protobuf.Noop.Params[AlbumNameParamIdx])}
+	return &AddAlbum{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx]), AlbumName: Album(protobuf.GetNoop().GetParams()[AlbumNameParamIdx])}
 }
 
 // --------------------RmvAlbum
@@ -339,10 +351,11 @@ func (a *RmvAlbum) BlockGenerator() []Operation {
 	}
 }
 
-func (a *RmvAlbum) Process(state State) {
+func (a *RmvAlbum) Process(state NoOpState) NoOpState {
 	if artistAlbums, isMusicState := state.(*MusicState); isMusicState {
 		artistAlbums.State[a.ArtistName].Delete(a.AlbumName)
 	}
+	return state
 }
 
 func (a *RmvAlbum) String() string {
@@ -353,8 +366,8 @@ func (a *RmvAlbum) GetOpName() string {
 	return "RmvAlbum"
 }
 
-func (a *RmvAlbum) GetStateType() (num int32) {
-	return MusicStateType
+func (a *RmvAlbum) GetStateCode() (num int32) {
+	return MusicStateCode
 }
 
 func (a *RmvAlbum) GetOpCode() (num int32) {
@@ -366,7 +379,10 @@ func (a *RmvAlbum) GetNumParams() (num int) {
 }
 
 func (a *RmvAlbum) GetSerializedParams() ([][]byte) {
-	return [][]byte{[]byte(a.ArtistName), []byte(a.AlbumName)}
+	var bytes = make([][]byte, a.GetNumParams())
+	bytes[ArtistNameParamIdx] = []byte(a.ArtistName)
+	bytes[AlbumNameParamIdx] = []byte(a.AlbumName)
+	return bytes
 }
 
 func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
@@ -375,7 +391,7 @@ func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 
 func (a *RmvAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
 	if !ValidateOpProtobuf(a, protobuf) {return NoOp{}}
-	return &RmvAlbum{ArtistName: Artist(protobuf.Noop.Params[ArtistNameParamIdx]), AlbumName: Album(protobuf.Noop.Params[AlbumNameParamIdx])}
+	return &RmvAlbum{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx]), AlbumName: Album(protobuf.GetNoop().GetParams()[AlbumNameParamIdx])}
 }
 
 // operations
