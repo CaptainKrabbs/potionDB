@@ -508,10 +508,9 @@ message ProtoSetOnlyDateDownstream {
     required int32 replicaID = 3;
 }
 
-message ProtoNoOpDownstream { //represents contents of a call
+message ProtoNoOpDownstream { //represents contents of a messagez
     required ApbNoOpUpdate op = 1;
     repeated ApbNoOpUpdate blocks = 2;
-    required ProtoClock clock = 3;
 }
 
 /*****REPLICA MANAGEMENT*****/
@@ -739,8 +738,14 @@ message ProtoNoOpState {
     repeated ProtoNoOpNode nodeArr= 3;
 }
 
+message ProtoNoOpCall { //represents contents of a call
+    required ApbNoOpUpdate op = 1;
+    repeated ApbNoOpUpdate blocks = 2;
+    required ProtoClock clock = 3;
+}
+
 message ProtoNoOpNode {
-    required ProtoNoOpDownstream value = 1;
+    required ProtoNoOpCall value = 1;
     repeated int32 edges= 2;
     required bool isNoOp = 3;
 }

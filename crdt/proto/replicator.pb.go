@@ -5081,7 +5081,6 @@ type ProtoNoOpDownstream struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Op            *ApbNoOpUpdate         `protobuf:"bytes,1,req,name=op" json:"op,omitempty"`
 	Blocks        []*ApbNoOpUpdate       `protobuf:"bytes,2,rep,name=blocks" json:"blocks,omitempty"`
-	Clock         *ProtoClock            `protobuf:"bytes,3,req,name=clock" json:"clock,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -5126,13 +5125,6 @@ func (x *ProtoNoOpDownstream) GetOp() *ApbNoOpUpdate {
 func (x *ProtoNoOpDownstream) GetBlocks() []*ApbNoOpUpdate {
 	if x != nil {
 		return x.Blocks
-	}
-	return nil
-}
-
-func (x *ProtoNoOpDownstream) GetClock() *ProtoClock {
-	if x != nil {
-		return x.Clock
 	}
 	return nil
 }
@@ -7459,9 +7451,69 @@ func (x *ProtoNoOpState) GetNodeArr() []*ProtoNoOpNode {
 	return nil
 }
 
+type ProtoNoOpCall struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Op            *ApbNoOpUpdate         `protobuf:"bytes,1,req,name=op" json:"op,omitempty"`
+	Blocks        []*ApbNoOpUpdate       `protobuf:"bytes,2,rep,name=blocks" json:"blocks,omitempty"`
+	Clock         *ProtoClock            `protobuf:"bytes,3,req,name=clock" json:"clock,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ProtoNoOpCall) Reset() {
+	*x = ProtoNoOpCall{}
+	mi := &file_replicator_proto_msgTypes[124]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ProtoNoOpCall) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ProtoNoOpCall) ProtoMessage() {}
+
+func (x *ProtoNoOpCall) ProtoReflect() protoreflect.Message {
+	mi := &file_replicator_proto_msgTypes[124]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ProtoNoOpCall.ProtoReflect.Descriptor instead.
+func (*ProtoNoOpCall) Descriptor() ([]byte, []int) {
+	return file_replicator_proto_rawDescGZIP(), []int{124}
+}
+
+func (x *ProtoNoOpCall) GetOp() *ApbNoOpUpdate {
+	if x != nil {
+		return x.Op
+	}
+	return nil
+}
+
+func (x *ProtoNoOpCall) GetBlocks() []*ApbNoOpUpdate {
+	if x != nil {
+		return x.Blocks
+	}
+	return nil
+}
+
+func (x *ProtoNoOpCall) GetClock() *ProtoClock {
+	if x != nil {
+		return x.Clock
+	}
+	return nil
+}
+
 type ProtoNoOpNode struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Value         *ProtoNoOpDownstream   `protobuf:"bytes,1,req,name=value" json:"value,omitempty"`
+	Value         *ProtoNoOpCall         `protobuf:"bytes,1,req,name=value" json:"value,omitempty"`
 	Edges         []int32                `protobuf:"varint,2,rep,name=edges" json:"edges,omitempty"`
 	IsNoOp        *bool                  `protobuf:"varint,3,req,name=isNoOp" json:"isNoOp,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -7470,7 +7522,7 @@ type ProtoNoOpNode struct {
 
 func (x *ProtoNoOpNode) Reset() {
 	*x = ProtoNoOpNode{}
-	mi := &file_replicator_proto_msgTypes[124]
+	mi := &file_replicator_proto_msgTypes[125]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -7482,7 +7534,7 @@ func (x *ProtoNoOpNode) String() string {
 func (*ProtoNoOpNode) ProtoMessage() {}
 
 func (x *ProtoNoOpNode) ProtoReflect() protoreflect.Message {
-	mi := &file_replicator_proto_msgTypes[124]
+	mi := &file_replicator_proto_msgTypes[125]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7495,10 +7547,10 @@ func (x *ProtoNoOpNode) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ProtoNoOpNode.ProtoReflect.Descriptor instead.
 func (*ProtoNoOpNode) Descriptor() ([]byte, []int) {
-	return file_replicator_proto_rawDescGZIP(), []int{124}
+	return file_replicator_proto_rawDescGZIP(), []int{125}
 }
 
-func (x *ProtoNoOpNode) GetValue() *ProtoNoOpDownstream {
+func (x *ProtoNoOpNode) GetValue() *ProtoNoOpCall {
 	if x != nil {
 		return x.Value
 	}
@@ -7874,11 +7926,10 @@ const file_replicator_proto_rawDesc = "" +
 	"\x1aProtoSetOnlyDateDownstream\x12\x14\n" +
 	"\x05value\x18\x01 \x02(\x03R\x05value\x12\x0e\n" +
 	"\x02ts\x18\x02 \x02(\x03R\x02ts\x12\x1c\n" +
-	"\treplicaID\x18\x03 \x02(\x05R\treplicaID\"\x80\x01\n" +
+	"\treplicaID\x18\x03 \x02(\x05R\treplicaID\"]\n" +
 	"\x13ProtoNoOpDownstream\x12\x1e\n" +
 	"\x02op\x18\x01 \x02(\v2\x0e.ApbNoOpUpdateR\x02op\x12&\n" +
-	"\x06blocks\x18\x02 \x03(\v2\x0e.ApbNoOpUpdateR\x06blocks\x12!\n" +
-	"\x05clock\x18\x03 \x02(\v2\v.ProtoClockR\x05clock\"_\n" +
+	"\x06blocks\x18\x02 \x03(\v2\x0e.ApbNoOpUpdateR\x06blocks\"_\n" +
 	"\rProtoRemoteID\x12\x1c\n" +
 	"\treplicaID\x18\x01 \x02(\x05R\treplicaID\x12\x1c\n" +
 	"\tmyBuckets\x18\x02 \x03(\tR\tmyBuckets\x12\x12\n" +
@@ -8064,9 +8115,13 @@ const file_replicator_proto_rawDesc = "" +
 	"\x0eProtoNoOpState\x12\x1c\n" +
 	"\tstateCode\x18\x01 \x02(\x05R\tstateCode\x12\x1c\n" +
 	"\tstateData\x18\x02 \x03(\fR\tstateData\x12(\n" +
-	"\anodeArr\x18\x03 \x03(\v2\x0e.ProtoNoOpNodeR\anodeArr\"i\n" +
-	"\rProtoNoOpNode\x12*\n" +
-	"\x05value\x18\x01 \x02(\v2\x14.ProtoNoOpDownstreamR\x05value\x12\x14\n" +
+	"\anodeArr\x18\x03 \x03(\v2\x0e.ProtoNoOpNodeR\anodeArr\"z\n" +
+	"\rProtoNoOpCall\x12\x1e\n" +
+	"\x02op\x18\x01 \x02(\v2\x0e.ApbNoOpUpdateR\x02op\x12&\n" +
+	"\x06blocks\x18\x02 \x03(\v2\x0e.ApbNoOpUpdateR\x06blocks\x12!\n" +
+	"\x05clock\x18\x03 \x02(\v2\v.ProtoClockR\x05clock\"c\n" +
+	"\rProtoNoOpNode\x12$\n" +
+	"\x05value\x18\x01 \x02(\v2\x0e.ProtoNoOpCallR\x05value\x12\x14\n" +
 	"\x05edges\x18\x02 \x03(\x05R\x05edges\x12\x16\n" +
 	"\x06isNoOp\x18\x03 \x02(\bR\x06isNoOpB\x15Z\x13potionDB/crdt/proto"
 
@@ -8082,7 +8137,7 @@ func file_replicator_proto_rawDescGZIP() []byte {
 	return file_replicator_proto_rawDescData
 }
 
-var file_replicator_proto_msgTypes = make([]protoimpl.MessageInfo, 131)
+var file_replicator_proto_msgTypes = make([]protoimpl.MessageInfo, 132)
 var file_replicator_proto_goTypes = []any{
 	(*ProtoStableClock)(nil),                           // 0: ProtoStableClock
 	(*ProtoReplicatePart)(nil),                         // 1: ProtoReplicatePart
@@ -8208,17 +8263,18 @@ var file_replicator_proto_goTypes = []any{
 	(*ProtoIncWDateState)(nil),                         // 121: ProtoIncWDateState
 	(*ProtoSetOnlyDateState)(nil),                      // 122: ProtoSetOnlyDateState
 	(*ProtoNoOpState)(nil),                             // 123: ProtoNoOpState
-	(*ProtoNoOpNode)(nil),                              // 124: ProtoNoOpNode
-	nil,                                                // 125: ProtoIncWSetDownstream.SeenIncsEntry
-	nil,                                                // 126: ProtoBoundedCounterState.PermissionsEntry
-	nil,                                                // 127: ProtoBoundedCounterState.DecsEntry
-	nil,                                                // 128: ProtoIncWDateState.IncsEntry
-	nil,                                                // 129: ProtoIncWDateState.CancelsEntry
-	nil,                                                // 130: ProtoIncWDateState.CancelsTsEntry
-	(*ApbBoundObject)(nil),                             // 131: ApbBoundObject
-	(CRDTType)(0),                                      // 132: CRDT_type
-	(MultiArrayType)(0),                                // 133: MultiArrayType
-	(*ApbNoOpUpdate)(nil),                              // 134: ApbNoOpUpdate
+	(*ProtoNoOpCall)(nil),                              // 124: ProtoNoOpCall
+	(*ProtoNoOpNode)(nil),                              // 125: ProtoNoOpNode
+	nil,                                                // 126: ProtoIncWSetDownstream.SeenIncsEntry
+	nil,                                                // 127: ProtoBoundedCounterState.PermissionsEntry
+	nil,                                                // 128: ProtoBoundedCounterState.DecsEntry
+	nil,                                                // 129: ProtoIncWDateState.IncsEntry
+	nil,                                                // 130: ProtoIncWDateState.CancelsEntry
+	nil,                                                // 131: ProtoIncWDateState.CancelsTsEntry
+	(*ApbBoundObject)(nil),                             // 132: ApbBoundObject
+	(CRDTType)(0),                                      // 133: CRDT_type
+	(MultiArrayType)(0),                                // 134: MultiArrayType
+	(*ApbNoOpUpdate)(nil),                              // 135: ApbNoOpUpdate
 }
 var file_replicator_proto_depIdxs = []int32{
 	5,   // 0: ProtoReplicatePart.txn:type_name -> ProtoRemoteTxn
@@ -8226,7 +8282,7 @@ var file_replicator_proto_depIdxs = []int32{
 	4,   // 2: ProtoReplicateTxn.part:type_name -> ProtoNewRemoteTxn
 	6,   // 3: ProtoNewRemoteTxn.upds:type_name -> ProtoDownstreamUpd
 	6,   // 4: ProtoRemoteTxn.upds:type_name -> ProtoDownstreamUpd
-	131, // 5: ProtoDownstreamUpd.keyParams:type_name -> ApbBoundObject
+	132, // 5: ProtoDownstreamUpd.keyParams:type_name -> ApbBoundObject
 	7,   // 6: ProtoDownstreamUpd.op:type_name -> ProtoOpDownstream
 	8,   // 7: ProtoOpDownstream.counterOp:type_name -> ProtoCounterDownstream
 	11,  // 8: ProtoOpDownstream.setOp:type_name -> ProtoSetDownstream
@@ -8266,7 +8322,7 @@ var file_replicator_proto_depIdxs = []int32{
 	30,  // 42: ProtoRWEmbMapDownstream.rems:type_name -> ProtoRWEmbMapRemoves
 	31,  // 43: ProtoRWEmbMapUpdates.upds:type_name -> ProtoEmbMapUpd
 	0,   // 44: ProtoRWEmbMapUpdates.vc:type_name -> ProtoStableClock
-	132, // 45: ProtoEmbMapUpd.type:type_name -> CRDT_type
+	133, // 45: ProtoEmbMapUpd.type:type_name -> CRDT_type
 	7,   // 46: ProtoEmbMapUpd.upd:type_name -> ProtoOpDownstream
 	32,  // 47: ProtoTopSumDownstream.elems:type_name -> ProtoTopSumElement
 	35,  // 48: ProtoFlagDownstream.enableLWW:type_name -> ProtoEnableLWWDownstream
@@ -8284,7 +8340,7 @@ var file_replicator_proto_depIdxs = []int32{
 	51,  // 60: ProtoArrayCounterDownstream.incMulti:type_name -> ProtoArrayCounterIncrementMultiDownstream
 	52,  // 61: ProtoArrayCounterDownstream.incSub:type_name -> ProtoArrayCounterIncrementSubDownstream
 	53,  // 62: ProtoArrayCounterDownstream.size:type_name -> ProtoArraySetSize
-	133, // 63: ProtoMultiArrayDownstream.type:type_name -> MultiArrayType
+	134, // 63: ProtoMultiArrayDownstream.type:type_name -> MultiArrayType
 	55,  // 64: ProtoMultiArrayDownstream.intUpd:type_name -> ProtoMultiArrayIntDownstream
 	56,  // 65: ProtoMultiArrayDownstream.floatUpd:type_name -> ProtoMultiArrayFloatDownstream
 	57,  // 66: ProtoMultiArrayDownstream.dataUpd:type_name -> ProtoMultiArrayDataDownstream
@@ -8311,69 +8367,71 @@ var file_replicator_proto_depIdxs = []int32{
 	81,  // 87: ProtoSetWDateDownstream.setWSet:type_name -> ProtoSetWSetDownstream
 	83,  // 88: ProtoIncWDateDownstream.incWInc:type_name -> ProtoIncWIncDownstream
 	84,  // 89: ProtoIncWDateDownstream.incWSet:type_name -> ProtoIncWSetDownstream
-	125, // 90: ProtoIncWSetDownstream.seenIncs:type_name -> ProtoIncWSetDownstream.SeenIncsEntry
-	134, // 91: ProtoNoOpDownstream.op:type_name -> ApbNoOpUpdate
-	134, // 92: ProtoNoOpDownstream.blocks:type_name -> ApbNoOpUpdate
-	90,  // 93: ProtoNoOpDownstream.clock:type_name -> ProtoClock
-	0,   // 94: ProtoClock.entries:type_name -> ProtoStableClock
-	93,  // 95: ProtoReplyBucket.parts:type_name -> ProtoPartition
-	94,  // 96: ProtoPartition.states:type_name -> ProtoCRDT
-	132, // 97: ProtoCRDT.type:type_name -> CRDT_type
-	95,  // 98: ProtoCRDT.state:type_name -> ProtoState
-	97,  // 99: ProtoState.counter:type_name -> ProtoCounterState
-	99,  // 100: ProtoState.lwwreg:type_name -> ProtoLWWRegState
-	100, // 101: ProtoState.awset:type_name -> ProtoAWSetState
-	101, // 102: ProtoState.ormap:type_name -> ProtoORMapState
-	102, // 103: ProtoState.embmap:type_name -> ProtoEmbMapState
-	105, // 104: ProtoState.maxmin:type_name -> ProtoMaxMinState
-	107, // 105: ProtoState.topkrmv:type_name -> ProtoTopKRmvState
-	106, // 106: ProtoState.avg:type_name -> ProtoAvgState
-	108, // 107: ProtoState.topsum:type_name -> ProtoTopSumState
-	110, // 108: ProtoState.flag:type_name -> ProtoFlagState
-	114, // 109: ProtoState.bcounter:type_name -> ProtoBoundedCounterState
-	109, // 110: ProtoState.topk:type_name -> ProtoTopKState
-	98,  // 111: ProtoState.counterfloat:type_name -> ProtoCounterFloatState
-	115, // 112: ProtoState.pairCounter:type_name -> ProtoPairCounterState
-	116, // 113: ProtoState.arrayCounter:type_name -> ProtoArrayCounterState
-	117, // 114: ProtoState.multiArray:type_name -> ProtoMultiArrayState
-	118, // 115: ProtoState.mvreg:type_name -> ProtoMVRegState
-	119, // 116: ProtoState.simpleDate:type_name -> ProtoSimpleDateState
-	120, // 117: ProtoState.setWDate:type_name -> ProtoSetWDateState
-	121, // 118: ProtoState.incWDate:type_name -> ProtoIncWDateState
-	122, // 119: ProtoState.setOnlyDate:type_name -> ProtoSetOnlyDateState
-	123, // 120: ProtoState.noOp:type_name -> ProtoNoOpState
-	22,  // 121: ProtoAWSetState.elems:type_name -> ProtoValueUniques
-	24,  // 122: ProtoORMapState.entries:type_name -> ProtoORMapRemove
-	103, // 123: ProtoEmbMapState.crdts:type_name -> ProtoEmbMapEntry
-	104, // 124: ProtoEmbMapState.removes:type_name -> ProtoEmbMapRemove
-	132, // 125: ProtoEmbMapEntry.type:type_name -> CRDT_type
-	95,  // 126: ProtoEmbMapEntry.state:type_name -> ProtoState
-	0,   // 127: ProtoEmbMapRemove.clks:type_name -> ProtoStableClock
-	25,  // 128: ProtoTopKRmvState.elems:type_name -> ProtoTopKElement
-	27,  // 129: ProtoTopKRmvState.rems:type_name -> ProtoTopKIdVc
-	25,  // 130: ProtoTopKRmvState.notTop:type_name -> ProtoTopKElement
-	25,  // 131: ProtoTopKRmvState.smallest:type_name -> ProtoTopKElement
-	32,  // 132: ProtoTopSumState.elems:type_name -> ProtoTopSumElement
-	32,  // 133: ProtoTopSumState.notTop:type_name -> ProtoTopSumElement
-	32,  // 134: ProtoTopSumState.smallest:type_name -> ProtoTopSumElement
-	26,  // 135: ProtoTopKState.elems:type_name -> ProtoTopKScore
-	26,  // 136: ProtoTopKState.smallest:type_name -> ProtoTopKScore
-	26,  // 137: ProtoTopKState.tied:type_name -> ProtoTopKScore
-	111, // 138: ProtoFlagState.lww:type_name -> ProtoFlagLWWState
-	112, // 139: ProtoFlagState.ew:type_name -> ProtoFlagEWState
-	113, // 140: ProtoFlagState.dw:type_name -> ProtoFlagDWState
-	126, // 141: ProtoBoundedCounterState.permissions:type_name -> ProtoBoundedCounterState.PermissionsEntry
-	127, // 142: ProtoBoundedCounterState.decs:type_name -> ProtoBoundedCounterState.DecsEntry
-	128, // 143: ProtoIncWDateState.incs:type_name -> ProtoIncWDateState.IncsEntry
-	129, // 144: ProtoIncWDateState.cancels:type_name -> ProtoIncWDateState.CancelsEntry
-	130, // 145: ProtoIncWDateState.cancelsTs:type_name -> ProtoIncWDateState.CancelsTsEntry
-	124, // 146: ProtoNoOpState.nodeArr:type_name -> ProtoNoOpNode
-	86,  // 147: ProtoNoOpNode.value:type_name -> ProtoNoOpDownstream
-	148, // [148:148] is the sub-list for method output_type
-	148, // [148:148] is the sub-list for method input_type
-	148, // [148:148] is the sub-list for extension type_name
-	148, // [148:148] is the sub-list for extension extendee
-	0,   // [0:148] is the sub-list for field type_name
+	126, // 90: ProtoIncWSetDownstream.seenIncs:type_name -> ProtoIncWSetDownstream.SeenIncsEntry
+	135, // 91: ProtoNoOpDownstream.op:type_name -> ApbNoOpUpdate
+	135, // 92: ProtoNoOpDownstream.blocks:type_name -> ApbNoOpUpdate
+	0,   // 93: ProtoClock.entries:type_name -> ProtoStableClock
+	93,  // 94: ProtoReplyBucket.parts:type_name -> ProtoPartition
+	94,  // 95: ProtoPartition.states:type_name -> ProtoCRDT
+	133, // 96: ProtoCRDT.type:type_name -> CRDT_type
+	95,  // 97: ProtoCRDT.state:type_name -> ProtoState
+	97,  // 98: ProtoState.counter:type_name -> ProtoCounterState
+	99,  // 99: ProtoState.lwwreg:type_name -> ProtoLWWRegState
+	100, // 100: ProtoState.awset:type_name -> ProtoAWSetState
+	101, // 101: ProtoState.ormap:type_name -> ProtoORMapState
+	102, // 102: ProtoState.embmap:type_name -> ProtoEmbMapState
+	105, // 103: ProtoState.maxmin:type_name -> ProtoMaxMinState
+	107, // 104: ProtoState.topkrmv:type_name -> ProtoTopKRmvState
+	106, // 105: ProtoState.avg:type_name -> ProtoAvgState
+	108, // 106: ProtoState.topsum:type_name -> ProtoTopSumState
+	110, // 107: ProtoState.flag:type_name -> ProtoFlagState
+	114, // 108: ProtoState.bcounter:type_name -> ProtoBoundedCounterState
+	109, // 109: ProtoState.topk:type_name -> ProtoTopKState
+	98,  // 110: ProtoState.counterfloat:type_name -> ProtoCounterFloatState
+	115, // 111: ProtoState.pairCounter:type_name -> ProtoPairCounterState
+	116, // 112: ProtoState.arrayCounter:type_name -> ProtoArrayCounterState
+	117, // 113: ProtoState.multiArray:type_name -> ProtoMultiArrayState
+	118, // 114: ProtoState.mvreg:type_name -> ProtoMVRegState
+	119, // 115: ProtoState.simpleDate:type_name -> ProtoSimpleDateState
+	120, // 116: ProtoState.setWDate:type_name -> ProtoSetWDateState
+	121, // 117: ProtoState.incWDate:type_name -> ProtoIncWDateState
+	122, // 118: ProtoState.setOnlyDate:type_name -> ProtoSetOnlyDateState
+	123, // 119: ProtoState.noOp:type_name -> ProtoNoOpState
+	22,  // 120: ProtoAWSetState.elems:type_name -> ProtoValueUniques
+	24,  // 121: ProtoORMapState.entries:type_name -> ProtoORMapRemove
+	103, // 122: ProtoEmbMapState.crdts:type_name -> ProtoEmbMapEntry
+	104, // 123: ProtoEmbMapState.removes:type_name -> ProtoEmbMapRemove
+	133, // 124: ProtoEmbMapEntry.type:type_name -> CRDT_type
+	95,  // 125: ProtoEmbMapEntry.state:type_name -> ProtoState
+	0,   // 126: ProtoEmbMapRemove.clks:type_name -> ProtoStableClock
+	25,  // 127: ProtoTopKRmvState.elems:type_name -> ProtoTopKElement
+	27,  // 128: ProtoTopKRmvState.rems:type_name -> ProtoTopKIdVc
+	25,  // 129: ProtoTopKRmvState.notTop:type_name -> ProtoTopKElement
+	25,  // 130: ProtoTopKRmvState.smallest:type_name -> ProtoTopKElement
+	32,  // 131: ProtoTopSumState.elems:type_name -> ProtoTopSumElement
+	32,  // 132: ProtoTopSumState.notTop:type_name -> ProtoTopSumElement
+	32,  // 133: ProtoTopSumState.smallest:type_name -> ProtoTopSumElement
+	26,  // 134: ProtoTopKState.elems:type_name -> ProtoTopKScore
+	26,  // 135: ProtoTopKState.smallest:type_name -> ProtoTopKScore
+	26,  // 136: ProtoTopKState.tied:type_name -> ProtoTopKScore
+	111, // 137: ProtoFlagState.lww:type_name -> ProtoFlagLWWState
+	112, // 138: ProtoFlagState.ew:type_name -> ProtoFlagEWState
+	113, // 139: ProtoFlagState.dw:type_name -> ProtoFlagDWState
+	127, // 140: ProtoBoundedCounterState.permissions:type_name -> ProtoBoundedCounterState.PermissionsEntry
+	128, // 141: ProtoBoundedCounterState.decs:type_name -> ProtoBoundedCounterState.DecsEntry
+	129, // 142: ProtoIncWDateState.incs:type_name -> ProtoIncWDateState.IncsEntry
+	130, // 143: ProtoIncWDateState.cancels:type_name -> ProtoIncWDateState.CancelsEntry
+	131, // 144: ProtoIncWDateState.cancelsTs:type_name -> ProtoIncWDateState.CancelsTsEntry
+	125, // 145: ProtoNoOpState.nodeArr:type_name -> ProtoNoOpNode
+	135, // 146: ProtoNoOpCall.op:type_name -> ApbNoOpUpdate
+	135, // 147: ProtoNoOpCall.blocks:type_name -> ApbNoOpUpdate
+	90,  // 148: ProtoNoOpCall.clock:type_name -> ProtoClock
+	124, // 149: ProtoNoOpNode.value:type_name -> ProtoNoOpCall
+	150, // [150:150] is the sub-list for method output_type
+	150, // [150:150] is the sub-list for method input_type
+	150, // [150:150] is the sub-list for extension type_name
+	150, // [150:150] is the sub-list for extension extendee
+	0,   // [0:150] is the sub-list for field type_name
 }
 
 func init() { file_replicator_proto_init() }
@@ -8388,7 +8446,7 @@ func file_replicator_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_replicator_proto_rawDesc), len(file_replicator_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   131,
+			NumMessages:   132,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

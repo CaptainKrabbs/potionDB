@@ -36,6 +36,7 @@ type NoOpCrdt struct {
 func (crdt *NoOpCrdt) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
 
 func (crdt *NoOpCrdt) Initialize(startTs *clocksi.Timestamp, replicaID int16) (newCrdt CRDT) {
+	fmt.Println("Initializing NoOpCrdt...") //DEBUG PRINT
 	return &NoOpCrdt{
 		CRDTVM:       (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
 		StateContent: &DecisionState{},
@@ -56,6 +57,7 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//O state deves ser tu proprio a definir, apenas precisa de implementar dois métodos:
 	//GetCRDTType() proto.CRDTType:		{return proto.CRDTType_NOOP}
 	//GetREADType() proto.READType: 	{return proto.READType_FULL}
+	fmt.Println("I am reading") //DEBUG PRINT
 	crdtCpy := crdt.Copy().(*NoOpCrdt)
 	stateCpy := crdtCpy.StateContent
 	//perform operations on app db
@@ -71,6 +73,7 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 func (crdt *NoOpCrdt) Update(args UpdateArguments) (downstreamArgs DownstreamArguments) {
 	//TODO: Este e o prepare. Faz aqui o codigo necessario para gerar os blocks e afins.
 	//No final, deves retornar a operacao a ser executada na fase do effect.
+	fmt.Println("I am Updating") //DEBUG PRINT
 	op, ok := args.(Operation)
 	if !ok {
 		fmt.Println("[NoOpCrdt][ERROR]UpdateArguments not of type Operation. args:", args)
@@ -95,6 +98,7 @@ func (crdt *NoOpCrdt) Downstream(updTs clocksi.Timestamp, downstreamArgs Downstr
 	//crdt.addToHistory(&updTs, &downstreamArgs, effect)
 
 	//Expected that the argument here is a Message struct, which needs to be converted into a call
+	fmt.Println("I am performing a Downstream Operation") //DEBUG PRINT
 	msg := downstreamArgs.(Message)
 	//Check that operation isn't NoOp (precondition was validated)
 	if _, ok := msg.Op.(*NoOp); ok {
@@ -105,6 +109,11 @@ func (crdt *NoOpCrdt) Downstream(updTs clocksi.Timestamp, downstreamArgs Downstr
 		crdt.StateContent = op.Process(crdt.StateContent) //StateContent is implemented by struct pointers so the state will be modified.
 	} else {
 		crdt.applyDownstream(msg.ToCall(updTs))
+		conv := updTs.(clocksi.ClockSiTimestamp)
+		for key, val := range conv.VectorClock {
+			fmt.Printf("[%v : %v] ", key, val)
+		}
+		fmt.Printf("\n")
 	}
 	return nil
 }
@@ -190,7 +199,7 @@ func (crdt *NoOpCrdt) ToProtoState() (protobuf *proto.ProtoState) {
 		for j, num := range node.Edges {
 			edges[j] = int32(num)
 		}
-		nodeArr[i] = &proto.ProtoNoOpNode{Value: node.Value.ToReplicatorObj().GetNoOpOp(), Edges: edges, IsNoOp: &node.IsNoOp}
+		nodeArr[i] = &proto.ProtoNoOpNode{Value: node.Value.CallToProto(), Edges: edges, IsNoOp: &node.IsNoOp}
 	}
 	return &proto.ProtoState{NoOp: &proto.ProtoNoOpState{StateCode: &stateType, StateData: crdt.StateContent.Serialize(), NodeArr: nodeArr}}
 }
@@ -203,7 +212,7 @@ func (crdt *NoOpCrdt) FromProtoState(protobuf *proto.ProtoState, ts *clocksi.Tim
 		for j, num := range protoNode.GetEdges() {
 			edges[j] = int(num)
 		}
-		nodeArr[i] = Node{Value: (&Call{}).protoToCall(&proto.ProtoOpDownstream{NoOpOp: protoNode.GetValue()}), Edges: edges, IsNoOp: protoNode.GetIsNoOp()}
+		nodeArr[i] = Node{Value: (&Call{}).ProtoToCall(protoNode.GetValue()), Edges: edges, IsNoOp: protoNode.GetIsNoOp()}
 	}
 	return (&NoOpCrdt{StateContent: GetNoOpStateFromProto(protobuf.GetNoOp()), NodeArr: nodeArr}).initializeFromSnapshot(ts, replicaID)
 }

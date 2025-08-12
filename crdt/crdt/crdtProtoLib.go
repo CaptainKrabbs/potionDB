@@ -372,7 +372,7 @@ func DownstreamProtoToAntidoteDownstream(protobuf *proto.ProtoOpDownstream, crdt
 	case proto.CRDTType_MVREG:
 		downOp = DownstreamMVSetValue{}.FromReplicatorObj(protobuf)
 	case proto.CRDTType_NOOP:
-		downOp = (&Call{}).FromReplicatorObj(protobuf)
+		downOp = (&Message{}).FromReplicatorObj(protobuf)
 	}
 
 	return
