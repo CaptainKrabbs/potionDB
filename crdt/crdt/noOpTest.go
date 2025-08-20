@@ -11,6 +11,11 @@ type ReplicaOp struct {
 	ReplicaNum int
 }
 
+type ReplicaMessage struct {
+	Msg Message
+	ReplicaNum int
+}
+
 var (
 	addArtistSamRep1 = ReplicaOp{&AddArtist{ArtistName: "Sam"}, 1}
 	addAlbum1Rep1    = ReplicaOp{&AddAlbum{AlbumName: "A1", ArtistName: "Sam"}, 1}
@@ -135,25 +140,28 @@ func testReplicas(base *NoOpCrdt, numReplicas int, opBlocks [][]ReplicaOp, times
 func processOps(reps []*NoOpCrdt, opBlocks [][]ReplicaOp, timestamps []clocksi.ClockSiTimestamp) error {
 	i := 0
 	for _, opBlock := range opBlocks {
-		conflictMsgs := []Message{}
+		conflictMsgs := []ReplicaMessage{}
 		j := i
-		for _, op := range opBlock { //Prepare messages for all conflicting messages before applying downstream
+		for _, op := range opBlock { //Prepare messages for all conflicting messages and apply to source replica before replicating downstream
 			if (op.ReplicaNum > len(reps)) {
 				return errors.New("NoOpTest operation error: Target Replica out of bounds")
 			}
-			conflictMsgs = append(conflictMsgs, reps[op.ReplicaNum-1].Update(op.Op).(Message))
+			msg := reps[op.ReplicaNum-1].Update(op.Op).(Message)
+			conflictMsgs = append(conflictMsgs, ReplicaMessage{Msg: msg, ReplicaNum: op.ReplicaNum})
+			reps[op.ReplicaNum-1].Downstream(timestamps[j], msg)
 			j++
 		}
 		/*
-		To correctly simulate the effect and propagation of effect across all replicas,
-		Effect should be performed immediately after update for the replica that sources the op.
-		However, logically, it would make no difference here whether we keep track of the origin replica
-		and perform effect on it first or not.
-		(since no errors are returned and the effect of Downstream isn't checked.)
+		Replicate downstream
 		*/
 		for k := i; k < j; k++ {
+			msgWithSourceRep :=  conflictMsgs[k-i]
+			srcRep := msgWithSourceRep.ReplicaNum
+			msg := msgWithSourceRep.Msg
 			for l := range reps {
-				reps[l].Downstream(timestamps[k], conflictMsgs[k-i])
+				if (l+1 != srcRep) {
+					reps[l].Downstream(timestamps[k], msg)
+				}
 			}
 		}
 		i = j
@@ -167,6 +175,12 @@ func PrintNoOpCrdt(c *NoOpCrdt, name string) {
 	fmt.Println("Operations:")
 	for _, node := range c.NodeArr {
 		fmt.Println(node.Value.Op, node.IsNoOp)
+		//print clock
+		conv := node.Value.Clock.(clocksi.ClockSiTimestamp)
+		for key, val := range conv.VectorClock {
+			fmt.Printf("[%v : %v] ", key, val)
+		}
+		fmt.Printf("\n")
 		/*
 			fmt.Println("Blocks----")
 			for _, op := range node.Value.BlockedOps {
