@@ -6,18 +6,27 @@ import (
 	"potionDB/crdt/clocksi"
 )
 
+type ReplicaNoOp struct {
+	Crdt *NoOpCrdt
+	Id   int16
+}
+
 type ReplicaOp struct {
-	Op Operation
+	Op         Operation
 	ReplicaNum int
 }
 
 type ReplicaMessage struct {
-	Msg Message
+	Msg        Message
 	ReplicaNum int
+	Clock      clocksi.ClockSiTimestamp
 }
+
+const ID_BASE int16 = 11
 
 var (
 	addArtistSamRep1 = ReplicaOp{&AddArtist{ArtistName: "Sam"}, 1}
+	addArtistSamRep3 = ReplicaOp{&AddArtist{ArtistName: "Sam"}, 3}
 	addAlbum1Rep1    = ReplicaOp{&AddAlbum{AlbumName: "A1", ArtistName: "Sam"}, 1}
 	addAlbum2Rep2    = ReplicaOp{&AddAlbum{AlbumName: "A2", ArtistName: "Sam"}, 2}
 	updArtistSamRep1 = ReplicaOp{&UpdArtist{ArtistName: "Sam"}, 1}
@@ -30,20 +39,8 @@ var (
 
 func TestNoOpCrdt1() {
 	fmt.Println("\n Test start TestNoOpCrdt1")
-
-	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = &MusicState{}
-	crdt.StateContent.Initialize()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {updArtistSamRep1, rmvArtistSamRep2}}
-	//create specific timestamps
-	var timestamps = []clocksi.ClockSiTimestamp{
-		{VectorClock: map[int16]int64{111: 1, 222: 0}},
-		{VectorClock: map[int16]int64{111: 2, 222: 0}},
-		{VectorClock: map[int16]int64{111: 1, 222: 1}},
-		{VectorClock: map[int16]int64{111: 3, 222: 1}},
-		{VectorClock: map[int16]int64{111: 2, 222: 2}}}
-
-	err := testReplicas(crdt, 2, opOrder, timestamps)
+	err := testReplicas(2, opOrder)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -51,20 +48,8 @@ func TestNoOpCrdt1() {
 
 func TestNoOpCrdt2() {
 	fmt.Println("\n Test start TestNoOpCrdt2")
-
-	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = &MusicState{}
-	crdt.StateContent.Initialize()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}}
-	//create specific timestamps
-	var timestamps = []clocksi.ClockSiTimestamp{
-		{VectorClock: map[int16]int64{111: 1, 222: 0}},
-		{VectorClock: map[int16]int64{111: 2, 222: 0}},
-		{VectorClock: map[int16]int64{111: 1, 222: 1}},
-		{VectorClock: map[int16]int64{111: 3, 222: 1}},
-		{VectorClock: map[int16]int64{111: 2, 222: 2}}}
-
-	err := testReplicas(crdt, 2, opOrder, timestamps)
+	err := testReplicas(2, opOrder)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -72,22 +57,8 @@ func TestNoOpCrdt2() {
 
 func TestNoOpCrdt3() {
 	fmt.Println("\n Test start TestNoOpCrdt3")
-
-	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = &MusicState{}
-	crdt.StateContent.Initialize()
 	var opOrder = [][]ReplicaOp{{addArtistSamRep1}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}, {addArtistFredRep2}, {addAlbumFredRep2}}
-	//create specific timestamps
-	var timestamps = []clocksi.ClockSiTimestamp{
-		{VectorClock: map[int16]int64{111: 1, 222: 0}},
-		{VectorClock: map[int16]int64{111: 2, 222: 0}},
-		{VectorClock: map[int16]int64{111: 1, 222: 1}},
-		{VectorClock: map[int16]int64{111: 3, 222: 1}},
-		{VectorClock: map[int16]int64{111: 2, 222: 2}},
-		{VectorClock: map[int16]int64{111: 3, 222: 2}},
-		{VectorClock: map[int16]int64{111: 4, 222: 2}}}
-
-	err := testReplicas(crdt, 2, opOrder, timestamps)
+	err := testReplicas(2, opOrder)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -95,22 +66,17 @@ func TestNoOpCrdt3() {
 
 func TestNoOpCrdt4() {
 	fmt.Println("\n Test start TestNoOpCrdt4")
-
-	crdt := (&NoOpCrdt{}).Initialize(nil, 111).(*NoOpCrdt)
-	crdt.StateContent = &MusicState{}
-	crdt.StateContent.Initialize()
 	var opOrderR1 = [][]ReplicaOp{{addArtistSamRep1, addArtistFredRep2}, {addAlbum1Rep1, addAlbum2Rep2}, {rmvArtistFredRep2, updArtistSamRep1}, {addAlbumFredRep2}}
-	//create specific timestamps
-	var timestamps = []clocksi.ClockSiTimestamp{
-		{VectorClock: map[int16]int64{111: 1, 222: 0}},
-		{VectorClock: map[int16]int64{111: 0, 222: 1}},
-		{VectorClock: map[int16]int64{111: 2, 222: 1}},
-		{VectorClock: map[int16]int64{111: 1, 222: 2}},
-		{VectorClock: map[int16]int64{111: 3, 222: 2}},
-		{VectorClock: map[int16]int64{111: 2, 222: 3}},
-		{VectorClock: map[int16]int64{111: 4, 222: 4}}}
+	err := testReplicas(2, opOrderR1)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+}
 
-	err := testReplicas(crdt, 2, opOrderR1, timestamps)
+func TestNoOpCrdt5() {
+	fmt.Println("\n Test start TestNoOpCrdt5")
+	var opOrderR1 = [][]ReplicaOp{{addArtistSamRep3, addAlbum1Rep1, addAlbum2Rep2}}
+	err := testReplicas(3, opOrderR1)
 	if err != nil {
 		fmt.Println(err.Error())
 	}
@@ -118,49 +84,66 @@ func TestNoOpCrdt4() {
 
 // Func that carries out basic test structure
 // base is the base state of all replicas
-func testReplicas(base *NoOpCrdt, numReplicas int, opBlocks [][]ReplicaOp, timestamps []clocksi.ClockSiTimestamp) error {
-	reps := make([]*NoOpCrdt, numReplicas)
-	if numReplicas > 32767 || numReplicas <= 0{
+func testReplicas(numReplicas int, opBlocks [][]ReplicaOp) error {
+
+	if numReplicas > 32767 || numReplicas <= 0 {
 		return errors.New("NoOpTest parameter error: Invalid number of replicas")
+	} else if numReplicas*int(ID_BASE) > 32767 {
+		return errors.New("NoOpTest parameter error: Invalid number of replicas for value of base id")
 	}
-	//Creating replicas from base crdt
+	reps := make([]*ReplicaNoOp, numReplicas)
+	//Creating replicas - MusicState is assumed for use
 	for i := 0; i < numReplicas; i++ {
-		reps[i] = base.Copy().(*NoOpCrdt)
+		var newId int16 = ID_BASE * (int16(i + 1))
+		crdt := (&NoOpCrdt{}).Initialize(nil, newId).(*NoOpCrdt)
+		crdt.StateContent = &MusicState{}
+		crdt.StateContent.Initialize()
+		reps[i] = &ReplicaNoOp{Crdt: crdt, Id: newId}
 	}
+
 	fmt.Printf("Starting %v Replica(s).\n", numReplicas)
-	processOps(reps, opBlocks, timestamps)
-	for i, crdt := range reps {
+	processOps(reps, opBlocks)
+	for i, rep := range reps {
 		fmt.Printf("Final result, Replica%v:\n", i+1)
-		PrintNoOpCrdt(crdt, fmt.Sprintf("Replica%v", i+1))
+		PrintNoOpCrdt(rep.Crdt, fmt.Sprintf("Replica%v", i+1))
 	}
 	return nil
 }
 
 // Func that prepares and builds the graph in the crdt taking into account operation conflicts
-func processOps(reps []*NoOpCrdt, opBlocks [][]ReplicaOp, timestamps []clocksi.ClockSiTimestamp) error {
+func processOps(reps []*ReplicaNoOp, opBlocks [][]ReplicaOp) error {
 	i := 0
+	//Hard-Initialization of the clock. using .NewTimestamp had
+	vectorClock := make(map[int16]int64)
+	for _, rep := range reps {
+		vectorClock[rep.Id] = 0
+	}
+
+	var clock clocksi.ClockSiTimestamp = clocksi.ClockSiTimestamp{VectorClock: vectorClock}
 	for _, opBlock := range opBlocks {
 		conflictMsgs := []ReplicaMessage{}
 		j := i
-		for _, op := range opBlock { //Prepare messages for all conflicting messages and apply to source replica before replicating downstream
-			if (op.ReplicaNum > len(reps)) {
+		clockCpy := clock.Copy().(clocksi.ClockSiTimestamp) //performs changes from current state.
+		for _, op := range opBlock {                        //Prepare messages for all conflicting messages and apply to source replica before replicating downstream
+			if op.ReplicaNum > len(reps) {
 				return errors.New("NoOpTest operation error: Target Replica out of bounds")
 			}
-			msg := reps[op.ReplicaNum-1].Update(op.Op).(Message)
-			conflictMsgs = append(conflictMsgs, ReplicaMessage{Msg: msg, ReplicaNum: op.ReplicaNum})
-			reps[op.ReplicaNum-1].Downstream(timestamps[j], msg)
+			msg := reps[op.ReplicaNum-1].Crdt.Update(op.Op).(Message)
+			clock.SelfIncTimestamp(reps[op.ReplicaNum-1].Id) //keeps track of total updates
+			nextClock := clockCpy.IncTimestamp(reps[op.ReplicaNum-1].Id).(clocksi.ClockSiTimestamp)
+			conflictMsgs = append(conflictMsgs, ReplicaMessage{Msg: msg, ReplicaNum: op.ReplicaNum, Clock: nextClock})
+			reps[op.ReplicaNum-1].Crdt.Downstream(nextClock, msg)
 			j++
 		}
 		/*
-		Replicate downstream
+			Replicate downstream
 		*/
 		for k := i; k < j; k++ {
-			msgWithSourceRep :=  conflictMsgs[k-i]
+			msgWithSourceRep := conflictMsgs[k-i]
 			srcRep := msgWithSourceRep.ReplicaNum
-			msg := msgWithSourceRep.Msg
 			for l := range reps {
-				if (l+1 != srcRep) {
-					reps[l].Downstream(timestamps[k], msg)
+				if l+1 != srcRep {
+					reps[l].Crdt.Downstream(msgWithSourceRep.Clock, msgWithSourceRep.Msg)
 				}
 			}
 		}
@@ -204,7 +187,7 @@ func PrintMusicState(d *MusicState) {
 	}
 }
 
-//Assumes the format is correct, only for checking test output and debugging
+// Assumes the format is correct, only for checking test output and debugging
 func PrintMusicStateFromBytes(stateByte [][]byte) {
 	PrintMusicState((&MusicState{}).Deserialize(stateByte).(*MusicState))
 }
