@@ -185,6 +185,7 @@ func PrintMusicState(d *MusicState) {
 			fmt.Println("----", album)
 		}
 	}
+	fmt.Println("EndState.")
 }
 
 // Assumes the format is correct, only for checking test output and debugging

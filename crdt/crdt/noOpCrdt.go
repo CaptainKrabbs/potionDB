@@ -73,8 +73,9 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 func (crdt *NoOpCrdt) Update(args UpdateArguments) (downstreamArgs DownstreamArguments) {
 	//TODO: Este e o prepare. Faz aqui o codigo necessario para gerar os blocks e afins.
 	//No final, deves retornar a operacao a ser executada na fase do effect.
-	fmt.Println("I am Updating") //DEBUG PRINT
+
 	op, ok := args.(Operation)
+	fmt.Println("I am Updating", op.String()) //DEBUG PRINT
 	if !ok {
 		fmt.Println("[NoOpCrdt][ERROR]UpdateArguments not of type Operation. args:", args)
 	}
@@ -98,8 +99,8 @@ func (crdt *NoOpCrdt) Downstream(updTs clocksi.Timestamp, downstreamArgs Downstr
 	//crdt.addToHistory(&updTs, &downstreamArgs, effect)
 
 	//Expected that the argument here is a Message struct, which needs to be converted into a call
-	fmt.Println("I am performing a Downstream Operation") //DEBUG PRINT
 	msg := downstreamArgs.(Message)
+	fmt.Println("I am performing a Downstream Operation", msg.Op.String()) //DEBUG PRINT
 	//Check that operation isn't NoOp (precondition was validated)
 	if _, ok := msg.Op.(*NoOp); ok {
 		return nil //evitar nesting

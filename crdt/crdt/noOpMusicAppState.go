@@ -98,8 +98,9 @@ func (s *MusicState) Deserialize(bytes [][]byte) NoOpState {
 		artist := Artist(bytes[i])
 		i++
 		var newAlbums *hashset.HashSet[Album] = hashset.New[Album]()
-		for album := string(bytes[i]); album != endtag; i++ {
+		for album := string(bytes[i]); album != endtag; album = string(bytes[i]) {
 			newAlbums.Add(Album(album))
+			i++
 		}
 		i++
 		newMap[artist] = newAlbums
