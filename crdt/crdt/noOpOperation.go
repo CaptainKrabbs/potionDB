@@ -39,8 +39,10 @@ func ToUpdateObjectFrame(a Operation) (protobuf *proto.ApbUpdateOperation) {
 	return &proto.ApbUpdateOperation{Noop: &proto.ApbNoOpUpdate{StateCode: &stateCode, OpCode: &opCode, Params: params}}
 }
 
-// Auxiliary method for FromUpdateObject
-func ValidateOpProtobuf(a Operation, protobuf *proto.ApbUpdateOperation) (ok bool) {
+/* Auxiliary method for FromUpdateObject
+ * Verifies correctness of codes for a protobuf attempting to be converted to an Operation of the given type.
+*/
+func VerifyOpProtobuf(a Operation, protobuf *proto.ApbUpdateOperation) (ok bool) {
 	//Fail conditions: wrong
 	if a.GetStateCode() != *protobuf.GetNoop().StateCode {
 		fmt.Printf("Error occurred: Invalid State type for Operation %v. Expected: %v Given: %v", a.GetOpName(), a.GetStateCode(), protobuf.GetNoop().StateCode)
@@ -255,7 +257,7 @@ func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return NoOp{}
@@ -337,7 +339,7 @@ func (a *DetermineStateOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation)
 }
 
 func (a *DetermineStateOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return &DetermineStateOp{NewStateCode: int32(binary.BigEndian.Uint32(protobuf.GetNoop().GetParams()[NewStateCodeParamIdx]))}

@@ -6,7 +6,7 @@ import (
 	"potionDB/crdt/proto"
 )
 
-var (
+const (
 	//Operation codes for App using MusicState as NoOpState
 	AddArtistOpCode int32 = 1
 	RmvArtistOpCode int32 = 2
@@ -24,7 +24,9 @@ var (
 	//Expected Parameter index
 	ArtistNameParamIdx = 0
 	AlbumNameParamIdx  = 1
+)
 
+var (
 	musicOpStatic = []Operation{&AddArtist{}, &RmvArtist{}, &UpdArtist{}, &AddAlbum{}, &RmvAlbum{}}
 )
 
@@ -97,7 +99,7 @@ func (a *AddArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *AddArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return &AddArtist{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx])}
@@ -174,7 +176,7 @@ func (a *RmvArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *RmvArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return &RmvArtist{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx])}
@@ -244,7 +246,7 @@ func (a *UpdArtist) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *UpdArtist) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return &UpdArtist{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx])}
@@ -326,7 +328,7 @@ func (a *AddAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *AddAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return &AddAlbum{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx]), AlbumName: Album(protobuf.GetNoop().GetParams()[AlbumNameParamIdx])}
@@ -401,7 +403,7 @@ func (a *RmvAlbum) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *RmvAlbum) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !ValidateOpProtobuf(a, protobuf) {
+	if !VerifyOpProtobuf(a, protobuf) {
 		return NoOp{}
 	}
 	return &RmvAlbum{ArtistName: Artist(protobuf.GetNoop().GetParams()[ArtistNameParamIdx]), AlbumName: Album(protobuf.GetNoop().GetParams()[AlbumNameParamIdx])}
