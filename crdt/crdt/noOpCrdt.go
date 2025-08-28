@@ -36,7 +36,7 @@ type NoOpCrdt struct {
 func (crdt *NoOpCrdt) GetCRDTType() proto.CRDTType { return proto.CRDTType_NOOP }
 
 func (crdt *NoOpCrdt) Initialize(startTs *clocksi.Timestamp, replicaID int16) (newCrdt CRDT) {
-	fmt.Println("Initializing NoOpCrdt...") //DEBUG PRINT
+	//fmt.Println("Initializing NoOpCrdt...") //DEBUG PRINT
 	return &NoOpCrdt{
 		CRDTVM:       (&genericInversibleCRDT{}).initialize(startTs, crdt.undoEffect, crdt.reapplyOp, crdt.notifyRebuiltComplete),
 		StateContent: &DecisionState{},
@@ -57,7 +57,7 @@ func (crdt *NoOpCrdt) Read(args ReadArguments, updsNotYetApplied []UpdateArgumen
 	//O state deves ser tu proprio a definir, apenas precisa de implementar dois métodos:
 	//GetCRDTType() proto.CRDTType:		{return proto.CRDTType_NOOP}
 	//GetREADType() proto.READType: 	{return proto.READType_FULL}
-	fmt.Println("I am reading") //DEBUG PRINT
+	//fmt.Println("I am reading") //DEBUG PRINT
 	crdtCpy := crdt.Copy().(*NoOpCrdt)
 	stateCpy := crdtCpy.StateContent
 	//perform operations on app db
@@ -75,7 +75,7 @@ func (crdt *NoOpCrdt) Update(args UpdateArguments) (downstreamArgs DownstreamArg
 	//No final, deves retornar a operacao a ser executada na fase do effect.
 
 	op, ok := args.(Operation)
-	fmt.Println("I am Updating", op.String()) //DEBUG PRINT
+	//fmt.Println("I am Updating", op.String()) //DEBUG PRINT
 	if !ok {
 		fmt.Println("[NoOpCrdt][ERROR]UpdateArguments not of type Operation. args:", args)
 	}
@@ -100,7 +100,7 @@ func (crdt *NoOpCrdt) Downstream(updTs clocksi.Timestamp, downstreamArgs Downstr
 
 	//Expected that the argument here is a Message struct, which needs to be converted into a call
 	msg := downstreamArgs.(Message)
-	fmt.Println("I am performing a Downstream Operation", msg.Op.String()) //DEBUG PRINT
+	//fmt.Println("I am performing a Downstream Operation", msg.Op.String()) //DEBUG PRINT
 	//Check that operation isn't NoOp (precondition was validated)
 	if _, ok := msg.Op.(*NoOp); ok {
 		return nil //evitar nesting
