@@ -117,6 +117,7 @@ func main() {
 	sqlP := antidote.InitializeSQLProcessor(tm)
 	go handleTC(configs)
 	time.Sleep(150 * time.Millisecond)
+	fmt.Printf("[PS]Buckets: %v\n", configs.GetConfig("buckets"))
 
 	doDataload := configs.GetBoolConfig(DO_TPCH_DATALOAD, false)
 	fmt.Println(configs.GetConfig(DO_TPCH_DATALOAD))
@@ -259,6 +260,7 @@ func main() {
 	readyChan <- true //No longer need the other goroutine to look into cancelChan.
 
 	fmt.Printf("[PS]Listening for shutdown signal at %s...\n", time.Now().String())
+	fmt.Printf("[PS]Buckets: %v\n", configs.GetConfig("buckets"))
 	sig := <-cancelChan
 	fmt.Printf("[PS]Caught signal %v at %s: sending shut down signal to TM.\n", sig, time.Now().String())
 	time.Sleep(500 * time.Millisecond)
