@@ -47,6 +47,8 @@ func (s *DecisionState) Copy() NoOpState {
 func (s *DecisionState) FromUpdateObject(protobuf *proto.ApbUpdateOperation) UpdateArguments {
 	if protobuf.GetNoop().GetStateCode() == s.GetStateCode() {
 		switch protobuf.GetNoop().GetOpCode() {
+		case (&NoOp{}).GetOpCode():
+			return (&NoOp{}).FromUpdateObject(protobuf)
 		case (&DetermineStateOp{}).GetOpCode():
 			return (&DetermineStateOp{}).FromUpdateObject(protobuf)
 		}

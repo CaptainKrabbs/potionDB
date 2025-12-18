@@ -257,10 +257,7 @@ func (a *NoOp) ToUpdateObject() (protobuf *proto.ApbUpdateOperation) {
 }
 
 func (a *NoOp) FromUpdateObject(protobuf *proto.ApbUpdateOperation) (op UpdateArguments) {
-	if !VerifyOpProtobuf(a, protobuf) {
-		return NoOp{}
-	}
-	return NoOp{}
+	return &NoOp{};
 }
 
 //----------DetermineState
